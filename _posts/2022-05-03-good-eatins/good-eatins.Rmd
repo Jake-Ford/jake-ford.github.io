@@ -1,0 +1,98 @@
+---
+title: "Good Eatin's"
+description: |
+  The hidden gems I didn't want to share
+author:
+  - name: Jacob Ford
+    url: https://jford-dchcmpo.github.io/Blog/posts/2021-12-30-Redistricting-and-Racial-Targetting/
+date: "`r Sys.Date()`"
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+Click on a location, get my 'don't miss' item(s) from each. 
+
+August 2022 update: Avoiding the doldrums of local reporting by inventive new gimics, the News & Observer's March Madness 2021 [burger bracket](https://www.newsobserver.com/living/food-drink/article255290876.html), that actually took place in the fall of 2021 - bestowed upon the brassiere [Neuse River Brewing](https://www.neuseriverbrewing.com/) the grand title, the tsar of taste, the sultan of sizzle, the best of the burgers. We had high expectations, they were somehow exceeded. 10/10 must try. 
+
+December update: Krill, you must go to Krill if you're in Durham. 
+
+
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(leaflet)
+library(sf) 
+
+library(readxl)
+eats_data <- read_excel("Eat_Data.xlsx")
+
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(RColorBrewer)
+pal <- colorFactor(
+  palette = 'Dark2',
+  domain = eats_data$Genre
+)
+
+
+eats_map <- leaflet(data=eats_data) %>%
+ # addTiles() %>%
+ addProviderTiles("CartoDB.Positron") %>%
+  addCircles(lat = eats_data$Latitutde, lng=eats_data$Longitude,
+             popup=paste("Name: ", eats_data$Name, "<br>",
+                          "Genre: ", eats_data$Genre, "<br>",
+                          "Don't you dare miss: ", eats_data$`Don't Miss:`),
+             color = ~pal(Genre),
+             weight=10,
+             fillOpacity = 2) %>%
+  addLegend("bottomleft",
+            pal=pal,
+            values=~Genre) 
+  
+
+
+eats_map
+```
+
+
+
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+
+## Searchable Map
+bbq <- eats_data %>%
+  filter(Genre=="BBQ")
+
+eats_map <- leaflet() %>%
+ # addTiles() %>%
+ addProviderTiles("CartoDB.Positron") %>%
+  addCircles(lat = eats_data$Latitutde, lng=eats_data$Longitude,
+             popup=paste("Name: ", eats_data$Name, "<br>",
+                          "Genre: ", eats_data$Genre, "<br>",
+                          "Don't you dare miss: ", eats_data$`Don't Miss:`),
+           #  color = ~pal(Genre),
+             group="All",
+             data=eats_data) %>%
+  addCircles(lat = eats_data$Latitutde, lng=eats_data$Longitude,
+             popup=paste("Name: ", eats_data$Name, "<br>",
+                          "Genre: ", eats_data$Genre, "<br>",
+                          "Don't you dare miss: ", eats_data$`Don't Miss:`),
+            #color = ~pal(Genre),
+             group="BBQ",
+             data=bbq) %>%
+  
+  # addLegend("bottomleft",
+  #           pal=pal,
+  #           values=~Genre)  %>%
+    addLayersControl(overlayGroups = c("BBQ", "All"))
+
+  
+
+
+eats_map
+```
+
+

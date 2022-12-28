@@ -1,0 +1,32 @@
+---
+title: "South Korea Takeaways"
+description: |
+  Busan -> Gyeongju -> Seoul.
+author:
+  - name: Jacob Ford
+    url: {}
+date: 2022-09-30
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+
+Takeaways from this captivating country:
+
+1. Food tours: My wife organized a food tour through a few of Seoul's many food markets for my birthday. A food tour remains the single most efficient use of condensed time to 'see' a city. 
+2. Busan - something about the dichotomy between ocean and this massive city skyline is surreal. I met my wife during the closing days of the 7th International Marine Debris Conference, so had a half day to myself. The tried and true method of ordering food by pointing at another person's dish + thumbs up was further proved effective. Loved Busan, seemed to be a great jumping off point to other interesting areas along the southern coast as well - Jeju being the most popular perhaps? 
+3. Seoul's National Museum of Korea is 1) housed in a massive and gorgeous building 2) would require better part of a full day to fully view, though can be sufficiently sifted through in a wondrous stupor within 4 hours and 3) is free! 10/10 recommend. 
+4. Gyeongju - from the population, it was much more domestic travelers than international, which makes sense given the main attractions of Bulguksa and Seokguram Grotto, both classified as national treasures. Walking through the parks in Gyeongju with the ancient burrial mounds dotted throughout was amazing, very different than the cityscapes of Seoul and Busan!
+5. The distinct culture built over centuries of international interference from Tang -> Mongols -> Chinese -> Japanese -> United States (apologies if that order leaves out any particular party) is absolutely unique to any country I've been to previously. For example, at Bulguksa, the temple itself was destroyed by invading forces, and much of the scene today was rebuilt in modern times to ancient specifications. At Seokguram Grotto, the 8th century masonry still survives. At both locations, an equal level of intense pride was evident from Koreans. Their people are resilient and, rightfully, damn proud of the metropolitan wonder they have built while holding on to their history that goes back some five or six millennia. 
+
+6. Transportation, ok lets talk about it. South Korea is roughly the size of the state of Indiana, and it's transportation system was nothing short of stunning, efficient, fast and clean. Every metro stop had perfectly usable bathrooms - could you imagine this in the States! For all metros and buses, a single loadable card can be used across systems. This part in particular blew my mind, what a convenient payment method for users. I couldn't imagine Los Angeles and San Francisco agreeing to a unified name of a transportation system let alone a unified payment method.  
+
+7. Drinking - every drink we had was based around a meal, which was such a slight but profound shift. Every night was a bit of a banger in our section of town, near Jonggak station in Seoul - which may be a function of the area - but sipping on soju or Korean beers over a spicy meal is quite lovely :) 
+
+Stay young y'all :) 
+
+![](ave_of_youth.PNG) 
+
+

@@ -1,0 +1,630 @@
+---
+title: "Quantifying NIMBYism"
+author:
+  - name: Jacob Ford
+    url: https://jford-dchcmpo.github.io/Blog/
+date: 01-06-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+![](sign.png) 
+
+## Vapid & Plastic
+
+Take a stroll down any street in my neighborhood in Durham, which many on this blog have called the Mecca of the South, and you'll quickly notice the tell-tale sign that you're in a quickly gentrifying, liberal leaning area: the lawn signs. 
+
+Black lives matter. Science is Real. Housing is a Human Right. Stop the Steal. (Just kidding about that last one)
+
+
+These signs are sometimes critisized as virtue signaling But I'm not here to argue about lawn signs. I do believe that in the broad, middle to upper-middle class Democratic base there is a pervasive hypocrisy when it comes to political priorities espoused (often via lawn ornamentation) and the actions that defend and hoard opportunities for others. I was lucky to take a seminar from Richard Reeves of the Brooking Institute on the very subject, and he's written prodigiously regarding this very confluence of virtue signaling and policy setting. These double-standards are nearly as ubiquitous as the aforementioned lawn signs: university legacy admissions, fiscal policy such as the mortgage interest deduction, 529 plans, estate and sales tax and most recently the absurd SALT deduction - which Reeves argues should be completely eliminated, and house zoning.  
+
+
+I found myself wondering, are Durham zoning laws reflective of a majority Democratic enclave, a quickly growing liberal bubble? Are we, like many other cities in America, zoned predominately for single-family households? And above all, are Durham's zoning ordinances aligned with beliefs of all those stupid lawn signs? 
+
+Note: Durham's [Comprehensive Plan](https://engagedurham.com/comprehensive-plan/) is being updated, so zoning ordinances are likely to occur. 
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(caliperR)
+library(nngeo)
+library(tcadr)
+library(sf)
+library(leaflet)
+library(PL94171)
+library(janitor)
+library(dplyr)
+library(tidycensus)
+library(tidyverse)
+options(tigris_use_cache = TRUE)
+library(sf)
+library(data.table)
+library(dplyr)
+library(plotly)
+
+
+# remotes::install_github("walkerke/tidycensus")
+# remotes::install_github("walkerke/tigris")
+library(tidycensus)
+library(tidyverse)
+library(tigris)
+
+vars_2020 <- load_variables(2020,"pl",cache=TRUE)
+vars_2010 <- load_variables(2010,"sf1", cache=TRUE)
+vars_2019 <- load_variables(2019,"acs5", cache=TRUE)
+
+
+
+
+zones <- st_read("C:/Users/JacobFo/OneDrive - City of Durham/GitHub/Personal Blog/Personal Blog/_posts/2021-12-08-Quantifying-NIMBYism/Zoning.shp")
+
+
+
+
+
+
+
+```
+ 
+ 
+ 
+## EDA 
+
+I wish I could take a time machine back to a younger Jake, complaining about a problem set in his graduate quant class. Oh, is that perfectly cleaned data set provided by the professor annoying to load into your program? Is the codebook too succint? I wouldn't hit this Jake, violence is never the answer, but I would shake him a bit. 
+
+The question we're trying to answer is to what degree is Durham's zoning amenable to non-single family homes? Using 2020 census data, we can determine the percentage of Durham-ites zoned for single or multiple family homes. Growth in households and population will be measured based on where that growth is occuring by zone type. First, we need the zone type. 
+
+### Zone Types 
+
+
+Durham's zoning data is publicly available, and is classified in an understandably long-winded manner. Below are the initial zone types: 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+table(zones$ZONE_GEN)
+```
+
+
+As the songbird of our generation Carly Rae Jepson once said, let's cut to the feeling. 
+
+Let's collapse each zone into broad buckets: residential, commercial, university, downtown and compact. The last two will be treated nearly identically. Compact is a newer designed zone theorized to increase density, multimodal traffic like transit and bike lanes, and allow access to work and play in and around Durham. 
+
+
+The below table from the previous [Durham Comprehensive Plan](https://durhamnc.gov/DocumentCenter/View/9020/2-Land-Use) shows the below table, which we will use to approximate dwell units permitted on each type of zone. Downtown zones in the 'High' Density have a hilarious "unlimited" density limit, so I'm expecting a new Burj Khalifa sooner rather than later with that type of free reign. Note, I will use the median value of the density ranges, but it doesn't matter too much, as you'll see. 
+
+
+
+
+![](durham zoning table.PNG)
+
+After collapsing, we get the following reduced zones below.  
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+res_words <- paste("RESIDENTIAL", "RES", sep = "|")
+
+commerical_words <- paste("COMMECIAL", "COMMERCIAL", "UNIVERSITY","OFFICE", "INDUST", "MIXED", 'COMPACT',sep = "|")
+
+downtown_words <- paste("DOWNTOWN")
+
+  
+zones <- zones %>%
+  mutate(
+    zone_flag = case_when(
+      grepl("COMPACT", ZONE_GEN) ~ "Compact",
+      is.na(ZONE_GEN) ~ "University",
+      grepl(downtown_words, ZONE_GEN) ~ "Downtown",
+      grepl(commerical_words, ZONE_GEN) ~ "Commerical",
+      grepl(res_words, ZONE_GEN) ~ "Residential",
+      
+      TRUE ~ "Other"
+      )
+    )
+
+
+table(zones$zone_flag)
+```
+The interactive map shows these collapsed categories for the whole county. Most of the county is zoned residential, which makes sense. Commercial zones mainly follow along the major highway corridor NC 147 and I-40, along with smatterings here and there. The compact zones are relatively concentrated just north of Duke's main campus. There are a number of condos and apartment buildings, a few hotels even, in that zone. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+
+
+
+pal <- colorFactor(
+  palette='Dark2',
+  domain=zones$zone_flag
+)
+
+zone_map <- leaflet() %>%
+  addProviderTiles("CartoDB.Positron") %>%
+  setView(-78.90390102117877,35.998220055791876,  zoom=14)%>%
+  addPolygons(data=zones,
+              weight=1,
+              color=~pal(zone_flag),
+              popup=paste("Zone Type: ", zones$zone_flag, "<br>",
+                          "Detailed Zone:", zones$ZONE_GEN)) %>%
+  addLegend(
+    position="bottomright",
+    pal=pal,
+    values=zones$zone_flag
+  )
+
+
+zone_map
+```
+
+
+
+## Collapsed Zone Density 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+
+res_zones <- zones %>%
+#  filter(zone_flag == "Residential" | zone_flag=="Compact") %>%
+ # filter(ZONE_GEN != "RESEARCH") %>%
+  mutate(
+    density = case_when(
+     grepl("RURAL", ZONE_GEN)  ~ "Rural Density",
+     ZONE_GEN == "RES_LOW_DENSITY" ~ "Low Density",
+     ZONE_GEN == "RES_MEDIUM_DENSITY" ~ "Medium Density",
+     ZONE_GEN == "RES_HIGH_DENSITY" ~ "High Density",
+     grepl("COMPACT", ZONE_GEN) ~ "Compact",
+     grepl("DOWNTOWN", ZONE_GEN) ~ "Downtown"
+      ),
+    dwell_units = case_when (
+      density == "Rural Density" ~  0.75,
+      density == "Low Density" ~  4,
+      density == "Medium Density" ~  9,
+      density == "High Density" ~ 36,
+      density == "Compact" ~ 75,
+      density == "Downtown" ~ 75
+    )
+    )
+
+
+pal <- colorFactor(
+  palette='Dark2',
+  domain=res_zones$density
+)
+
+zone_map <- leaflet() %>%
+  addProviderTiles("CartoDB.Positron") %>%
+  setView(-78.90390102117877,35.998220055791876,  zoom=14)%>%
+  addPolygons(data=res_zones,
+              weight=1,
+              color=~pal(density),
+              popup=paste("Zone Type: ", res_zones$zone_flag, "<br>",
+                          "Detailed Zone:", res_zones$density, "<br>",
+                          "Zoned for ", res_zones$dwell_units, "Dwell Units maximum", "<br>",
+                          "Acres: ", res_zones$ACRES)) %>%
+  addLegend(
+    position="bottomright",
+    pal=pal,
+    values=res_zones$density
+  )
+
+
+zone_map
+
+```
+
+
+## Max Dwell Units by Zone
+
+Following the table shown above, the max dwell units by zone type are shown. University zones are removed for simplicity. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+
+
+#bins<-c(0,50,100,250,500,1000,2000,5000, 10000, 50000)
+bins<-c(0,1,4,9,36,75)
+
+library(RColorBrewer)
+
+pal <- colorBin(
+  palette='RdYlGn',
+  bins=bins,
+  domain=res_zones$dwell_units
+)
+
+zone_map <- leaflet() %>%
+  addProviderTiles("CartoDB.Positron") %>%
+  setView(-78.90390102117877,35.998220055791876,  zoom=14)%>%
+  addPolygons(data=res_zones,
+              weight=1,
+              color=~pal(dwell_units),
+              popup=paste("Zone Type: ", res_zones$zone_flag, "<br>",
+                          "Detailed Zone:", res_zones$ZONE_GEN, "<br>",
+                          "Zoned for ", res_zones$dwell_units, "Dwell Units maximum", "<br>",
+                          "Acres: ", res_zones$ACRES)) %>%
+  addLegend(
+    position="bottomright",
+    pal=pal,
+    values=res_zones$dwell_units,
+    title="Units/Acre"
+  )
+
+
+zone_map
+
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+The units/acre map doesn't show too much information, outside of East Durham is likely due for some expanded zoning restrictions. What I find interesting is the collapsed zone density map, the little pockets of high density in Trinity Park, where I walk my dog several times a day and fight the urge to not just allow but actively encourage Charlie the Greyhound to pee on the quarter million dollar McMansion sprouting up between the duplexes and triplexes which are clearly fit in those little pockets of high density zoned plots. 
+
+I'm also kidding, Charlie is far too polite of a pup, and I am not one of those monster dog owners. 
+
+What may help illuminate this is to see how many people are living in these type of zones. 
+
+
+### Heaping Cup of Demographic Data
+
+The question we want to answer: how many people and households reside in the variety of zones, and how has that changed? Are zones meeting the explosion of demand in Durham? 
+
+
+Using the 2020 and 2010 census data, with some geospatial data science stacks, we can tag each residential zone type with the sum of households and total population represented. 
+
+The first two graphs show these results. The majority of the population in Durham County lives in low density zones, nearly a third of the total population. Downtown and Compact combined represented 11,000 population in 2020, which more than doubled compared to 2010. Households follow a similar trend. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+
+
+# Idea is to tag each zone with the actual number of HH's to get a ratio 
+# 
+# 
+# 1. underutilization rate - zoning vs occupied:
+# 2. NIMBY score: percentage of population living in low density homes (low, med, high)
+
+library(tidycensus)
+library(tidyverse)
+library(tigris)
+
+vars_2020 <- load_variables(2020,"pl",cache=TRUE)
+vars_2010 <- load_variables(2010,"sf1", cache=TRUE)
+vars_2019 <- load_variables(2019,"acs5", cache=TRUE)
+
+
+##Get 2020 Census Data
+
+HH_2020_bg <- get_decennial(
+ geography="block",
+ variables= "H1_001N", ## note represents all HH's - occupied + vacant
+ state="NC",
+ year=2020,
+ geometry=TRUE,
+ county="Durham"
+)  %>%
+  mutate(new_Name = sub(" County, North Carolina", "", NAME),
+        Year=2020, HH=value) 
+
+
+Pop_2020_bg <- get_decennial(
+ geography="block",
+ variables= "P1_001N", 
+ state="NC",
+ year=2020,
+ geometry=TRUE,
+ county="Durham"
+)  %>%
+  mutate(new_Name = sub(" County, North Carolina", "", NAME),
+        Year=2020, Pop=value) 
+
+
+blocks_2020 <- cbind(HH_2020_bg,Pop_2020_bg, by = c("GEOID") )
+##Get 2010 Census Data
+
+HH_2010_bg <- get_decennial(
+ geography="block",
+ variables= "H001001", ## note represents all HH's - occupied + vacant
+ state="NC",
+ year=2010,
+ geometry=TRUE,
+ county="Durham"
+)  %>%
+  mutate(new_Name = sub(" County, North Carolina", "", NAME), HH=value)
+
+
+Pop_2010_bg <- get_decennial(
+ geography="block",
+ variables= "P001001", 
+ state="NC",
+ year=2010,
+ geometry=TRUE,
+ county="Durham"
+)  %>%
+  mutate(new_Name = sub(" County, North Carolina", "", NAME), Pop=value)
+
+
+blocks_2010 <- cbind(HH_2010_bg,Pop_2010_bg, by = c("GEOID") )
+
+res_zones <- st_transform(res_zones, st_crs(HH_2020_bg)) %>% st_make_valid()
+
+temp_2020 <- blocks_2020 %>%
+  st_point_on_surface() %>%
+  st_join(res_zones %>% select(density)) %>%
+  st_drop_geometry() %>%
+  filter(!is.na(density)) %>%
+  group_by(density) %>%
+  summarise(HH=sum(HH),
+            Pop = sum(Pop)) %>%
+  mutate(Year='2020')
+
+
+
+temp_2010 <- blocks_2010 %>%
+  st_point_on_surface() %>%
+  st_join(res_zones %>% select(density)) %>%
+  st_drop_geometry() %>%
+  filter(!is.na(density)) %>%
+  group_by(density) %>%
+  summarise(HH=sum(HH),
+            Pop=sum(Pop))%>%
+  mutate(Year='2010')
+
+final <- rbind(temp_2010, temp_2020)
+
+library(plotly)
+library(scales)
+
+p<-ggplot(data=final, aes(x=(reorder(density, Pop)), y=Pop, fill=Year)) +
+  geom_bar(stat="identity", position='dodge') +scale_y_continuous(label=comma)
+
+options(scipen=5)
+# Horizontal bar plot
+p <- p + coord_flip() +ylab("Total Population") + ggtitle("High Density Growth not keeping pace") + theme_minimal() + xlab("")
+ggplotly(p) 
+
+
+
+
+
+p<-ggplot(data=final, aes(x=(reorder(density, HH)), y=HH, fill=Year)) +
+  geom_bar(stat="identity", position='dodge') +scale_y_continuous(label=comma)
+
+options(scipen=5)
+# Horizontal bar plot
+p <- p + coord_flip() +ylab("Total Households") + ggtitle("High Density Growth not keeping pace") + theme_minimal()+ xlab("")
+ggplotly(p) 
+
+
+
+
+
+
+
+
+```
+The second set of graphs show the percent increase from 2010 to 2020 for each zone. Compact and Downtown saw a dramatically higher increase. These are encouraging results for these newer designed zones. But these graphs also show how supply is matched with demand in a manner. The Downtown zones saw a dramatic increase, almost twice the growth in supply compared to demand. This doesn't immediately suggest that there is a glut of downtown households available, as the supply very well may have been rushing to meet existing, previous demand. 
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+temp_2020 <- blocks_2020 %>%
+  st_point_on_surface() %>%
+  st_join(res_zones %>% select(density)) %>%
+  st_drop_geometry() %>%
+  filter(!is.na(density)) %>%
+  group_by(density) %>%
+  summarise(HH_2020=sum(HH),
+            Pop_2020 = sum(Pop)) 
+
+
+
+temp_2010 <- blocks_2010 %>%
+  st_point_on_surface() %>%
+  st_join(res_zones %>% select(density)) %>%
+  st_drop_geometry() %>%
+  filter(!is.na(density)) %>%
+  group_by(density) %>%
+  summarise(HH_2010=sum(HH),
+            Pop_2010= sum(Pop))
+
+final <- merge(temp_2010, temp_2020) %>%
+  mutate(HH_Growth = (HH_2020- HH_2010)/HH_2010,
+         Pop_Growth = (Pop_2020- Pop_2010)/Pop_2010) %>%
+  select(density, HH_Growth, Pop_Growth)
+
+
+dfm <- pivot_longer(final, -density, names_to="variable", values_to="value")
+
+p <- ggplot(dfm,aes(x = reorder(density, value),y = value)) + 
+    geom_bar(aes(fill = variable),stat = "identity",position = "dodge") +scale_y_continuous(label=percent)+ ggtitle("Supply vs Demand")
+p <- p +  coord_flip()+xlab('') + ylab("Percentage Increase 2010 to 2020") + theme_minimal()
+ggplotly(p)
+
+
+
+
+
+
+
+
+```
+
+
+## NIMBY Score
+
+Working on this section.....
+
+
+
+
+Let's develop a super simple quantitative measure for NIMBY-ism. 
+
+
+Let's tag each zone in Durham with the population and households within the respective zone. We will then be able to see how housing supply changed from 2010 to 2020. 
+
+
+```{r echo=FALSE}
+centroids_2020 <- blocks_2020 %>%
+  st_point_on_surface() %>%
+  st_join(res_zones %>% select(OBJECTID)) %>%
+  st_drop_geometry() %>%
+  filter(!is.na(OBJECTID)) %>%
+  group_by(OBJECTID) %>%
+  summarize(Pop=sum(Pop, na.rm=T),
+            HH=sum(HH, na.rm=T)) 
+
+joined <- merge(res_zones, centroids_2020, by=c("OBJECTID")) %>%
+  filter(!is.na(ACRES) & ACRES > 0)
+
+joined$HH_per_acre <- (joined$HH/joined$ACRES)
+
+
+joined$HH_Diff <- joined$HH_per_acre - joined$dwell_units
+
+joined <- joined %>%
+  filter(!is.na(HH_Diff))
+
+
+flip <- joined %>%
+  st_drop_geometry() %>%
+  filter(!is.na(HH_Diff)) %>%
+  group_by(density) %>%
+  summarise(HH_Diff = sum(HH_Diff))
+  
+
+p <- ggplot(flip,aes(x = reorder(density, HH_Diff),y = HH_Diff)) + 
+    geom_bar(stat = "identity",position = "dodge") + ggtitle("Massive Room for Housing in High Density")
+p <- p + xlab('') + ylab("Units Occupied - Units Zoned") + theme_minimal()
+ggplotly(p)
+
+
+  
+```
+
+
+
+
+Map new NIMBY score, which is just standardized HH_Growth from 0 - 1
+
+
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+#bins<-c(0,50,100,250,500,1000,2000,5000, 10000, 50000)
+bins<-c(0,1,4,9,36,75)
+
+library(RColorBrewer)
+
+pal <- colorNumeric(
+  palette='magma',
+  #bins=bins,
+  domain=joined$HH_per_acre
+)
+
+
+
+pal2 <- colorBin(
+  palette='RdYlGn',
+  bins=c(0,5,10,25,50,100,200,300,500,2000),
+  domain=joined$HH_per_acre,
+  pretty=FALSE
+)
+
+pal3 <- colorNumeric(
+  palette='RdYlGn',
+ # bins=c(0,5,10,50,100,200,300500,2000),
+  domain=joined$HH_Diff
+)
+
+
+vec_breaks <- c(     0,   1,   5,             50,     100,     2000)
+vec_rgb    <- c("#d40808", "#d46008", "#85075f", "#0d4cde", "#16bfc4",  "#32e605") 
+
+#Add a colour column, and put in the appropriate RGB value
+for (i in 1:length(joined$HH_per_acre)) {
+    joined$colour[i] <- vec_rgb[min(which(vec_breaks > joined$HH_per_acre[i]))]
+}
+
+
+zone_map <- leaflet() %>%
+  addProviderTiles("CartoDB.Positron") %>%
+  setView(-78.90390102117877,35.998220055791876,  zoom=14)%>%
+
+  addPolygons(data=joined,
+              weight=1, 
+              fillColor = joined$colour, stroke=TRUE,
+            #  color=~pal2(HH_per_acre),
+              popup=paste("Zone Type: ", joined$zone_flag, "<br>",
+                          "Detailed Zone:", joined$ZONE_GEN, "<br>",
+                          "Zoned for ", joined$dwell_units, "Dwell Units maximum", "<br>",
+                          "HHs Per Acre: ", joined$HH_per_acre)) 
+
+
+zone_map
+
+```
+
+
+
+## to do -
+
+pick up where i left on 1.18.22 - the map is close, but may be useful to collapse the difference b/w the HHs and the HH's zoned by category 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+zone_map <- leaflet() %>%
+  addProviderTiles("CartoDB.Positron") %>%
+  setView(-78.90390102117877,35.998220055791876,  zoom=14)%>%
+
+  addPolygons(data=joined,
+              weight=1, 
+              color=~pal3(HH_Diff),
+              popup=paste("Zone Type: ", joined$zone_flag, "<br>",
+                          "Detailed Zone:", joined$ZONE_GEN, "<br>",
+                          "Zoned for ", joined$dwell_units, "Dwell Units maximum", "<br>",
+                          "Diff Per Acre: ", joined$HH_Diff)) 
+
+
+zone_map
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## References
+
+1. https://medium.com/@NYUurbanlab/actually-nimbys-cities-arent-building-enough-51806be038ae
+2. https://abundanthousingla.org/meet-l-a-countys-biggest-nimbys/
+3. https://live-durhamnc.opendata.arcgis.com/datasets/zoning/explore?location=36.012451%2C-78.920767%2C15.62
+
+4. https://maps.durhamnc.gov/?x=36.01483037908998&y=-78.92072715568013&z=18055.9548215&r=0&b=11&pid=NA&s=zoning&l=active_address_points,countymask,transitionalofficeoverlay,NPO,NHD,LocHistLandmarks,airportoverlay,citylimits,RTPboundary,parcels,zoning,
+
+
+

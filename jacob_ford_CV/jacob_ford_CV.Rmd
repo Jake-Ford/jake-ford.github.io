@@ -1,0 +1,68 @@
+---
+name: Jacob
+surname: Ford
+position: "Data Scientist"
+address: "904 Virgie Street Durham, North Carolina"
+phone: +1 724 681 3467
+www: mariecurie.com
+email: "jake.ford927@gmail.com"
+twitter: Ford__Explorer
+github: Jake-Ford
+linkedin: jacob-ford-80775662
+date: "`r format(Sys.time(), '%B %Y')`"
+output: 
+  vitae::awesomecv:
+    page_total: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(vitae)
+```
+
+# Some stuff about me
+
+ * I poisoned myself doing research.
+ * I was the first woman to win a Nobel prize
+ * I was the first person and only woman to win a Nobel prize in two different sciences.
+
+
+# Nobel Prizes
+
+```{r}
+tribble(
+  ~Year, ~Type, ~Desc,
+  1903, "Physics", "Awarded for her work on radioactivity with Pierre Curie and Henri Becquerel",
+  1911, "Chemistry", "Awarded for the discovery of radium and polonium"
+) %>% 
+  brief_entries(
+    glue::glue("Nobel Prize in {Type}"),
+    Year, 
+    Desc
+  )
+```
+
+
+# Education
+
+```{r}
+library(tibble)
+tribble(
+  ~ Degree, ~ Year, ~ Institution, ~ Where,
+  "Master of Public Policy", "2018", "Georgetown University", "Washington, DC",
+  "B.S. Mathematics", "2014", "Allegheny College", "Meadville, Pennsylvania"
+) %>% 
+  detailed_entries(Degree, Year, Institution, Where)
+```
+
+
+# Publications
+
+```{r}
+library(dplyr)
+knitr::write_bib(c("vitae", "tibble"), "packages.bib")
+
+bibliography_entries("packages.bib") %>%
+  arrange(desc(author$family), issued)
+```
+

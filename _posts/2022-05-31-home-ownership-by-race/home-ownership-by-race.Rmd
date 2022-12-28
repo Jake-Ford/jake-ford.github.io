@@ -1,0 +1,800 @@
+---
+title: "Home Ownership by Race"
+author:
+  - name: Jacob Ford
+date: 2022-05-31
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(tidycensus)
+library(tidyverse)
+library(ggplot2)
+library(plotly)
+```
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+vars_2020 <- load_variables(2020,"acs5",cache=TRUE)
+vars_2015 <- load_variables(2015,"acs5",cache=TRUE)
+vars_2010 <- load_variables(2010,"acs5",cache=TRUE)
+vars_2005 <- load_variables(2005,"acs1",cache=TRUE)
+
+```
+
+
+## Introduction
+
+How has home ownership rates (rent vs own) changed for different races across the country? Which states experienced the largest changes for different groups? We'll look at total national home ownership rates at 2020 and 2015, then maybe look at a county level national map. 
+
+
+## Data and Description
+
+
+<style>
+### 2020
+  {
+   display: none;
+ }
+</style>
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+
+# White:
+# B25003A_001: Total
+# B25003A_002: Owner
+# B25003A_003: Renter
+# 
+# Black:
+# B25003B_001: Total
+# B25003B_002: Owner
+# B25003B_003: Renter
+# 
+# American Indian:
+# B25003C_001: Total
+# B25003C_002: Owner
+# B25003C_003: Renter
+# 
+# Asian:
+# B25003D_001: Total
+# B25003D_002: Owner
+# B25003D_003: Renter
+# 
+# Native HAWAIIAN:
+# B25003E_001: Total
+# B25003E_002: Owner
+# B25003E_003: Renter
+# 
+# Hispanic/Latino:
+# B25003I_001: Total
+# B25003I_002: Owner
+# B25003I_003: Renter
+
+
+#census_api_key('ba3d95cae3658f3145daf7f66119ed58a52aaca3',install=TRUE)
+
+# ################
+# ______White______ 
+# ################
+
+white <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003A_001', Own = 'B25003A_002', 
+              Rent = 'B25003A_003'),
+  year=2020,
+  geometry=FALSE
+) %>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+white <- white[1,]
+
+white <- white %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "White")
+
+# ################
+# ______Black______ 
+# ################
+
+black <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003B_001', Own = 'B25003B_002', 
+              Rent = 'B25003B_003'),
+  year=2020,
+  geometry=FALSE
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+black <- black[1,]
+
+black <- black %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "Black")
+
+# ################
+# ______American Indian______ 
+# ################
+
+AmericanIndian <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003C_001', Own = 'B25003C_002', 
+              Rent = 'B25003C_003'),
+  year=2020,
+  geometry=FALSE
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+AmericanIndian <- AmericanIndian[1,]
+
+AmericanIndian <- AmericanIndian %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "American Indian")
+
+# ################
+# ______Asian______ 
+# ################
+
+asian <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003D_001', Own = 'B25003D_002', 
+              Rent = 'B25003D_003'),
+  year=2020,
+  geometry=FALSE
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+asian <- asian[1,]
+
+asian <- asian %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "Asian")
+
+# ################
+# ______Native hawaiian & Pacific Islander ______ 
+# ################
+
+natH <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003E_001', Own = 'B25003E_002', 
+              Rent = 'B25003E_003'),
+  year=2020,
+  geometry=FALSE
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+natH <- natH[1,]
+
+natH <- natH %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "Native Hawaiian")
+
+# ################
+# ______Hispanic Latino ______ 
+# ################
+
+hisp <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003I_001', Own = 'B25003I_002', 
+              Rent = 'B25003I_003'),
+  year=2020,
+  geometry=FALSE
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+hisp <- hisp[1,]
+
+hisp <- hisp %>%
+  select(OwnerRate, RentRate) %>%
+  mutate(Name = "Hispanic")
+```
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+total_2020 <- rbind(white, black, natH, hisp, asian, AmericanIndian) 
+
+
+rent_data_2020 <- total_2020[,-1] %>%
+  mutate(Year = "2020") 
+
+
+```
+
+
+
+<style>
+### 2015
+  {
+   display: none;
+ }
+</style>
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+
+# White:
+# B25003A_001: Total
+# B25003A_002: Owner
+# B25003A_003: Renter
+# 
+# Black:
+# B25003B_001: Total
+# B25003B_002: Owner
+# B25003B_003: Renter
+# 
+# American Indian:
+# B25003C_001: Total
+# B25003C_002: Owner
+# B25003C_003: Renter
+# 
+# Asian:
+# B25003D_001: Total
+# B25003D_002: Owner
+# B25003D_003: Renter
+# 
+# Native HAWAIIAN:
+# B25003E_001: Total
+# B25003E_002: Owner
+# B25003E_003: Renter
+# 
+# Hispanic/Latino:
+# B25003I_001: Total
+# B25003I_002: Owner
+# B25003I_003: Renter
+
+
+#census_api_key('ba3d95cae3658f3145daf7f66119ed58a52aaca3',install=TRUE)
+
+# ################
+# ______White______ 
+# ################
+
+white <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003A_001', Own = 'B25003A_002', 
+              Rent = 'B25003A_003'),
+  year=2015,
+  geometry=FALSE
+) %>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+white <- white[1,]
+
+white <- white %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "White")
+
+# ################
+# ______Black______ 
+# ################
+
+black <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003B_001', Own = 'B25003B_002', 
+              Rent = 'B25003B_003'),
+  year=2015,
+  geometry=FALSE
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+black <- black[1,]
+
+black <- black %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "Black")
+
+# ################
+# ______American Indian______ 
+# ################
+
+AmericanIndian <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003C_001', Own = 'B25003C_002', 
+              Rent = 'B25003C_003'),
+  year=2015,
+  geometry=FALSE
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+AmericanIndian <- AmericanIndian[1,]
+
+AmericanIndian <- AmericanIndian %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "American Indian")
+
+# ################
+# ______Asian______ 
+# ################
+
+asian <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003D_001', Own = 'B25003D_002', 
+              Rent = 'B25003D_003'),
+  year=2015,
+  geometry=FALSE
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+asian <- asian[1,]
+
+asian <- asian %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "Asian")
+
+# ################
+# ______Native hawaiian & Pacific Islander ______ 
+# ################
+
+natH <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003E_001', Own = 'B25003E_002', 
+              Rent = 'B25003E_003'),
+  year=2015,
+  geometry=FALSE
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+natH <- natH[1,]
+
+natH <- natH %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "Native Hawaiian")
+
+# ################
+# ______Hispanic Latino ______ 
+# ################
+
+hisp <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003I_001', Own = 'B25003I_002', 
+              Rent = 'B25003I_003'),
+  year=2015,
+  geometry=FALSE
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+hisp <- hisp[1,]
+
+hisp <- hisp %>%
+  select(OwnerRate, RentRate) %>%
+  mutate(Name = "Hispanic")
+```
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+total_2015 <- rbind(white, black, natH, hisp, asian, AmericanIndian) 
+
+
+rent_data_2015 <- total_2015[,-1] %>%
+  mutate(Year = "2015") 
+
+
+```
+
+
+<style>
+### 2015
+  {
+   display: none;
+ }
+</style>
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+
+# White:
+# B25003A_001: Total
+# B25003A_002: Owner
+# B25003A_003: Renter
+# 
+# Black:
+# B25003B_001: Total
+# B25003B_002: Owner
+# B25003B_003: Renter
+# 
+# American Indian:
+# B25003C_001: Total
+# B25003C_002: Owner
+# B25003C_003: Renter
+# 
+# Asian:
+# B25003D_001: Total
+# B25003D_002: Owner
+# B25003D_003: Renter
+# 
+# Native HAWAIIAN:
+# B25003E_001: Total
+# B25003E_002: Owner
+# B25003E_003: Renter
+# 
+# Hispanic/Latino:
+# B25003I_001: Total
+# B25003I_002: Owner
+# B25003I_003: Renter
+
+
+#census_api_key('ba3d95cae3658f3145daf7f66119ed58a52aaca3',install=TRUE)
+
+# ################
+# ______White______ 
+# ################
+
+white <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003A_001', Own = 'B25003A_002', 
+              Rent = 'B25003A_003'),
+  year=2010,
+  geometry=FALSE
+) %>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+white <- white[1,]
+
+white <- white %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "White")
+
+# ################
+# ______Black______ 
+# ################
+
+black <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003B_001', Own = 'B25003B_002', 
+              Rent = 'B25003B_003'),
+  year=2010,
+  geometry=FALSE
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+black <- black[1,]
+
+black <- black %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "Black")
+
+# ################
+# ______American Indian______ 
+# ################
+
+AmericanIndian <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003C_001', Own = 'B25003C_002', 
+              Rent = 'B25003C_003'),
+  year=2010,
+  geometry=FALSE
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+AmericanIndian <- AmericanIndian[1,]
+
+AmericanIndian <- AmericanIndian %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "American Indian")
+
+# ################
+# ______Asian______ 
+# ################
+
+asian <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003D_001', Own = 'B25003D_002', 
+              Rent = 'B25003D_003'),
+  year=2010,
+  geometry=FALSE
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+asian <- asian[1,]
+
+asian <- asian %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "Asian")
+
+# ################
+# ______Native hawaiian & Pacific Islander ______ 
+# ################
+
+natH <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003E_001', Own = 'B25003E_002', 
+              Rent = 'B25003E_003'),
+  year=2010,
+  geometry=FALSE
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+natH <- natH[1,]
+
+natH <- natH %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "Native Hawaiian")
+
+# ################
+# ______Hispanic Latino ______ 
+# ################
+
+hisp <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003I_001', Own = 'B25003I_002', 
+              Rent = 'B25003I_003'),
+  year=2010,
+  geometry=FALSE
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+hisp <- hisp[1,]
+
+hisp <- hisp %>%
+  select(OwnerRate, RentRate) %>%
+  mutate(Name = "Hispanic")
+```
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+total_2010 <- rbind(white, black, natH, hisp, asian, AmericanIndian) 
+
+
+rent_data_2010 <- total_2010[,-1] %>%
+  mutate(Year = "2010") 
+
+
+```
+
+
+
+<style>
+### 2005
+  {
+   display: none;
+ }
+</style>
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+
+# White:
+# B25003A_001: Total
+# B25003A_002: Owner
+# B25003A_003: Renter
+# 
+# Black:
+# B25003B_001: Total
+# B25003B_002: Owner
+# B25003B_003: Renter
+# 
+# American Indian:
+# B25003C_001: Total
+# B25003C_002: Owner
+# B25003C_003: Renter
+# 
+# Asian:
+# B25003D_001: Total
+# B25003D_002: Owner
+# B25003D_003: Renter
+# 
+# Native HAWAIIAN:
+# B25003E_001: Total
+# B25003E_002: Owner
+# B25003E_003: Renter
+# 
+# Hispanic/Latino:
+# B25003I_001: Total
+# B25003I_002: Owner
+# B25003I_003: Renter
+
+
+#census_api_key('ba3d95cae3658f3145daf7f66119ed58a52aaca3',install=TRUE)
+
+# ################
+# ______White______ 
+# ################
+
+white <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003A_001', Own = 'B25003A_002', 
+              Rent = 'B25003A_003'),
+  year=2005,
+  geometry=FALSE,
+  survey="acs1"
+) %>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+white <- white[1,]
+
+white <- white %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "White")
+
+# ################
+# ______Black______ 
+# ################
+
+black <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003B_001', Own = 'B25003B_002', 
+              Rent = 'B25003B_003'),
+  year=2005,
+  geometry=FALSE,
+  survey="acs1"
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+black <- black[1,]
+
+black <- black %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "Black")
+
+# ################
+# ______American Indian______ 
+# ################
+
+AmericanIndian <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003C_001', Own = 'B25003C_002', 
+              Rent = 'B25003C_003'),
+  year=2005,
+  geometry=FALSE,
+  survey="acs1"
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+AmericanIndian <- AmericanIndian[1,]
+
+AmericanIndian <- AmericanIndian %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "American Indian")
+
+# ################
+# ______Asian______ 
+# ################
+
+asian <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003D_001', Own = 'B25003D_002', 
+              Rent = 'B25003D_003'),
+  year=2005,
+  geometry=FALSE,
+  survey="acs1"
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+asian <- asian[1,]
+
+asian <- asian %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "Asian")
+
+# ################
+# ______Native hawaiian & Pacific Islander ______ 
+# ################
+
+natH <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003E_001', Own = 'B25003E_002', 
+              Rent = 'B25003E_003'),
+  year=2005,
+  geometry=FALSE,
+  survey="acs1"
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+natH <- natH[1,]
+
+natH <- natH %>%
+  select(OwnerRate, RentRate)%>%
+  mutate(Name = "Native Hawaiian")
+
+# ################
+# ______Hispanic Latino ______ 
+# ################
+
+hisp <- get_acs(
+  geography="us",
+  variables=c(Total = 'B25003I_001', Own = 'B25003I_002', 
+              Rent = 'B25003I_003'),
+  year=2005,
+  geometry=FALSE,
+  survey="acs1"
+  
+)%>%
+  mutate(OwnerRate = estimate[variable=="Own"]/estimate[variable=="Total"],
+         RentRate = estimate[variable=="Rent"]/estimate[variable=="Total"]) 
+
+hisp <- hisp[1,]
+
+hisp <- hisp %>%
+  select(OwnerRate, RentRate) %>%
+  mutate(Name = "Hispanic")
+```
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+total_2005 <- rbind(white, black, natH, hisp, asian, AmericanIndian) 
+
+
+rent_data_2005 <- total_2005[,-1] %>%
+  mutate(Year = "2005") 
+
+
+```
+
+
+
+
+
+
+
+
+
+## Final Graph
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+
+total_rents <- rbind(rent_data_2005, rent_data_2010, rent_data_2015, rent_data_2020)
+
+p <- ggplot(data=total_rents, aes(x=Name, y=RentRate, fill=Year)) + 
+  geom_bar(stat="identity", position="dodge")  + ggtitle("Rent Rates by Race") + theme_minimal() + xlab("") + ylab("")
+
+ggplotly(p)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
