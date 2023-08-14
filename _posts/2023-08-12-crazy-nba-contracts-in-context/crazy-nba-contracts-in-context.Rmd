@@ -1,0 +1,166 @@
+---
+title: "Crazy NBA Contracts in Context"
+description: |
+  Super-Duper-Maxed
+author:
+  - name: Jacob Ford
+date: "`r Sys.Date()`"
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+Jaylen Brown, the monodextrous (just kidding) All NBA forward for the Boston Celtics, joins the vaunted halls of Mike Connely during waning days of the grit n grind Grizz mid-late 2010s era as the possessor of the single richest NBA contract in history. He won't have this for long, as he soon be surpassed by other superstars including another Celtic player. Nonetheless, the numbers involved have been staggering to say the least. A five year, $303.7 million dollar [extension](https://www.espn.com/nba/story/_/id/38067889/jaylen-brown-celtics-agree-record-5-year-304m-supermax-extension). Thats an average of $60 million dollars per year.  
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(dplyr)
+library(janitor)
+library(rvest)
+library(DT)
+
+  url <- "https://basketball.realgm.com/nba/info/salary_cap"
+
+pageobj <- read_html(url, as.data.frame=T, stringsAsFactors = TRUE) 
+
+contracts <- pageobj %>%  
+  html_nodes("table") %>% 
+  .[[1]] %>% 
+  html_table(fill=T) 
+
+temp <- contracts %>%
+  row_to_names(row_number=1) 
+
+cols <- colnames(temp[0:7])
+
+sal_cap <- temp[-1:-2]
+
+colnames(sal_cap) <- cols
+
+datatable(sal_cap)
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(stringr)
+library(scales)
+library(plotly)
+sal_cap <- sal_cap %>%
+  #mutate(`Salary Cap` = as.numeric(`Salary Cap`))
+  mutate(`Salary Cap` = as.numeric(str_remove_all(`Salary Cap`, "\\$|,")))
+
+
+# Convert 'Season' to fiscal year format
+sal_cap <- sal_cap %>%
+  mutate(Fiscal_Year = str_sub(Season, 6,9)) %>%
+#  mutate(Fiscal_Year = ifelse(str_sub(Season, 6, 9) == "2024", "2024", str_sub(Season, 1, 4))) %>%
+  mutate(fiscal_year_int = as.integer(Fiscal_Year))
+
+# Create the plot
+p <- ggplot(sal_cap, aes(x = Fiscal_Year, y = `Salary Cap`)) +
+  geom_line() +
+  geom_point() +
+  labs(x = "Fiscal Year", y = "Salary Cap ($)") +
+    scale_y_continuous(labels = dollar_format(scale = 1e-6), 
+                     breaks = seq(0, max(sal_cap$`Salary Cap`), by = 10000000),
+                     limits = c(0, max(sal_cap$`Salary Cap`))) +
+  labs(x = "Fiscal Year", y = "Salary Cap (Millions $)") +
+  ggtitle("Salary Caps Over Fiscal Years") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = ifelse(sal_cap$fiscal_year_int > 1995, "black", "red")))
+
+ggplotly(p)
+
+```
+
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(rvest)
+library(janitor)
+
+
+
+url <- "https://www.basketball-reference.com/contracts/players.html#player-contracts"
+
+pageobj <- read_html(url, as.data.frame=T, stringsAsFactors = TRUE) 
+
+stats <- pageobj %>%  
+  html_nodes("table") %>% 
+  .[[1]] %>% 
+  html_table(fill=T) 
+
+stats_clean <- stats %>%
+  row_to_names(row_number=1) %>%
+  filter(!(Rk=="") & !(Rk == "Rk"))
+
+stats_clean
+
+
+```
+
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+
+
+player_sal_pct <- stats_clean %>%
+  mutate(salaries_24 = as.numeric(str_remove_all(`2023-24`, "\\$|,"))) %>%
+  mutate(pct_salaries_24 =salaries_24/sal_cap$`Salary Cap`[sal_cap$fiscal_year_int==2024] )  %>%
+  
+  mutate(salaries_25 = as.numeric(str_remove_all(`2024-25`, "\\$|,"))) %>%
+  mutate(pct_salaries_25 =salaries_25/sal_cap$`Salary Cap`[sal_cap$fiscal_year_int==2025] ) %>%
+  
+  mutate(salaries_26 = as.numeric(str_remove_all(`2025-26`, "\\$|,"))) %>%
+  mutate(pct_salaries_26 =salaries_26/sal_cap$`Salary Cap`[sal_cap$fiscal_year_int==2026] ) %>%
+  
+  mutate(salaries_27 = as.numeric(str_remove_all(`2026-27`, "\\$|,"))) %>%
+  mutate(pct_salaries_27 =salaries_27/sal_cap$`Salary Cap`[sal_cap$fiscal_year_int==2027] ) %>%
+  
+  mutate(salaries_28 = as.numeric(str_remove_all(`2027-28`, "\\$|,"))) %>%
+  mutate(pct_salaries_28 =salaries_28/sal_cap$`Salary Cap`[sal_cap$fiscal_year_int==2028] ) %>%
+  
+  mutate(salaries_29 = as.numeric(str_remove_all(`2028-29`, "\\$|,"))) %>%
+  mutate(pct_salaries_29 =salaries_29/sal_cap$`Salary Cap`[sal_cap$fiscal_year_int==2029] ) 
+
+player_sal_pct
+```
+
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height = 10, fig.width=10}
+# Load libraries
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+
+# Reshape the data
+player_sal_pct_long <- player_sal_pct %>%
+  pivot_longer(cols = starts_with("pct_salaries"), 
+               names_to = "Year",
+               values_to = "Percent")
+
+player_sal_pct_long <- head(player_sal_pct_long, 125)
+# Plot the data
+g <- ggplot(player_sal_pct_long, aes(x = reorder(Player, Percent), y = Percent, fill = Year)) +
+  geom_bar(stat = "identity", position = "dodge") +
+ # facet_grid(~ Tm) +
+  theme_minimal() +
+  labs(x = "Player", y = "Percent Salaries", fill = "Year") +
+  coord_flip()
+
+ggplotly(g)
+
+```
+
+
+
+
+
+
+
+
+
+
