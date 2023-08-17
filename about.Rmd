@@ -8,7 +8,7 @@ description: |
 ## About
 
 
-My name is Jake Ford, I live in Durham, North Carolina. I'm a Data Scientist for [Solstice](https://solstice.us/), working to democratize access to solar energy. Previously, I've worked in policy analysis and transportation modeling at the state and local government level. 
+My name is Jake Ford, I live in Toronto, Canada I'm a Data Scientist for [Solstice](https://solstice.us/), working to democratize access to solar energy. Previously, I've worked in policy analysis and transportation modeling at the state and local government level. 
 
 
 ![](Arizona.png) 
