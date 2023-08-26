@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2023-08-26-lower-drinking-ages-higher-tax-revenues/",
+    "title": "Lower Drinking Ages -> Higher Tax Revenues?",
+    "description": "Unconsidered Sin Tax?",
+    "author": [
+      {
+        "name": "Jacob Ford",
+        "url": {}
+      }
+    ],
+    "date": "2023-08-26",
+    "categories": [],
+    "contents": "\n\n\n\n",
+    "preview": {},
+    "last_modified": "2023-08-26T08:34:01-04:00",
+    "input_file": "lower-drinking-ages-higher-tax-revenues.knit.md"
+  },
+  {
     "path": "posts/2023-08-12-crazy-nba-contracts-in-context/",
     "title": "Crazy NBA Contracts in Context",
     "description": "Super-Duper-Maxed",

@@ -1,0 +1,13 @@
+---
+title: "Lower Drinking Ages -> Higher Tax Revenues?"
+description: |
+  Unconsidered Sin Tax?
+author:
+  - name: Jacob Ford
+date: "`r Sys.Date()`"
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
