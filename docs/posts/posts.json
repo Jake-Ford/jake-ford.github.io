@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2023-08-12-crazy-nba-contracts-in-context/",
+    "title": "Crazy NBA Contracts in Context",
+    "description": "Super-Duper-Maxed",
+    "author": [
+      {
+        "name": "Jacob Ford",
+        "url": {}
+      }
+    ],
+    "date": "2023-09-26",
+    "categories": [],
+    "contents": "\nJaylen Brown, the monodextrous (just kidding) All NBA forward for the Boston Celtics, joins the vaunted halls of Mike Connely during waning days of the grit n grind Grizz mid-late 2010s era as the possessor of the single richest NBA contract in history. He won’t have this for long, as he soon be surpassed by other superstars including another Celtic player. Nonetheless, the numbers involved have been staggering to say the least. A five year, $303.7 million dollar extension. Thats an average of $60 million dollars per year.\nSalary Cap Increase\nFor the upcoming 2024 Fiscal Year NBA season, the salary cap is $136 million dollars. The new TV deals and whatever other shenanigans they’re doing (including a lot of amazing and not-so amazing work to globalize the NBA) results in the salary cap skyrocketing in the next ten years.\n\n\n\nThe below graph shows the annual percent change in the cap. Much has been written about the 2016 spike allowing some over powered dynasties to carry on their demonination a bit longer. But thats not even the highest spike in the last three decades; what the hell happaned in 1995-96? That’s for another day…\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    "preview": "posts/2023-08-12-crazy-nba-contracts-in-context/crazy-nba-contracts-in-context_files/figure-html5/unnamed-chunk-3-1.png",
+    "last_modified": "2023-09-26T14:00:41-04:00",
+    "input_file": "crazy-nba-contracts-in-context.knit.md"
+  },
+  {
     "path": "posts/2023-08-26-lower-drinking-ages-higher-tax-revenues/",
     "title": "Lower Drinking Ages -> Higher Tax Revenues?",
     "description": "Unconsidered Sin Tax?",
@@ -15,23 +32,6 @@
     "preview": {},
     "last_modified": "2023-08-26T08:34:01-04:00",
     "input_file": "lower-drinking-ages-higher-tax-revenues.knit.md"
-  },
-  {
-    "path": "posts/2023-08-12-crazy-nba-contracts-in-context/",
-    "title": "Crazy NBA Contracts in Context",
-    "description": "Super-Duper-Maxed",
-    "author": [
-      {
-        "name": "Jacob Ford",
-        "url": {}
-      }
-    ],
-    "date": "2023-08-14",
-    "categories": [],
-    "contents": "\nJaylen Brown, the monodextrous (just kidding) All NBA forward for the Boston Celtics, joins the vaunted halls of Mike Connely during waning days of the grit n grind Grizz mid-late 2010s era as the possessor of the single richest NBA contract in history. He won’t have this for long, as he soon be surpassed by other superstars including another Celtic player. Nonetheless, the numbers involved have been staggering to say the least. A five year, $303.7 million dollar extension. Thats an average of $60 million dollars per year.\n\n\n\n\n# A tibble: 445 × 10\n   Rk    Player          Tm    `2023-24` `2024-25` `2025-26` `2026-27`\n   <chr> <chr>           <chr> <chr>     <chr>     <chr>     <chr>    \n 1 1     Stephen Curry   GSW   $51,915,… $55,761,… \"$59,606… \"\"       \n 2 2     Kevin Durant    PHO   $47,649,… $51,179,… \"$54,708… \"\"       \n 3 3     Nikola Jokić    DEN   $47,607,… $51,415,… \"$55,224… \"$59,033…\n 4 4     Joel Embiid     PHI   $47,607,… $51,415,… \"$55,224… \"$59,033…\n 5 5     LeBron James    LAL   $47,607,… $51,415,… \"\"        \"\"       \n 6 6     Bradley Beal    PHO   $46,741,… $50,203,… \"$53,666… \"$57,128…\n 7 7     Damian Lillard  POR   $45,640,… $48,787,… \"$58,545… \"$63,228…\n 8 8     Giannis Anteto… MIL   $45,640,… $48,787,… \"$51,935… \"\"       \n 9 9     Kawhi Leonard   LAC   $45,640,… $48,787,… \"\"        \"\"       \n10 10    Paul George     LAC   $45,640,… $48,787,… \"\"        \"\"       \n# ℹ 435 more rows\n# ℹ 3 more variables: `2027-28` <chr>, `2028-29` <chr>,\n#   Guaranteed <chr>\n\n\n\n\n\n\n\n",
-    "preview": {},
-    "last_modified": "2023-08-14T16:12:17-04:00",
-    "input_file": {}
   },
   {
     "path": "posts/2022-05-03-good-eatins/",
