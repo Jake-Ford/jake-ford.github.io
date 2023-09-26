@@ -90,6 +90,8 @@ ggplotly(p, tooltip = "text")
 ```
 
 
+# Big Jumps
+
 The below graph shows the annual percent change in the cap. Much has been written about the 2016 spike allowing some over [powered dynasties](https://www.forbes.com/sites/bryantoporek/2022/11/07/how-the-2016-nba-cap-spike-helped-prolong-the-golden-state-warriors-dynasty/?sh=56f52dcd3a10) to carry on their demonination a bit longer. But thats not even the highest spike in the last three decades; what the hell happaned in 1995-96? That's for another day... 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -102,7 +104,7 @@ p_change <- ggplot(pct_change_df, aes(x = Fiscal_Year, y = Percent_Change)) +
   geom_line(aes(group = 1)) +
   geom_point() +
   labs(x = "Fiscal Year", y = "Percent Change (%)") +
-  ggtitle("Yearly Percent Change in Salary Cap since 2000") +
+  ggtitle("Yearly Percent Change in Salary Cap") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
@@ -110,6 +112,12 @@ p_change
 
 
 ```
+
+
+# The Brown Case
+
+Lets look at the top 21 salaries in the NBA over the next couple years. Obligatory laughing-out-loud moment for Ben Simmons being on this list. 
+
 
 
 
@@ -176,15 +184,32 @@ library(tidyr)
 player_sal_pct_long <- player_sal_pct %>%
   pivot_longer(cols = starts_with("pct_salaries"), 
                names_to = "Year",
-               values_to = "Percent")
+               values_to = "Percent") 
 
-player_sal_pct_long <- head(player_sal_pct_long, 125)
+jb <- player_sal_pct_long %>%
+  filter(Player == "Jaylen Brown")
+
+player_sal_pct_long <- head(player_sal_pct_long, 125) 
+
+
+player_sal_pct_long <- rbind(player_sal_pct_long, jb)
+
+max_jb <- max(jb$Percent)
+
 # Plot the data
-g <- ggplot(player_sal_pct_long, aes(x = reorder(Player, Percent), y = Percent, fill = Year)) +
+g <- ggplot(player_sal_pct_long, aes(x = reorder(Player, -Percent), y = Percent, fill = Year)) +
   geom_bar(stat = "identity", position = "dodge") +
  # facet_grid(~ Tm) +
   theme_minimal() +
   labs(x = "Player", y = "Percent Salaries", fill = "Year") +
+  geom_hline(yintercept = max_jb, linetype = "dotted", color = "red", size = 0.5) +
+  geom_hline(yintercept = jb$Percent[jb$Year=="pct_salaries_25"], linetype = "dotted", color = "gold", size = 0.5) +
+  geom_hline(yintercept = jb$Percent[jb$Year=="pct_salaries_26"], linetype = "dotted", color = "green", size = 0.5) +
+  geom_hline(yintercept = jb$Percent[jb$Year=="pct_salaries_27"], linetype = "dotted", color = "lightblue", size = 0.5) +
+  geom_hline(yintercept = jb$Percent[jb$Year=="pct_salaries_28"], linetype = "dotted", color = "blue", size = 0.5) +
+
+
+
   coord_flip()
 
 ggplotly(g)
@@ -193,9 +218,9 @@ ggplotly(g)
 
 
 
+The chart shows that Brown will be in the bottom of the top 25 paid players as a percentage of cap in the 2024 season. But after that, and critically before any mega-blooper deals are paid to Giannis, Luka, and Embiid, he'll be in the top 5 or 3.   
 
-
-
+Should Boston fans temporarily pause in their self flaggelation over their wittling salary cap? Maybe. Or maybe it helps to just remember that while they will be attributing ~40% of their cap to Jaylen Brown for the rest of the 2020s, whoever trades for Damian Lillard and the Phoneix Suns are doing the same with Bradley Beal. Given the age difference I'd much rather be Boston. 
 
 
 
