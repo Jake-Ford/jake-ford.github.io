@@ -1,0 +1,77 @@
+---
+title: "Good Eatin's: Toronto "
+author:
+  - name: Jacob Ford
+date: "`r Sys.Date()`"
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+In June of 2023, we moved from Durham, North Carolina to Toronto, Ontario, Canada. Home of:
+
+- 2.93 million, 5.9 in the greater Toronto area (4th largest in North America)
+- alphanumeric zip codes
+- 'washrooms' 
+- Tim Hortons
+- dog parks a-plenty
+- a big lovely lake
+- universal health care (*american sigh*)
+- Abbreviations: Raps not the Raptors, the Jays not the Blue Jays, blend in people
+
+But most importantly for this post's consideration is what must be a world record of most micro-worlds held within one metropolitan area. 
+
+Little India, Chinatown (actually there are two Chinatowns), Little Japan, Little Tibet, Little Italy, Little Portugal, Little Malta, Little Jamaica, Greektown, Koreatown. And then there are the fusion spinoffs, my personal favorite being Rasta Pasta (Jamaican-Italian) and the Hungary Thai (ya get it?), along with countless Hakka Indian-Carribean fusion on poutine spots. The evidence that God exists is the holiest dish on earth: jerk chicken on poutine, see below on Queen Street. 
+
+It's an amazingly diverse, multicultural menagerie of a city. 
+
+
+
+You know the drill, given our very limited time here so far, only the absolute must don't-miss-these spots are below. Enjoy :) 
+
+
+
+
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(leaflet)
+library(sf)
+
+library(readxl)
+eats_data <- read_excel("Eat_Data.xlsx")
+
+
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(RColorBrewer)
+pal <- colorFactor(
+  palette = 'Dark2',
+  domain = eats_data$Genre
+)
+
+
+eats_map <- leaflet(data=eats_data) %>%
+ # addTiles() %>%
+ addProviderTiles("CartoDB.Positron") %>%
+  addCircles(lat = eats_data$Latitutde, lng=eats_data$Longitude,
+             popup=paste("Name: ", eats_data$Name, "<br>",
+                          "Genre: ", eats_data$Genre, "<br>",
+                          "Don't you dare miss: ", eats_data$`Don't Miss:`),
+             color = ~pal(Genre),
+             weight=10,
+             fillOpacity = 2) %>%
+  addLegend("bottomleft",
+            pal=pal,
+            values=~Genre)
+
+
+
+eats_map
+```
+
+
+
+
