@@ -9,7 +9,10 @@ date: '2022-06-25'
 ![](EnergyScore logo copy.jpg){ width=20% }
 
 
-[Solstice](https://solstice-initiative.org/) EnergyScore, a machine learning algorithm that delivers a more effective and more equitable qualification metric. Through a grant, I spent several months investigating the degree of bias existing in the algorithm, conducting a large literature review to identify leading quantitative measures of bias and fairness in ML. Results, along with a more context + lit review can be found [here](http://energyscore-bias-research.s3-website.us-east-2.amazonaws.com/#content). 
+[Solstice](https://solstice-initiative.org/) EnergyScore, a machine learning algorithm that delivers a more effective and more equitable qualification metric. Through generous support from the Tides Foundation and Google, I spent several months investigating the degree of bias existing in the algorithm, conducting a large literature review to identify leading quantitative measures of bias and fairness in ML. Results, along with a more context + lit review can be found on background site here [here](http://energyscore-bias-research.s3-website.us-east-2.amazonaws.com/#content). The whitepaper can be reviwed [here](docs/EnergyScore-Bias-Whitepaper-September-2023.pdf)
+
+
 
 
 Also at Solstice, we conducted a multi-tiered analysis of community solar prioritization and barriers to LMI access. Funding was provided by the U.S. Department of Energy's Solar Energy Technologies Office (SETO). This research looked at potential consumers, developers and financiers, and real performing solar farms. The data analysis and github page with more details and results are available [here](https://jake-ford.github.io/SETO_Data_Analysis/); read our paper [here](https://link.springer.com/chapter/10.1007/978-3-031-39147-7_21) where I was corresponding author. 
+
