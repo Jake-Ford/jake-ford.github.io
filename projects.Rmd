@@ -9,8 +9,7 @@ date: '2022-06-25'
 ![](EnergyScore logo copy.jpg){ width=20% }
 
 
-[Solstice](https://solstice-initiative.org/) EnergyScore, a machine learning algorithm that delivers a more effective and more equitable qualification metric. Through generous support from the Tides Foundation and Google, I spent several months investigating the degree of bias existing in the algorithm, conducting a large literature review to identify leading quantitative measures of bias and fairness in ML. Results, along with a more context + lit review can be found on background site here [here](http://energyscore-bias-research.s3-website.us-east-2.amazonaws.com/#content). The whitepaper can be reviwed [here](docs/EnergyScore-Bias-Whitepaper-September-2023.pdf)
-
+[Solstice](https://solstice-initiative.org/) EnergyScore, a machine learning algorithm that delivers a more effective and more equitable qualification metric. Through generous support from the Tides Foundation and Google, I spent several months investigating the degree of bias existing in the algorithm, conducting a large literature review to identify leading quantitative measures of bias and fairness in ML. The whitepaper can be reviewed [here](EnergyScore-Bias-Whitepaper-September-2023.pdf).
 
 
 
