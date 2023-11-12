@@ -60,39 +60,54 @@ eats_map
 
 
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 
-## Searchable Map
-bbq <- eats_data %>%
-  filter(Genre=="BBQ")
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 
-eats_map <- leaflet() %>%
- # addTiles() %>%
- addProviderTiles("CartoDB.Positron") %>%
-  addCircles(lat = eats_data$Latitutde, lng=eats_data$Longitude,
-             popup=paste("Name: ", eats_data$Name, "<br>",
-                          "Genre: ", eats_data$Genre, "<br>",
-                          "Don't you dare miss: ", eats_data$`Don't Miss:`),
-           #  color = ~pal(Genre),
-             group="All",
-             data=eats_data) %>%
-  addCircles(lat = eats_data$Latitutde, lng=eats_data$Longitude,
-             popup=paste("Name: ", eats_data$Name, "<br>",
-                          "Genre: ", eats_data$Genre, "<br>",
-                          "Don't you dare miss: ", eats_data$`Don't Miss:`),
-            #color = ~pal(Genre),
-             group="BBQ",
-             data=bbq) %>%
+
+# Assuming your eats_data has these columns: Genre, Latitutde, Longitude, Name, Don't Miss:
+
+pal <- colorFactor(
+palette = 'Dark2',
+  domain = eats_data$Genre
+)
+
+eats_map <- leaflet(data = eats_data) %>%
+  addProviderTiles("CartoDB.Positron")
+
+# Add each genre as a separate layer
+unique_genres <- unique(eats_data$Genre)
+for (genre in unique_genres) {
+  genre_data <- subset(eats_data, Genre == genre)
+  eats_map <- eats_map %>%
+    addCircles(
+      data = genre_data,
+      lat = ~Latitutde, 
+      lng = ~Longitude,
+      popup = ~paste("Name: ", Name, "<br>",
+                     "Genre: ", Genre, "<br>",
+                     "Don't you dare miss: ", `Don't Miss:`),
+      color = ~pal(Genre),
+      weight = 10,
+      fillOpacity = 2,
+      group = genre
+    )
+}
+
+# Add a layer control
+eats_map <- eats_map %>%
+  addLayersControl(
+    overlayGroups = unique_genres,
+    options = layersControlOptions(collapsed = FALSE)
   
-  # addLegend("bottomleft",
-  #           pal=pal,
-  #           values=~Genre)  %>%
-    addLayersControl(overlayGroups = c("BBQ", "All"))
-
-  
-
+  ) %>%
+  addLegend(
+    "bottomleft",
+    pal = pal,
+    values = ~Genre
+  )
 
 eats_map
-```
 
+
+```
 

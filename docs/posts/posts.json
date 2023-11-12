@@ -9,12 +9,29 @@
         "url": {}
       }
     ],
-    "date": "2023-10-23",
+    "date": "2023-11-12",
     "categories": [],
-    "contents": "\nIn June of 2023, we moved from Durham, North Carolina to Toronto, Ontario, Canada. Home of:\n2.93 million, 5.9 in the greater Toronto area (4th largest in North America)\nalphanumeric zip codes\n‘washrooms’\nTim Hortons\ndog parks a-plenty\na big lovely lake\nuniversal health care (american sigh)\nAbbreviations: Raps not the Raptors, the Jays not the Blue Jays, blend in people\nBut most importantly for this post’s consideration is what must be a world record of most micro-worlds held within one metropolitan area.\nLittle India, Chinatown (actually there are two Chinatowns), Little Japan, Little Tibet, Little Italy, Little Portugal, Little Malta, Little Jamaica, Greektown, Koreatown. And then there are the fusion spinoffs, my personal favorite being Rasta Pasta (Jamaican-Italian) and the Hungary Thai (ya get it?), along with countless Hakka Indian-Carribean fusion on poutine spots. The evidence that God exists is the holiest dish on earth: jerk chicken on poutine, see below on Queen Street.\nIt’s an amazingly diverse, multicultural menagerie of a city.\nYou know the drill, given our very limited time here so far, only the absolute must don’t-miss-these spots are below. Enjoy :)\n\n\n# Assuming your eats_data has these columns: Genre, Latitutde, Longitude, Name, Don't Miss:\n\npal <- colorFactor(\n  palette = 'Dark2',\n  domain = eats_data$Genre\n)\n\neats_map <- leaflet(data = eats_data) %>%\n  addProviderTiles(\"CartoDB.Positron\")\n\n# Add each genre as a separate layer\nunique_genres <- unique(eats_data$Genre)\nfor (genre in unique_genres) {\n  genre_data <- subset(eats_data, Genre == genre)\n  eats_map <- eats_map %>%\n    addCircles(\n      data = genre_data,\n      lat = ~Latitutde, \n      lng = ~Longitude,\n      popup = ~paste(\"Name: \", Name, \"<br>\",\n                     \"Genre: \", Genre, \"<br>\",\n                     \"Don't you dare miss: \", `Don't Miss:`),\n      color = ~pal(Genre),\n      weight = 10,\n      fillOpacity = 2,\n      group = genre\n    )\n}\n\n# Add a layer control\neats_map <- eats_map %>%\n  addLayersControl(\n    overlayGroups = unique_genres,\n    options = layersControlOptions(collapsed = FALSE)\n  \n  ) %>%\n  addLegend(\n    \"bottomleft\",\n    pal = pal,\n    values = ~Genre\n  )\n\neats_map\n\n\n\n\n\n\n",
+    "contents": "\nIn June of 2023, we moved from Durham, North Carolina to Toronto, Ontario, Canada. Home of:\n2.93 million, 5.9 in the greater Toronto area (4th largest in North America)\nalphanumeric zip codes\n‘washrooms’\nTim Hortons\ndog parks a-plenty\na big lovely lake\nuniversal health care (american sigh)\nAbbreviations: Raps not the Raptors, the Jays not the Blue Jays, blend in people\nBut most importantly for this post’s consideration is what must be a world record of most micro-worlds held within one metropolitan area.\nLittle India, Chinatown (actually there are two Chinatowns), Little Japan, Little Tibet, Little Italy, Little Portugal, Little Malta, Little Jamaica, Greektown, Koreatown. And then there are the fusion spinoffs, my personal favorite being Rasta Pasta (Jamaican-Italian) and the Hungary Thai (ya get it?), along with countless Hakka Indian-Carribean fusion on poutine spots. The evidence that God exists is the holiest dish on earth: jerk chicken on poutine, see below on Queen Street.\nIt’s an amazingly diverse, multicultural menagerie of a city.\nYou know the drill, given our very limited time here so far, only the absolute must don’t-miss-these spots are below. Enjoy :)\n\n\n\n\n\n\n",
     "preview": {},
-    "last_modified": "2023-10-23T09:27:21-04:00",
-    "input_file": {}
+    "last_modified": "2023-11-12T10:36:39-05:00",
+    "input_file": "good-eatins-toronto.knit.md"
+  },
+  {
+    "path": "posts/2022-05-03-good-eatins/",
+    "title": "Good Eatin's",
+    "description": "The hidden gems I didn't want to share",
+    "author": [
+      {
+        "name": "Jacob Ford",
+        "url": "https://jford-dchcmpo.github.io/Blog/posts/2021-12-30-Redistricting-and-Racial-Targetting/"
+      }
+    ],
+    "date": "2023-11-12",
+    "categories": [],
+    "contents": "\nClick on a location, get my ‘don’t miss’ item(s) from each.\nMarch 2023 Update: We finally got to Zweli’s, America’s first Zimbabwean restaurant, owned and operated by the indomitable Williams duo. 10/10, we’ll certainly be back to try to oxtail which quickly sells out. Perhaps the happiest surprise: their lemonade was outstanding and almost worth a return journey alone!\n\n\n\n\n\n\n\n\n\n",
+    "preview": {},
+    "last_modified": "2023-11-12T10:34:36-05:00",
+    "input_file": "good-eatins.knit.md"
   },
   {
     "path": "posts/2023-08-12-crazy-nba-contracts-in-context/",
@@ -48,23 +65,6 @@
     "contents": "\nDraft\nPremise: I live in Canada now. The drinking age is 19, what is the estimated tax revenue omitted in the United States from a drinking age of 21?\nOne of my favorite courses in graduate school was an overview of American state legislatures taught by the fantastic Chris Ross, member of the Pennsylvania House of Representatives for six terms. At the end of the course, we simulated the creation of the Pennsylvania state budget for a given year, debating which programs would be funded or cut, how to make sensible negotiations with political opponents, and more concretely, just how many gold egotts would be dropped off at those troublesome mavericks.\nSin taxes were all the rage at the time. Specifically, increasing state taxes on liquor (if you’re not from Pennsylvania, you need to know just how strict liquor laws once were, so this idea had some traction), tobacco, or state lotteries. The idea of dropping the drinking age below 21 would have surely resulted in a public stoning, but what if it makes fiscal sense?\nThe Northern Example\n\n\n\n",
     "preview": {},
     "last_modified": "2023-09-26T15:51:19-04:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/2022-05-03-good-eatins/",
-    "title": "Good Eatin's",
-    "description": "The hidden gems I didn't want to share",
-    "author": [
-      {
-        "name": "Jacob Ford",
-        "url": "https://jford-dchcmpo.github.io/Blog/posts/2021-12-30-Redistricting-and-Racial-Targetting/"
-      }
-    ],
-    "date": "2023-03-02",
-    "categories": [],
-    "contents": "\nClick on a location, get my ‘don’t miss’ item(s) from each.\nMarch 2023 Update: We finally got to Zweli’s, America’s first\nZimbabwean restaurant, owned and operated by the indomitable Williams\nduo. 10/10, we’ll certainly be back to try to oxtail which quickly sells\nout. Perhaps the happiest surprise: their lemonade was outstanding and\nalmost worth a return journey alone!\n\n\n\n\n\n\n",
-    "preview": {},
-    "last_modified": "2023-03-02T09:27:44-05:00",
     "input_file": {}
   },
   {

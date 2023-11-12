@@ -83,13 +83,13 @@ eats_map
 
 
 
-```{r message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 
 
 # Assuming your eats_data has these columns: Genre, Latitutde, Longitude, Name, Don't Miss:
 
 pal <- colorFactor(
-  palette = 'Dark2',
+palette = 'Dark2',
   domain = eats_data$Genre
 )
 
