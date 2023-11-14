@@ -83,7 +83,7 @@ eats_map
 
 
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height = 10, fig.width=10}
 
 
 # Assuming your eats_data has these columns: Genre, Latitutde, Longitude, Name, Don't Miss:
@@ -120,13 +120,13 @@ eats_map <- eats_map %>%
   addLayersControl(
     overlayGroups = unique_genres,
     options = layersControlOptions(collapsed = FALSE)
-  
-  ) %>%
-  addLegend(
-    "bottomleft",
-    pal = pal,
-    values = ~Genre
-  )
+  )  
+  # ) %>%
+  # addLegend(
+  #   "bottomleft",
+  #   pal = pal,
+  #   values = ~Genre
+  # )
 
 eats_map
 
