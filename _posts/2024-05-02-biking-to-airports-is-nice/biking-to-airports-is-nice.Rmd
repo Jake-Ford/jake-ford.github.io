@@ -9,9 +9,8 @@ output:
 ---
 
 
-# Biking to Airports is Great
 
-Biking to Airports, it's great! 
+# Biking to Airports, it's great! 
 
 For those of you who aren't aware, Toronto has two airports: Pearson, a huge, international hub that is 25 minute express train from downtown; and a smaller, more regionally focused 'City of Toronto' airport called Billy Bishop. Billy-B, as no one I'm aware calls it, is located right off the waterfront in the middle of the city; you could probably hit the CN Tower with a 7 iron. It must be the most urban-located airport in North America, unless I'm missing some evil villain's secret jet strip in Queens. 
 
