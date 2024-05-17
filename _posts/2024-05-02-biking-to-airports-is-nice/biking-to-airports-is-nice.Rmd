@@ -1,0 +1,654 @@
+---
+title: "Biking to Airports is nice "
+author:
+  - name: Jacob Ford
+date: "`r Sys.Date()`"
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+# Biking to Airports is Great
+
+Biking to Airports, it's great! 
+
+For those of you who aren't aware, Toronto has two airports: Pearson, a huge, international hub that is 25 minute express train from downtown; and a smaller, more regionally focused 'City of Toronto' airport called Billy Bishop. Billy-B, as no one I'm aware calls it, is located right off the waterfront in the middle of the city; you could probably hit the CN Tower with a 7 iron. It must be the most urban-located airport in North America, unless I'm missing some evil villain's secret jet strip in Queens. 
+
+A major benefit of this type of locale for an airport is that it allows faithful customers to use multiple means of transit. I used to work in Transportation Planning in the Triangle area in North Carolina. The Raleigh-Durham (RDU) airport sits right in between, well, Raleigh and Durham (Chapel Hill you exist too, I didn't forget). BUT, but, but, there is no easy transit from either city to the airport; even the bus lines are convoluted and push environmentally or budget minded customers to car-share or park-n-ride or whatever the hell a kiss-n-ride is. Not having transit lines extend to airport access for major cities is insane. 
+
+So after we moved to Toronto, I had my eyes on the day I would finally fly out of Silly-Illy-Billy Bishop Airport, as we live close enough that I could hop on a city bike, and cruise over! In short, it was glorious. The views from the Billy Bishop airport are also fantastic, the waiting area, for all three or so gates available, felt more like a nicer university than I went to library. 
+
+I wanted to see if Billy Bishop was the most accessible via bike compared to other major US and Canadian airports. My hypothesis is that it offers access via bike to the greatest number of people, both in absolute and relative terms to the city's population. To answer this, I started pulling isochrone and census data. For this analysis, I'm using mb_isochrone functin from the mapboxapi package, very user friendly and effective. Their 'profile' methods of transportation include driving, walking, cycling, and driving in traffic. A transit map would require different packages, but would be a good follow up to this! 
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(dplyr)
+library(ggplot2)
+library(mapboxapi)
+library(mapview)
+library(units)  
+library(tidycensus)
+library(tidyr)
+
+```
+
+
+## The Competitors
+
+From the American Delegation:
+- JFK
+- LAX
+- O'Hare
+- ATL
+- SFO
+- Dallas Fort Worth
+- PHL
+- Seattle
+- Denver
+
+From the Canadian Delegation:
+- Toronto Pearson
+- Silly Billy
+- Montreal
+- Vancouver
+
+
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+# Define airports with their coordinates (US and Canada), updating Billy Bishop's coordinates
+airports <- data.frame(
+  name = c("JFK", 
+           "LAX", 
+           "Chicago O'Hare",
+           "Toronto Pearson", 
+           "Vancouver", 
+           "ATL",
+           "SFO",
+           "Montreal",
+           "Calgary",
+           "Dallas/Fort Worth",
+           "Toronto Billy Bishop",
+           "Philadelphia",
+           "Seattle",
+           "Denver"),
+  lon = c(-73.7781, -118.4085, -87.9048, 
+          -79.6306, -123.184, -84.4277, 
+          -122.379, -73.7415, -114.0134,
+          -97.0403, -79.39769267068745, -75.24114,
+          -122.3088, -104.6737),
+  lat = c(40.6413, 33.9416, 41.9742, 
+          43.6777, 49.1947, 33.6407, 
+          37.6213, 45.4577, 51.1315,
+          32.8968, 43.63409886780112, 39.8744,
+          47.4502, 39.8561)
+)
+
+# Load the sf library if not already loaded
+library(sf)
+
+# Convert to sf object
+airports <- st_as_sf(airports, coords = c("lon", "lat"), crs = 4326)
+
+
+```
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+
+access_token = "pk.eyJ1IjoiamFrZWZvcmQ5MjciLCJhIjoiY2xrd3A2aHhzMDFzODNlbHNmdW02cTZlaCJ9.2-bZutoqPYKahlOtsTJszg"
+
+isos_60 <- airports %>%
+  mb_isochrone(time = 60, profile = "cycling", id_column = "name",
+               access_token = access_token) %>%
+  mutate(isos_60 = geometry)
+
+isos_45 <- airports %>%
+  mb_isochrone(time = 45, profile = "cycling", id_column = "name",
+               access_token = access_token)%>%
+  mutate(isos_45 = geometry)
+
+isos_30 <- airports %>%
+  mb_isochrone(time = 30, profile = "cycling", id_column = "name",
+               access_token = access_token)%>%
+  mutate(isos_30 = geometry)
+
+
+```
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+# combine all the isos dfs
+isos <- cbind(isos_60, isos_45, isos_30)
+
+canadian_airs <- c("Vancouver", "Toronto", "Calgary", "Montreal")
+
+canadian_isos <- isos %>%
+  filter(grepl(paste(canadian_airs, collapse = "|"), id)) 
+
+
+canadian_isos_30 <- isos_30 %>%
+  filter(grepl(paste(canadian_airs, collapse = "|"), id)) 
+
+canadian_isos_45 <- isos_45 %>%
+  filter(grepl(paste(canadian_airs, collapse = "|"), id)) 
+
+canadian_isos_60 <- isos_60 %>%
+  filter(grepl(paste(canadian_airs, collapse = "|"), id)) 
+
+us_isos <- isos %>%
+  filter(!grepl(paste(canadian_airs, collapse = "|"), id)) 
+
+us_isos_30 <- isos_30 %>%
+  filter(!grepl(paste(canadian_airs, collapse = "|"), id)) 
+
+us_isos_45 <- isos_45 %>%
+  filter(!grepl(paste(canadian_airs, collapse = "|"), id)) 
+
+us_isos_60 <- isos_60 %>%
+  filter(!grepl(paste(canadian_airs, collapse = "|"), id)) 
+
+```
+
+# Isochrone Madness
+
+Transportation Modeling 101: **Isochrones**: a travel distance map, taking into account existing networks. Usually measured in time, it uses aggregated and average travel distance (sometimes by time of day, AM vs PM) to plot out how far one could travel from a given point. These ink-blot looking items on the below map represent a 60 minute isochrone from each of the major airports we consider. You may have to zoom in to see these. 
+
+For the analysis below, we'll consider isochrones at 30, 45, and 60 minute intervals. The smaller the isochrone, the less distance one would be able to travel from the given airport. 
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+mapview(isos)
+```
+
+
+What you'll notice is that most airports are placed relatively far from the city they serve. This is sensible given the space these facilities require for safe operations and storage. If you're familiar with Toronto, you'll see the Billy Bishop, JFK and Seattle isochrones are huge; whereas poor Denver is lil. The below graph shows the total area covered by each of the three isochrone sets. At first, it seems my hypothesis is ruined; not only is Silly Billy among the lowest in total area covered, but it's not even better than Pearson (which doesn't exactly make sense if you live here). However, it does track that Denver's airport is the lowest, given it is located approximately 15 light years from downtown Denver and likely does not have bike lanes to/fro that many people would be able to take. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+# Assuming 'isos' is your data frame of isochrones with geometry
+area_compares <- isos %>%
+  mutate(
+      area_30 = st_area(isos$isos_30) * 3.86102e-7,
+      area_45 = st_area(isos$isos_45) * 3.86102e-7,
+      area_60 = st_area(isos$isos_60) * 3.86102e-7
+     
+      ) %>%  # Convert square meters to square miles
+  st_drop_geometry() %>%
+  group_by(id) %>%
+  arrange(desc(area_30))  
+
+# sort by largest area
+# Load necessary library
+
+
+# Strip units if necessary (you can skip this step if you want to keep units in plots)
+area_compares$area_30 <- as.numeric(units::drop_units(area_compares$area_30))
+area_compares$area_45 <- as.numeric(units::drop_units(area_compares$area_45))
+area_compares$area_60 <- as.numeric(units::drop_units(area_compares$area_60))
+
+
+# Assuming your dataframe is named df
+temp_long <- area_compares %>%
+  mutate(Airport = id) %>%
+  pivot_longer(
+    cols = starts_with("area"), 
+    names_to = "Duration", 
+    values_to = "Area"
+  )
+
+# Create the bar chart
+ggplot(temp_long, aes(x = Airport, y = Area, fill = Duration)) +
+  geom_bar(stat = "identity", position = position_dodge()) +  # position_dodge to separate the bars
+  labs(title = "Area at Different Isochrones",
+       x = "Airport",
+       y = "Area",
+       fill = "Area (sq meters)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x labels for better readability
+
+
+
+
+
+# # Assuming 'area_compares' already has the areas calculated and stripped of units
+# 
+# # Create a bar chart for the 30-minute isochrone area
+# ggplot(area_compares, aes(x = reorder(id, -area_30), y = area_30)) +
+#   geom_bar(stat = "identity", color = "black") +  # Use identity to use the actual area values
+#   theme_minimal() +  # Optional: cleaner theme
+#   labs(title = "30 Minute Biking Isochrone Area",
+#        x = "",
+#        y = "Area (square miles)",
+#        fill = "Isochrone ID") +
+#   theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x labels for better readability
+
+# # Create a bar chart for the 45-minute isochrone area
+# ggplot(area_compares, aes(x = reorder(id, -area_45), y = area_45)) +
+#   geom_bar(stat = "identity", color = "black") +
+#   theme_minimal() +
+#   labs(title = "45 Minute Biking Isochrone Area",
+#        x = "",
+#        y = "Area (square miles)",
+#        fill = "Isochrone ID") +
+#   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+# 
+# # Create a bar chart for the 60-minute isochrone area
+# ggplot(area_compares, aes(x = reorder(id, -area_60), y = area_60)) +
+#   geom_bar(stat = "identity", color = "black") +
+#   theme_minimal() +
+#   labs(title = "60 Minute Biking Isochrone Area",
+#        x = "",
+#        y = "Area (square miles)",
+#        fill = "Isochrone ID") +
+#   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+```
+
+
+# Show me the People
+
+Who cares about area coverage? Well you should have, but not anymore! Let's translate those isochrones into how many people are covered within those areas. We'll use public US and Canadian census data to overlay loaded tracts with populations, then do a simple geospatial overlay to translate how many people are within the isochrone. This will show: 
+
+1. How many people are able to bike to airports in a given X minute interval 
+2. Give a better comparison metric between airports that take into account the concentration and distribution of actual humans, instead of area. 
+
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+state_list <- c("WA", "NY", "GA", "CA", "TX",
+                "PA", "IL", "CO")
+
+# use get_acs to get population data 
+# Get population data for all US counties
+us_data <- get_acs(
+  geography = "county",
+  variables = "B01003_001",
+  year = 2022,
+  state = state_list,
+  geometry = TRUE
+)
+
+## 30 minute 
+
+us_isos_30 <- st_transform(us_isos_30, st_crs(us_data))
+
+
+# Perform spatial intersection
+intersection <- st_intersection(us_isos_30, us_data)
+
+# Calculate the area of each intersection
+intersection$intersect_area <- st_area(intersection)
+
+us_data$tract_area <- st_area(us_data)
+temp_us_data <- us_data %>% st_drop_geometry()
+
+temp_intersection <- intersection %>%
+  left_join(temp_us_data)
+
+final_temp_30 <- temp_intersection %>%
+  st_drop_geometry() %>%
+  mutate(temp_pop = intersect_area/tract_area * estimate) %>%
+  group_by(Airport = id) %>%
+  summarize(Population_30 = sum(temp_pop))
+
+
+## 45 minute
+
+us_isos_45 <- st_transform(us_isos_45, st_crs(us_data))
+
+
+# Perform spatial intersection
+intersection <- st_intersection(us_isos_45, us_data)
+
+# Calculate the area of each intersection
+intersection$intersect_area <- st_area(intersection)
+
+us_data$tract_area <- st_area(us_data)
+temp_us_data <- us_data %>% st_drop_geometry()
+
+temp_intersection <- intersection %>%
+  left_join(temp_us_data)
+
+final_temp_45 <- temp_intersection %>%
+  st_drop_geometry() %>%
+  mutate(temp_pop = intersect_area/tract_area * estimate) %>%
+  group_by(Airport = id) %>%
+  summarize(Population_45 = sum(temp_pop))
+
+
+
+## 60 minute
+
+  
+us_isos_60 <- st_transform(us_isos_60, st_crs(us_data))
+
+
+# Perform spatial intersection
+intersection <- st_intersection(us_isos_60, us_data)
+
+# Calculate the area of each intersection
+intersection$intersect_area <- st_area(intersection)
+
+us_data$tract_area <- st_area(us_data)
+temp_us_data <- us_data %>% st_drop_geometry()
+
+temp_intersection <- intersection %>%
+  left_join(temp_us_data)
+
+final_temp_60 <- temp_intersection %>%
+  st_drop_geometry() %>%
+  mutate(temp_pop = intersect_area/tract_area * estimate) %>%
+  group_by(Airport = id) %>%
+  summarize(Population_60 = sum(temp_pop))
+
+final_us <- cbind(final_temp_30, final_temp_45, final_temp_60)
+
+```
+
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+
+# Canada
+
+library(cancensus)
+
+options(cancensus.api_key = "CensusMapper_a46eeccdea7abd430a378f4f43ac2c21")
+toronto_tracts <- get_census(dataset = 'CA21', 
+                          regions = list(CMA = c("35535", "537")),  # Codes for Toronto CMA and Hamilton CMA
+                          vectors = c("v_CA21_1"), 
+                          level = 'CT', 
+                          use_cache = FALSE, 
+                          geo_format = 'sf',
+                          quiet = TRUE)
+
+van_tracts <- get_census(dataset = 'CA21', 
+                          regions = list(CMA = c("59933")),  # Codes for Toronto CMA and Hamilton CMA
+                          vectors = c("v_CA21_1"), 
+                          level = 'CT', 
+                          use_cache = FALSE, 
+                          geo_format = 'sf',
+                          quiet = TRUE)
+
+
+
+montreal_tracts <- get_census(dataset = 'CA21', 
+                          regions = list(CMA = "24462"),  # Code for Montréal CMA
+                          vectors = c("v_CA21_1"),  # Ensure this vector code corresponds to the data you want
+                          level = 'CT', 
+                          use_cache = FALSE, 
+                          geo_format = 'sf',  # Returns spatial data frame
+                          quiet = TRUE)
+```
+
+
+
+
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+
+## 30 minute 
+
+canadian_isos_30 <- st_transform(canadian_isos_30, st_crs(toronto_tracts))
+
+#####--30 minutes--#####
+
+# Toronto
+
+intersection <- st_intersection(canadian_isos_30, toronto_tracts)
+
+# Calculate the area of each intersection
+intersection$intersect_area <- st_area(intersection)
+
+toronto_tracts$tract_area <- st_area(toronto_tracts)
+temp_toronto_data <- toronto_tracts %>% st_drop_geometry()
+
+temp_intersection <- intersection %>%
+  left_join(temp_toronto_data)
+
+final_temp_30_toronto <- temp_intersection %>%
+  st_drop_geometry() %>%
+  mutate(temp_pop = intersect_area/tract_area * Population) %>%
+  group_by(Airport = id) %>%
+  summarize(Population_30 = sum(temp_pop))
+
+# Montreal
+
+intersection <- st_intersection(canadian_isos_30, montreal_tracts)
+
+# Calculate the area of each intersection
+intersection$intersect_area <- st_area(intersection)
+
+montreal_tracts$tract_area <- st_area(montreal_tracts)
+temp_montreal_data <- montreal_tracts %>% st_drop_geometry()
+
+temp_intersection <- intersection %>%
+  left_join(temp_montreal_data)
+
+final_temp_30_montreal <- temp_intersection %>%
+  st_drop_geometry() %>%
+  mutate(temp_pop = intersect_area/tract_area * Population) %>%
+  group_by(Airport = id) %>%
+  summarize(Population_30 = sum(temp_pop))
+
+# Vancouver
+
+intersection <- st_intersection(canadian_isos_30, van_tracts)
+
+# Calculate the area of each intersection
+intersection$intersect_area <- st_area(intersection)
+
+van_tracts$tract_area <- st_area(van_tracts)
+temp_van_data <- van_tracts %>% st_drop_geometry()
+
+temp_intersection <- intersection %>%
+  left_join(temp_van_data)
+
+final_temp_30_van <- temp_intersection %>%
+  st_drop_geometry() %>%
+  mutate(temp_pop = intersect_area/tract_area * Population) %>%
+  group_by(Airport = id) %>%
+  summarize(Population_30 = sum(temp_pop))
+
+final_temp_30_candian <- rbind(final_temp_30_toronto, final_temp_30_montreal, final_temp_30_van)
+
+
+#####--45 minutes--#####
+
+# Toronto
+
+intersection <- st_intersection(canadian_isos_45, toronto_tracts)
+
+# Calculate the area of each intersection
+intersection$intersect_area <- st_area(intersection)
+
+toronto_tracts$tract_area <- st_area(toronto_tracts)
+temp_toronto_data <- toronto_tracts %>% st_drop_geometry()
+
+temp_intersection <- intersection %>%
+  left_join(temp_toronto_data)
+
+final_temp_45_toronto <- temp_intersection %>%
+  st_drop_geometry() %>%
+  mutate(temp_pop = intersect_area/tract_area * Population) %>%
+  group_by(Airport = id) %>%
+  summarize(Population_45 = sum(temp_pop))
+
+# Montreal
+
+intersection <- st_intersection(canadian_isos_45, montreal_tracts)
+
+# Calculate the area of each intersection
+intersection$intersect_area <- st_area(intersection)
+
+montreal_tracts$tract_area <- st_area(montreal_tracts)
+temp_montreal_data <- montreal_tracts %>% st_drop_geometry()
+
+temp_intersection <- intersection %>%
+  left_join(temp_montreal_data)
+
+final_temp_45_montreal <- temp_intersection %>%
+  st_drop_geometry() %>%
+  mutate(temp_pop = intersect_area/tract_area * Population) %>%
+  group_by(Airport = id) %>%
+  summarize(Population_45 = sum(temp_pop))
+
+# Vancouver
+
+intersection <- st_intersection(canadian_isos_45, van_tracts)
+
+# Calculate the area of each intersection
+intersection$intersect_area <- st_area(intersection)
+
+van_tracts$tract_area <- st_area(van_tracts)
+temp_van_data <- van_tracts %>% st_drop_geometry()
+
+temp_intersection <- intersection %>%
+  left_join(temp_van_data)
+
+final_temp_45_van <- temp_intersection %>%
+  st_drop_geometry() %>%
+  mutate(temp_pop = intersect_area/tract_area * Population) %>%
+  group_by(Airport = id) %>%
+  summarize(Population_45 = sum(temp_pop))
+
+final_temp_45_candian <- rbind(final_temp_45_toronto, final_temp_45_montreal, final_temp_45_van)
+
+
+
+#####--60 minutes--#####
+
+  
+# Toronto
+
+intersection <- st_intersection(canadian_isos_60, toronto_tracts)
+
+# Calculate the area of each intersection
+intersection$intersect_area <- st_area(intersection)
+
+toronto_tracts$tract_area <- st_area(toronto_tracts)
+temp_toronto_data <- toronto_tracts %>% st_drop_geometry()
+
+temp_intersection <- intersection %>%
+  left_join(temp_toronto_data)
+
+final_temp_60_toronto <- temp_intersection %>%
+  st_drop_geometry() %>%
+  mutate(temp_pop = intersect_area/tract_area * Population) %>%
+  group_by(Airport = id) %>%
+  summarize(Population_60 = sum(temp_pop))
+
+# Montreal
+
+intersection <- st_intersection(canadian_isos_60, montreal_tracts)
+
+# Calculate the area of each intersection
+intersection$intersect_area <- st_area(intersection)
+
+montreal_tracts$tract_area <- st_area(montreal_tracts)
+temp_montreal_data <- montreal_tracts %>% st_drop_geometry()
+
+temp_intersection <- intersection %>%
+  left_join(temp_montreal_data)
+
+final_temp_60_montreal <- temp_intersection %>%
+  st_drop_geometry() %>%
+  mutate(temp_pop = intersect_area/tract_area * Population) %>%
+  group_by(Airport = id) %>%
+  summarize(Population_60 = sum(temp_pop))
+
+# Vancouver
+
+intersection <- st_intersection(canadian_isos_60, van_tracts)
+
+# Calculate the area of each intersection
+intersection$intersect_area <- st_area(intersection)
+
+van_tracts$tract_area <- st_area(van_tracts)
+temp_van_data <- van_tracts %>% st_drop_geometry()
+
+temp_intersection <- intersection %>%
+  left_join(temp_van_data)
+
+final_temp_60_van <- temp_intersection %>%
+  st_drop_geometry() %>%
+  mutate(temp_pop = intersect_area/tract_area * Population) %>%
+  group_by(Airport = id) %>%
+  summarize(Population_60 = sum(temp_pop))
+
+final_temp_60_candian <- rbind(final_temp_60_toronto, final_temp_60_montreal, final_temp_60_van)
+
+
+final_canadian <- cbind(final_temp_30_candian, final_temp_45_candian, final_temp_60_candian)
+
+
+```
+
+The results are below: The bad news, Silly Billy is not number 1... but it's number 2! JFK leads the way, which fine, whatever, likely makes sense there are 4x as many people in NYC than Toronto. BUT! I will claim a modicum of vindication given over 500k people live within a 30 minute bike ride to Silly Billy, and over 1.5 million live within an hour bike ride. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+final <- rbind(final_us, final_canadian)
+
+# Load necessary libraries
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+
+# Assuming your dataframe is named df
+df_long <- final %>%
+  pivot_longer(
+    cols = starts_with("Population"), 
+    names_to = "Duration", 
+    values_to = "Population"
+  )
+
+# Create the bar chart
+ggplot(df_long, aes(x = Airport, y = Population, fill = Duration)) +
+  geom_bar(stat = "identity", position = position_dodge()) +  # position_dodge to separate the bars
+  labs(title = "Airport Populations at Different Durations",
+       x = "Airport",
+       y = "Population",
+       fill = "Pop within X minute Bike") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x labels for better readability
+
+```
+# Conclusion
+
+Biking to the airport is freeing, gets your body loose before you're crammed into an aisle seat, is a carbon-free means of transit, is significantly cheaper than car-sharing or parking fees, and is overall awesome! If you ever get the chance to do it, do it! 
+
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+# Percent of MSA Population
+
+metro_areas <- data.frame(
+  MSA = c("ATL", 
+          "Chicago", 
+          "Dallas",
+          "Denver", 
+          "JFK", 
+          "LAX", 
+          "Philadelphia", 
+          "Seattle", 
+          "SFO", 
+          "Montreal", 
+          "Toronto Billy Bishop",
+          "Toronto Pearson", 
+          "Vancouver"), 
+  Population = c(6307261, 9459000, 6488000, 2897000, 
+                 19200000, 13000000, 6100000, 4000000, 4700000,
+                 
+                 # to do: update canadian MSA pop estimates
+                 15000000, 3400000, 3400000, 1500000
+                 )
+)
+
+
+```
+
+
