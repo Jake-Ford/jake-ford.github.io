@@ -43,6 +43,7 @@ From the American Delegation:
 - JFK
 - LAX
 - O'Hare
+- DC Reagan
 - ATL
 - SFO
 - Dallas Fort Worth
@@ -62,7 +63,9 @@ From the Canadian Delegation:
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 # Define airports with their coordinates (US and Canada), updating Billy Bishop's coordinates
 airports <- data.frame(
-  name = c("JFK", 
+  name = c(
+            "DCA",
+            "JFK", 
            "LAX", 
            "Chicago O'Hare",
            "Toronto Pearson", 
@@ -76,12 +79,14 @@ airports <- data.frame(
            "Philadelphia",
            "Seattle",
            "Denver"),
-  lon = c(-73.7781, -118.4085, -87.9048, 
+  
+  lon = c(
+          -77.0402, -73.7781, -118.4085, -87.9048, 
           -79.6306, -123.184, -84.4277, 
           -122.379, -73.7415, -114.0134,
           -97.0403, -79.39769267068745, -75.24114,
           -122.3088, -104.6737),
-  lat = c(40.6413, 33.9416, 41.9742, 
+  lat = c(38.8512, 40.6413, 33.9416, 41.9742, 
           43.6777, 49.1947, 33.6407, 
           37.6213, 45.4577, 51.1315,
           32.8968, 43.63409886780112, 39.8744,
@@ -262,7 +267,7 @@ Who cares about area coverage? Well you should have, but not anymore! Let's tran
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 state_list <- c("WA", "NY", "GA", "CA", "TX",
-                "PA", "IL", "CO")
+                "PA", "IL", "CO", "DC")
 
 # use get_acs to get population data 
 # Get population data for all US counties
