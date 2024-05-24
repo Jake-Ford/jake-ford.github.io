@@ -19,11 +19,11 @@ For those of you who aren't aware, Toronto has two airports: Pearson, a huge, in
 
 
 
-A major benefit of this type of locale for an airport is that it allows faithful customers to use multiple means of transit. I used to work in Transportation Planning in the Triangle area in North Carolina. The Raleigh-Durham (RDU) airport sits right in between, well, Raleigh and Durham (Chapel Hill you exist too, I didn't forget). BUT, but, but, there is no easy transit from either city to the airport; even the bus lines are convoluted and push environmentally or budget minded customers to car-share or park-n-ride or whatever the hell a kiss-n-ride is. Not having transit lines extend to airport access for major cities is insane. 
+A major benefit of this type of locale for an airport is that it allows faithful customers to use multiple means of transit. I used to work in Transportation Planning in the Triangle area in North Carolina. The Raleigh-Durham (RDU) airport sits right in between, well, Raleigh and Durham (Chapel Hill you exist too, I didn't forget). BUT, there is no easy transit (or bike lanes) from either city to the airport; even the bus lines are convoluted and push environmentally or budget minded customers to car-share or park-n-ride or whatever the hell a kiss-n-ride is. Not having transit lines extend to airport access for major cities is insane but also tremendously difficult to accomplish in the U.S. due to the way transit is funded and the lack of political will to make it happen at times, but also because of the way cities are designed.
 
-So after we moved to Toronto, I had my eyes on the day I would finally fly out of Silly-Illy-Billy Bishop Airport, as we live close enough that I could hop on a city bike, and cruise over! In short, it was glorious. The views from the Billy Bishop airport are also fantastic, the waiting area, for all three or so gates available, felt more like a nicer university than I went to library. 
+So after we moved to Toronto, I had my eyes on the day I would finally fly out of Silly Billy Airport, as we live close enough that I could hop on a city bike, and cruise over! The ride over, in short, was glorious. The views from the Billy Bishop airport are also fantastic, the waiting area, for all three or so gates available, felt more like a nicer university than I went to library. 
 
-I wanted to see if Billy Bishop was the most accessible via bike compared to other major US and Canadian airports. My hypothesis is that it offers access via bike to the greatest number of people, both in absolute and relative terms to the city's population. To answer this, I started pulling isochrone and census data. For this analysis, I'm using mb_isochrone function from the [mapboxapi](https://docs.mapbox.com/api/overview/) package, very user friendly and effective. Their 'profile' methods of transportation include driving, walking, cycling, and driving in traffic. A transit map would require different packages, but would be a good follow up to this! 
+The trip over prompted some questions: is Billy Bishop the most accessible via bike compared to other major US and Canadian airports. My completely impartial and non-competitive hypothesis is that it offers access via bike to the greatest number of people, both in absolute and relative terms to the city's population. To answer this, I started pulling isochrone (more on this below) and census data. For this analysis, I'm using mb_isochrone function from the [mapboxapi](https://docs.mapbox.com/api/overview/) package, very user friendly and effective. Their 'profile' methods of transportation include driving, walking, cycling, and driving in traffic. A transit map would require different packages, but would be a good follow up to this! 
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 library(dplyr)
@@ -40,22 +40,26 @@ library(tidyr)
 ## The Competitors
 
 From the American Delegation:
-- JFK
-- LAX
-- O'Hare
-- DC Reagan
-- ATL
-- SFO
-- Dallas Fort Worth
-- PHL
-- Seattle
-- Denver
+
+* JFK
+* LAX
+* O'Hare
+* DC Reagan
+* ATL
+* SFO
+* Dallas Fort Worth
+* PHL
+* Seattle
+* Denver
+* Charlotte
+* Orlando
 
 From the Canadian Delegation:
-- Toronto Pearson
-- Silly Billy
-- Montreal
-- Vancouver
+
+* Toronto Pearson
+* Silly Billy
+* Montreal
+* Vancouver
 
 
 
@@ -78,19 +82,23 @@ airports <- data.frame(
            "Toronto Billy Bishop",
            "Philadelphia",
            "Seattle",
-           "Denver"),
+           "Denver", 
+           "Orlando", 
+           "CLT"),
   
   lon = c(
           -77.0402, -73.7781, -118.4085, -87.9048, 
           -79.6306, -123.184, -84.4277, 
           -122.379, -73.7415, -114.0134,
           -97.0403, -79.39769267068745, -75.24114,
-          -122.3088, -104.6737),
+          -122.3088, -104.6737, 
+          -81.3115, 
+          -80.9439),
   lat = c(38.8512, 40.6413, 33.9416, 41.9742, 
           43.6777, 49.1947, 33.6407, 
           37.6213, 45.4577, 51.1315,
           32.8968, 43.63409886780112, 39.8744,
-          47.4502, 39.8561)
+          47.4502, 39.8561, 28.4230, 35.2202)
 )
 
 # Load the sf library if not already loaded
@@ -160,9 +168,9 @@ us_isos_60 <- isos_60 %>%
 
 # Isochrone Madness
 
-Transportation Modeling 101: **Isochrones**: a travel distance map, taking into account existing networks. Usually measured in time, it uses aggregated and average travel distance (sometimes by time of day, AM vs PM) to plot out how far one could travel from a given point. These ink-blot looking items on the below map represent a 60 minute isochrone from each of the major airports we consider. You may have to zoom in to see these. 
+Transportation Modeling 101: **Isochrones**: a travel distance map, taking into account existing networks. Usually measured in time, it uses aggregated and average travel distance (sometimes by time of day, AM vs PM) to plot out how far one could travel from a given point. These ink-blot looking items on the below map represent a 60 minute isochrone from each of the major airports we consider. You may have to zoom in to see these. For example, if you've been to the Denver airport, you may have asked yourself: "why did they build this airport in Kansas?" Then the shape of the isochrone may not be entirely surprising, given the airport's location. Alternatively, DCA looks a bit more intuitive, given it is amazingly close to downtown DC. 
 
-For the analysis below, we'll consider isochrones at 30, 45, and 60 minute intervals. The smaller the isochrone, the less distance one would be able to travel from the given airport. 
+For the analysis below, we'll consider isochrones at 30, 45, and 60 minute intervals, meaning we'll look at how far on average one could bike from the airport in 30, 45, or 60 minutes. 
 
 
 
@@ -171,7 +179,9 @@ mapview(isos)
 ```
 
 
-What you'll notice is that most airports are placed relatively far from the city they serve. This is sensible given the space these facilities require for safe operations and storage. If you're familiar with Toronto, you'll see the Billy Bishop, JFK and Seattle isochrones are huge; whereas poor Denver is lil. The below graph shows the total area covered by each of the three isochrone sets. At first, it seems my hypothesis is ruined; not only is Silly Billy among the lowest in total area covered, but it's not even better than Pearson (which doesn't exactly make sense if you live here). However, it does track that Denver's airport is the lowest, given it is located approximately 15 light years from downtown Denver and likely does not have bike lanes to/fro that many people would be able to take. 
+What you'll notice is that most airports are placed relatively far from the city they serve. This is sensible given the space these facilities require for safe operations and storage. The below graph shows the total area covered by each of the three isochrone sets. At first, it seems my hypothesis is ruined; not only is Silly Billy among the lowest in total area covered, but it's not even better than Pearson (which doesn't exactly make sense if you live here). Atlanta's and DFA cover the most amount of area at the 60 minute mark, which may be true, but I've spent very little time at those airports and didn't particularly notice a lot of bikers. The scaries are starting to set in for my hypothesis. 
+
+However, it does track that Denver's airport is the lowest, given it is located approximately 15 light years from downtown Denver and likely does not have bike lanes to/fro that many people would be able to take. 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -267,7 +277,7 @@ Who cares about area coverage? Well you should have, but not anymore! Let's tran
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 state_list <- c("WA", "NY", "GA", "CA", "TX",
-                "PA", "IL", "CO", "DC")
+                "PA", "IL", "CO", "DC", "FL", "NC")
 
 # use get_acs to get population data 
 # Get population data for all US counties
