@@ -671,9 +671,12 @@ final_canadian <- cbind(final_temp_30_candian, final_temp_45_candian, final_temp
 
 ```
 
-The results are below: The bad news, Silly Billy is not number 1... but it's number 2! JFK leads the way, which fine, whatever, likely makes sense there are 4x as many people in NYC than Toronto. BUT! I will claim a modicum of vindication given over 500k people live within a 30 minute bike ride to Silly Billy, and over 1.5 million live within an hour bike ride. 
+The results are below: For the 60 minute definition, Silly Billy is not number 1... but it's number 2! JFK leads the way, which fine, whatever, likely makes sense there are 4x as many people in NYC than Toronto. BUT! I will claim a modicum of vindication given over 500k people live within a 30 minute bike ride to Silly Billy, and over 1.5 million live within an hour bike ride. 
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+However, under the 45 and 30 minute definitions, the Billy Bishop airport is the most accessible by bike in to the greatest number of people of all the airports considered. This suggests that a significant number of people live within that 45 max biking isochrone of Billy Bishop, representing the dense Toronto downtown core, but when compared to JFK, the 60 minute isochrone is able to pull in more people given the sheer size of NYC. It seems like for those of us who are not donning their speedo like cycling jerseys and biking up to an hour with luggage but are rather willing to bike up to 30-45 miinutes to to get to the airport, Silly Billy is the best option. 
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE} 
 
 final <- rbind(final_us, final_canadian)
 
