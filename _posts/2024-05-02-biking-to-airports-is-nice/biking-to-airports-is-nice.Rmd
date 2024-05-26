@@ -400,6 +400,14 @@ montreal_tracts <- get_census(dataset = 'CA21',
                           use_cache = FALSE, 
                           geo_format = 'sf',  # Returns spatial data frame
                           quiet = TRUE)
+
+calgary_tracts <- get_census(dataset = 'CA21', 
+                          regions = list(CMA = "48825"),  # Code for Calgary CMA
+                          vectors = c("v_CA21_1"),  # Ensure this vector code corresponds to the data you want
+                          level = 'CT', 
+                          use_cache = FALSE, 
+                          geo_format = 'sf',  # Returns spatial data frame
+                          quiet = TRUE)
 ```
 
 
@@ -472,7 +480,26 @@ final_temp_30_van <- temp_intersection %>%
   group_by(Airport = id) %>%
   summarize(Population_30 = sum(temp_pop))
 
-final_temp_30_candian <- rbind(final_temp_30_toronto, final_temp_30_montreal, final_temp_30_van)
+# Calgary
+
+intersection <- st_intersection(canadian_isos_30, calgary_tracts)
+
+# Calculate the area of each intersection
+intersection$intersect_area <- st_area(intersection)
+
+calgary_tracts$tract_area <- st_area(calgary_tracts)
+temp_calgary_data <- calgary_tracts %>% st_drop_geometry()
+
+temp_intersection <- intersection %>%
+  left_join(temp_calgary_data)
+
+final_temp_30_calgary <- temp_intersection %>%
+  st_drop_geometry() %>%
+  mutate(temp_pop = intersect_area/tract_area * Population) %>%
+  group_by(Airport = id) %>%
+  summarize(Population_30 = sum(temp_pop))
+
+final_temp_30_candian <- rbind(final_temp_30_toronto, final_temp_30_montreal, final_temp_30_van, final_temp_30_calgary)
 
 
 #####--45 minutes--#####
@@ -534,8 +561,26 @@ final_temp_45_van <- temp_intersection %>%
   group_by(Airport = id) %>%
   summarize(Population_45 = sum(temp_pop))
 
-final_temp_45_candian <- rbind(final_temp_45_toronto, final_temp_45_montreal, final_temp_45_van)
+# Calgary
 
+intersection <- st_intersection(canadian_isos_45, calgary_tracts)
+
+# Calculate the area of each intersection
+intersection$intersect_area <- st_area(intersection)
+
+calgary_tracts$tract_area <- st_area(calgary_tracts)
+temp_calgary_data <- calgary_tracts %>% st_drop_geometry()
+
+temp_intersection <- intersection %>%
+  left_join(temp_calgary_data)
+
+final_temp_45_calgary <- temp_intersection %>%
+  st_drop_geometry() %>%
+  mutate(temp_pop = intersect_area/tract_area * Population) %>%
+  group_by(Airport = id) %>%
+  summarize(Population_45 = sum(temp_pop))
+
+final_temp_45_candian <- rbind(final_temp_45_toronto, final_temp_45_montreal, final_temp_45_van, final_temp_45_calgary)
 
 
 #####--60 minutes--#####
@@ -598,7 +643,27 @@ final_temp_60_van <- temp_intersection %>%
   group_by(Airport = id) %>%
   summarize(Population_60 = sum(temp_pop))
 
-final_temp_60_candian <- rbind(final_temp_60_toronto, final_temp_60_montreal, final_temp_60_van)
+
+# Calgary
+
+intersection <- st_intersection(canadian_isos_60, calgary_tracts)
+
+# Calculate the area of each intersection
+intersection$intersect_area <- st_area(intersection)
+
+calgary_tracts$tract_area <- st_area(calgary_tracts)
+temp_calgary_data <- calgary_tracts %>% st_drop_geometry()
+
+temp_intersection <- intersection %>%
+  left_join(temp_calgary_data)
+
+final_temp_60_calgary <- temp_intersection %>%
+  st_drop_geometry() %>%
+  mutate(temp_pop = intersect_area/tract_area * Population) %>%
+  group_by(Airport = id) %>%
+  summarize(Population_60 = sum(temp_pop))
+
+final_temp_60_candian <- rbind(final_temp_60_toronto, final_temp_60_montreal, final_temp_60_van, final_temp_60_calgary)
 
 
 final_canadian <- cbind(final_temp_30_candian, final_temp_45_candian, final_temp_60_candian)
