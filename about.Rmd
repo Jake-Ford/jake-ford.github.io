@@ -1,5 +1,5 @@
 ---
-title: "About this blog"
+title: "A bit about myself :) "
 description: |
 
 ---
@@ -11,15 +11,23 @@ description: |
 My name is Jake Ford, I live in Toronto, Canada. I'm a Data Scientist for [Solstice](https://solstice.us/), working to democratize access to solar energy. Previously, I've worked in policy analysis and transportation modeling at the state and local government level. 
 
 
-![](Arizona.png) 
-
-My interests include travel, food, their very important combination in addition to writing about policy related questions in a data science framework; along with books I'm reading, podcasts I'm listening to, NIMBY attempts to Jim Crow-ify their gains in capital investments. Sometimes it's fun, sometime's it's serious, hopefully more often than not it's both! 
-
-
-Here's charlie, our rescue greyhound. You'll probably be seeing him a lot here. Look at that snoot. 
+```{r, echo=FALSE, out.width='75%'}
+knitr::include_graphics("Arizona.png")
+```
 
 
-![](Longest Snoot.png) 
+My interests include travel, food, their very important combination in addition to writing about policy related questions in a data science framework; along with books I'm reading, podcasts I'm listening to, how NIMBY-ism stifles progress and innovation. Sometimes it's fun, sometimes it's serious, hopefully more often than not it's both! 
+
+
+Here's charlie, our rescue greyhound. You'll probably be seeing him a lot here. Look at that snoot! 
+
+
+
+```{r, echo=FALSE, out.width='75%'}
+knitr::include_graphics("Longest Snoot.png")
+```
+
+
 
 
 

@@ -1,17 +1,27 @@
 ---
-title: "projects"
+title: "What I'm working on"
 output: distill::distill_article
 date: '2022-06-25'
 ---
 
 
+# EnergyScore 
 
 ![](EnergyScore logo copy.jpg){ width=20% }
 
 
-[Solstice](https://solstice.us/) operates EnergyScore, a machine learning algorithm that delivers a more effective and more equitable qualification metric. Through generous support from the Tides Foundation and Google, I spent several months investigating the degree of bias existing in the algorithm, conducting a large literature review to identify leading quantitative measures of bias and fairness in ML. The whitepaper can be reviewed [here](EnergyScore-Bias-Whitepaper-September-2023.pdf).
+[Solstice](https://solstice.us/) operates EnergyScore, a machine learning algorithm that delivers a more effective and more equitable qualification metric. Through generous support from the Tides Foundation and Google, I spent several months investigating the degree of bias existing in the algorithm, conducting a large literature review to identify leading quantitative measures of bias and fairness in ML. The whitepaper can be reviewed [here](EnergyScore-Bias-Whitepaper-January-2024.pdf).
 
 
+# Churn Model
+
+At Solstice, we developed a churn model to predict the likelihood of a customer leaving the platform. I was responsible for the data cleaning, feature engineering, and model building. The model was built using a few different model combinations, including logistic regression, random forest, and gradient boosting. The model was able to predict churn with an AUC > 0.85. The model was deployed in production and is used to identify customers at risk of leaving the platform. You can read more about this model and other AI/ML projects at Solstice at the following press links:
+
+- [Community solar developers look to artificial intelligence to help manage subscribers and advance equity, Energy News Network](https://energynews.us/2024/05/29/community-solar-developers-look-to-artificial-intelligence-to-help-manage-subscribers-and-advance-equity/)
+- [Inside community solar's foray into machine learning, Latitude Media](https://www.latitudemedia.com/news/inside-community-solars-foray-into-machine-learning)
+
+
+# SETO 
 
 Also at Solstice, we conducted a multi-tiered analysis of community solar prioritization and barriers to LMI access. Funding was provided by the U.S. Department of Energy's Solar Energy Technologies Office (SETO). This research looked at potential consumers, developers and financiers, and real performing solar farms. The data analysis and github page with more details and results are available [here](https://jake-ford.github.io/SETO_Data_Analysis/); read our paper [here](https://link.springer.com/chapter/10.1007/978-3-031-39147-7_21) where I was corresponding author. 
 
