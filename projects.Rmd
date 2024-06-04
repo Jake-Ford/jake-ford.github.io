@@ -15,8 +15,9 @@ date: '2022-06-25'
 
 # Churn Model
 
-At Solstice, we developed a churn model to predict the likelihood of a customer leaving the platform. I was responsible for the data cleaning, feature engineering, and model building. The model was built using a few different model combinations, including logistic regression, random forest, and gradient boosting. The model was able to predict churn with an AUC > 0.85. The model was deployed in production and is used to identify customers at risk of leaving the platform. You can read more about this model and other AI/ML projects at Solstice at the following press links:
+At Solstice, we developed a churn model to predict the likelihood of a customer leaving the platform. I was responsible for the data cleaning, feature engineering, and model building. The model was built using a few different model combinations, including logistic regression, random forest, and gradient boosting. The model was able to predict churn with an AUC > 0.95. The model was deployed in production and is used to identify customers at risk of leaving the platform. You can read more about this model and other AI/ML projects at Solstice at the following press links:
 
+- [Can AI help community solar projects hold onto their customers? Canary Media](https://www.canarymedia.com/articles/solar/can-ai-help-community-solar-projects-hold-onto-their-customers)
 - [Community solar developers look to artificial intelligence to help manage subscribers and advance equity, Energy News Network](https://energynews.us/2024/05/29/community-solar-developers-look-to-artificial-intelligence-to-help-manage-subscribers-and-advance-equity/)
 - [Inside community solar's foray into machine learning, Latitude Media](https://www.latitudemedia.com/news/inside-community-solars-foray-into-machine-learning)
 
