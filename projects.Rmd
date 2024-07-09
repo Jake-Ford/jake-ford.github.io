@@ -10,8 +10,7 @@ date: '2022-06-25'
 ![](EnergyScore logo copy.jpg){ width=20% }
 
 
-[Solstice](https://solstice.us/) operates EnergyScore, a machine learning algorithm that delivers a more effective and more equitable qualification metric. Through generous support from the Tides Foundation and Google, I spent several months investigating the degree of bias existing in the algorithm, conducting a large literature review to identify leading quantitative measures of bias and fairness in ML. The whitepaper can be reviewed [here](EnergyScore-Bias-Whitepaper-January-2024.pdf).
-
+[Solstice](https://solstice.us/) operates EnergyScore, a machine learning algorithm that delivers a more effective and more equitable qualification metric. Through generous support from the Tides Foundation and Google, I spent several months investigating the degree of bias existing in the algorithm, conducting a large literature review to identify leading quantitative measures of bias and fairness in ML. The pre-print version of the paper, **Fairness in Focus: Quantitative Insights into Bias within Machine Learning Risk Evaluations and Established Credit Models**  and accompanying repository can be viewed [here](https://github.com/Jake-Ford/Fairness-in-Focus). 
 
 # Churn Model
 

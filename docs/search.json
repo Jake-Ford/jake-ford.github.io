@@ -5,22 +5,22 @@
       "title": "A bit about myself :) ",
       "author": [],
       "contents": "\nAbout\nMy name is Jake Ford, I live in Toronto, Canada. I’m a Data Scientist for Solstice, working to democratize access to solar energy. Previously, I’ve worked in policy analysis and transportation modeling at the state and local government level.\n\n\n\nMy interests include travel, food, their very important combination in addition to writing about policy related questions in a data science framework; along with books I’m reading, podcasts I’m listening to, how NIMBY-ism stifles progress and innovation. Sometimes it’s fun, sometimes it’s serious, hopefully more often than not it’s both!\nHere’s charlie, our rescue greyhound. You’ll probably be seeing him a lot here. Look at that snoot!\n\n\n\n\n\n\n",
-      "last_modified": "2024-07-02T11:46:40-04:00"
+      "last_modified": "2024-07-09T10:22:21-04:00"
     },
     {
       "path": "index.html",
       "title": "Jake Ford",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2024-07-02T11:46:41-04:00"
+      "last_modified": "2024-07-09T10:22:22-04:00"
     },
     {
       "path": "projects.html",
       "title": "What I'm working on",
       "author": [],
       "date": "2022-06-25",
-      "contents": "\nEnergyScore\n\nSolstice operates EnergyScore, a machine learning algorithm that delivers a more effective and more equitable qualification metric. Through generous support from the Tides Foundation and Google, I spent several months investigating the degree of bias existing in the algorithm, conducting a large literature review to identify leading quantitative measures of bias and fairness in ML. The whitepaper can be reviewed here.\nChurn Model\nAt Solstice, we developed a churn model to predict the likelihood of a customer leaving the platform. I was responsible for the data cleaning, feature engineering, and model building. The model was built using a few different model combinations, including logistic regression, random forest, and gradient boosting. The model was able to predict churn with an AUC > 0.95. The model was deployed in production and is used to identify customers at risk of leaving the platform. You can read more about this model and other AI/ML projects at Solstice at the following press links:\nCan AI help community solar projects hold onto their customers? Canary Media\nCommunity solar developers look to artificial intelligence to help manage subscribers and advance equity, Energy News Network\nInside community solar’s foray into machine learning, Latitude Media\nSETO\nAlso at Solstice, we conducted a multi-tiered analysis of community solar prioritization and barriers to LMI access. Funding was provided by the U.S. Department of Energy’s Solar Energy Technologies Office (SETO). This research looked at potential consumers, developers and financiers, and real performing solar farms. The data analysis and github page with more details and results are available here; read our paper here where I was corresponding author.\n\n\n\n",
-      "last_modified": "2024-07-02T11:46:41-04:00"
+      "contents": "\nEnergyScore\n\nSolstice operates EnergyScore, a machine learning algorithm that delivers a more effective and more equitable qualification metric. Through generous support from the Tides Foundation and Google, I spent several months investigating the degree of bias existing in the algorithm, conducting a large literature review to identify leading quantitative measures of bias and fairness in ML. The pre-print version of the paper, Fairness in Focus: Quantitative Insights into Bias within Machine Learning Risk Evaluations and Established Credit Models and accompanying repository can be viewed here.\nChurn Model\nAt Solstice, we developed a churn model to predict the likelihood of a customer leaving the platform. I was responsible for the data cleaning, feature engineering, and model building. The model was built using a few different model combinations, including logistic regression, random forest, and gradient boosting. The model was able to predict churn with an AUC > 0.95. The model was deployed in production and is used to identify customers at risk of leaving the platform. You can read more about this model and other AI/ML projects at Solstice at the following press links:\nCan AI help community solar projects hold onto their customers? Canary Media\nCommunity solar developers look to artificial intelligence to help manage subscribers and advance equity, Energy News Network\nInside community solar’s foray into machine learning, Latitude Media\nSETO\nAlso at Solstice, we conducted a multi-tiered analysis of community solar prioritization and barriers to LMI access. Funding was provided by the U.S. Department of Energy’s Solar Energy Technologies Office (SETO). This research looked at potential consumers, developers and financiers, and real performing solar farms. The data analysis and github page with more details and results are available here; read our paper here where I was corresponding author.\n\n\n\n",
+      "last_modified": "2024-07-09T10:22:22-04:00"
     }
   ],
   "collections": ["posts/posts.json"]
