@@ -10,7 +10,18 @@ date: '2022-06-25'
 ![](EnergyScore logo copy.jpg){ width=20% }
 
 
-[Solstice](https://solstice.us/) operates EnergyScore, a machine learning algorithm that delivers a more effective and more equitable qualification metric. Through generous support from the Tides Foundation and Google, I spent several months investigating the degree of bias existing in the algorithm, conducting a large literature review to identify leading quantitative measures of bias and fairness in ML. The pre-print version of the paper, **Fairness in Focus: Quantitative Insights into Bias within Machine Learning Risk Evaluations and Established Credit Models**  and accompanying repository can be viewed [here](https://github.com/Jake-Ford/Fairness-in-Focus). 
+[Solstice](https://solstice.us/) operates EnergyScore, a machine learning algorithm that delivers a more effective and more equitable qualification metric callibrated for renewable energy financing. Through generous support from the Tides Foundation and Google, I spent several months investigating the degree of bias existing in the algorithm, conducting a large literature review to identify leading quantitative measures of bias and fairness in ML. The pre-print version of the paper, **Fairness in Focus: Quantitative Insights into Bias within Machine Learning Risk Evaluations and Established Credit Models**  and accompanying repository can be viewed [here](https://github.com/Jake-Ford/Fairness-in-Focus). 
+
+
+![](google_org_icon.png){ width=20% }
+
+
+Google.org, the nonprofit philanthropic arm of the tech giant, doubled down on their support of EnergyScore by providing a grant to Solstice to fully develop the ML product while utilizing the same bias metrics and ethical AI principles I developed in the initial research linked above. We've collected an updated dataset of over 30 million account level data to make the model applicable in a variety of renewable energy financing scenarios. The model is currently in development and will be deployed in the coming months with a pilot partner. 
+
+- [Solstice and Google Partner to Advance Inclusive Clean Energy Access](https://www.prnewswire.com/news-releases/solstice-and-google-partner-to-advance-inclusive-clean-energy-access-302203203.html)
+
+
+
 
 # Churn Model
 
