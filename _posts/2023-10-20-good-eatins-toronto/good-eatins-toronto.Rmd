@@ -8,33 +8,37 @@ output:
     self_contained: false
 ---
 
-In June of 2023, we moved from Durham, North Carolina to Toronto, Ontario, Canada. Home of:
+# Toronto Food Recommendations
 
-- 2.93 million, 5.9 in the greater Toronto area (4th largest in North America)
-- alphanumeric zip codes
-- 'washrooms' 
-- Tim Hortons
-- dog parks a-plenty
-- a big lovely lake
-- universal health care (*american sigh*)
-- Abbreviations: Raps not the Raptors, the Jays not the Blue Jays, blend in people
-
-But most importantly for this post's consideration is what must be a world record of most micro-worlds held within one metropolitan area. 
-
-Little India, Chinatown (actually there are two Chinatowns), Little Japan, Little Tibet, Little Italy, Little Portugal, Little Malta, Little Jamaica, Greektown, Koreatown. And then there are the fusion spinoffs, my personal favorite being Rasta Pasta (Jamaican-Italian) and the Hungary Thai (ya get it?), along with countless Hakka Indian-Carribean fusion on poutine spots. The evidence that God exists is the holiest dish on earth: jerk chicken on poutine, see below on Queen Street. 
-
-It's an amazingly diverse, multicultural menagerie of a city. 
-
-
-
-You know the drill, given our very limited time here so far, only the absolute must don't-miss-these spots are below. Enjoy :) 
-
-
-
+Updated August, 2024 to account for the mesmerizing Lake Inez. Enjoy!
 
 
 
 ```{r setup, include=FALSE}
+
+# In June of 2023, we moved from Durham, North Carolina to Toronto, Ontario, Canada. Home of:
+# 
+# - 2.93 million, 5.9 in the greater Toronto area (4th largest in North America)
+# - alphanumeric zip codes
+# - 'washrooms' 
+# - Tim Hortons
+# - dog parks a-plenty
+# - a big lovely lake
+# - universal health care (*american sigh*)
+# - Abbreviations: Raps not the Raptors, the Jays not the Blue Jays, blend in people
+# 
+# But most importantly for this post's consideration is what must be a world record of most micro-worlds held within one metropolitan area. 
+# 
+# Little India, Chinatown (actually there are two Chinatowns), Little Japan, Little Tibet, Little Italy, Little Portugal, Little Malta, Little Jamaica, Greektown, Koreatown. And then there are the fusion spinoffs, my personal favorite being Rasta Pasta (Jamaican-Italian) and the Hungary Thai (ya get it?), along with countless Hakka Indian-Carribean fusion on poutine spots. The evidence that God exists is the holiest dish on earth: jerk chicken on poutine, see below on Queen Street. 
+# 
+# It's an amazingly diverse, multicultural menagerie of a city. 
+# 
+# 
+# 
+# You know the drill, given our very limited time here so far, only the absolute must don't-miss-these spots are below. Enjoy :) 
+# 
+
+
 library(dplyr)
 library(leaflet)
 library(sf)
