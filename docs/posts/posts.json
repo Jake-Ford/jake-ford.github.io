@@ -17,6 +17,23 @@
     "input_file": {}
   },
   {
+    "path": "posts/2025-01-23-geographic-concentration-of-eras-tour-setlist-data/",
+    "title": "Geographic Concentration of Era's Tour Setlist Data",
+    "description": {},
+    "author": [
+      {
+        "name": "Jacob Ford",
+        "url": {}
+      }
+    ],
+    "date": "2025-01-23",
+    "categories": [],
+    "contents": "\nSimple Table View\nI’ve always loved looking at band’s set lists. When a group plays the sleeper jams that only true blue acolytes would know the name of, that’s instantly revealed by looking at the set list data. I wanted to combine this interest by looking into the well-researched world of Taylor Swift analysis. The Era’s tour concluded a few months back, setting global records for revenue generated. I wouldn’t consider myself a Swiftie, but I do appreciate the shear volume of songs TayTay has at her disposal to fill her setlists for like 4 years straight of sold out concerts or however long the Era’s tour was.\nThe table view is just a simplified view of the Swiftipedia Surprise Song tracker data. What songs were only played in certain countries or cities, was the question I wanted to pursue with this quick analysis. Honestly, I can’t believe Picture to Burn was only played one time, in Denver! Today was a Fairytale, only twice, in Warsaw and Houston.\n\n\n\n\n\n\nFrequency Analysis\nThe below plotly graph goes into a bit more details, showing the frequency of songs played over time. The dropdown menu allows for filtering by song title. The data is aggregated by month and year, and the plot shows the frequency of each song played in different locations. This view allows for a more interactive exploration of the data, with the ability to focus on specific songs and their distribution over time. If a song was only played once in a specific location, it will show up as a single point on the graph. For example, London Boy was only played one time, in an unsurprising location!\n\n\n\n\n\n\nSelect a Song Title:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+    "preview": {},
+    "last_modified": "2025-01-23T15:16:01-05:00",
+    "input_file": "geographic-concentration-of-eras-tour-setlist-data.knit.md"
+  },
+  {
     "path": "posts/2024-10-06-duh-density-matters-for-transit/",
     "title": "Duh: Density Matters for Transit",
     "description": {},

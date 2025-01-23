@@ -1,0 +1,148 @@
+---
+title: "Geographic Concentration of Era's Tour Setlist Data"
+author:
+  - name: Jacob Ford
+date: "`r Sys.Date()`"
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+# Simple Table View
+
+I've always loved looking at band's set lists. When a group plays the sleeper jams that only true blue acolytes would know the name of, that's instantly revealed by looking at the set list data. I wanted to combine this interest by looking into the well-researched world of Taylor Swift analysis. The Era's tour concluded a few months back, setting global records for revenue generated. I wouldn't consider myself a Swiftie, but I do appreciate the shear volume of songs TayTay has at her disposal to fill her setlists for like 4 years straight of sold out concerts or however long the Era's tour was. 
+
+The table view is just a simplified view of the Swiftipedia [Surprise Song tracker](https://taylorswift.fandom.com/wiki/The_Eras_Tour/Surprise_song_tracker#The_Tortured_Poets_Department) data. What songs were only played in certain countries or cities, was the question I wanted to pursue with this quick analysis. Honestly, I can't believe Picture to Burn was only played one time, in Denver! Today was a Fairytale, only twice, in Warsaw and Houston. 
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+
+file_path <- "tay_tay_data.xlsx"
+
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(crosstalk)
+library(lubridate)
+library(readxl)
+library(tidyr)
+library(stringr)
+library(htmltools)
+library(bslib)
+
+tay_data <- read_excel(file_path)
+
+
+```
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+# Fill NA values in the Title column with the previous value
+tay_data <- tay_data %>%
+  fill(Title, .direction = "down")  # Fills NA with the previous non-NA value
+
+
+```
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+
+tay_cleaned <- tay_data %>%
+  separate_rows(Notes, sep = "\\n") %>%  # Split into rows by newline
+  mutate(
+    Notes = str_trim(Notes),  # Trim extra whitespace
+    Date = str_extract(Notes, "\\d{2}/\\d{2}/\\d{2}"),  # Extract the date
+    Location = str_remove(Notes, ".* - "),  # Extract the location after the dash
+    Location = str_remove(Location, "\\s*\\(.*?\\)$"),  # Remove anything in parentheses at the end
+    Mashup = ifelse(str_detect(Notes, "mashup"), 
+                    str_extract(Notes, "\\(mashup with .*?\\)"), NA)  # Extract mashup info
+  ) %>%
+  select(Title, Date, Location, Mashup)  # Keep only the relevant columns
+
+
+```
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Load necessary libraries
+library(DT)
+
+# Display a searchable and filterable table
+datatable(
+  tay_cleaned,
+  options = list(
+    pageLength = 10,  # Number of rows to display per page
+    autoWidth = TRUE, # Automatically adjust column widths
+    searchHighlight = TRUE # Highlight matching search terms
+  ),
+  filter = 'top',  # Add filters to the top of the table
+  rownames = FALSE  # Remove row names
+)
+
+```
+
+# Frequency Analysis
+
+The below plotly graph goes into a bit more details, showing the frequency of songs played over time. The dropdown menu allows for filtering by song title. The data is aggregated by month and year, and the plot shows the frequency of each song played in different locations. This view allows for a more interactive exploration of the data, with the ability to focus on specific songs and their distribution over time. If a song was only played once in a specific location, it will show up as a single point on the graph. For example, London Boy was only played one time, in an unsurprising location!
+
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Prepare the cleaned dataset
+tay_cleaned <- tay_cleaned %>%
+  mutate(
+    Date = as.Date(Date, format = "%m/%d/%y"),  # Ensure Date is properly formatted
+    Month_Year = format(Date, "%m-%Y")         # Create MM-YYYY column
+  )
+
+# Aggregate data for visualization
+song_timeline_data <- tay_cleaned %>%
+  group_by(Title, Month_Year, Location) %>%
+  summarise(Frequency = n(), .groups = "drop")
+
+# Create a SharedData object for crosstalk
+shared_data <- SharedData$new(song_timeline_data, key = ~Title, group = "song")
+
+# Create the ggplot
+plot <- ggplot(shared_data, aes(x = Month_Year, y = Frequency, color = Title, text = paste("Location:", Location))) +
+  geom_line(group = 1) +
+  geom_point(size = 3) +
+  labs(
+    title = "Taylor Swift Song Frequency Over Time",
+    x = "Month-Year",
+    y = "Frequency",
+    color = "Song Title"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Convert ggplot to plotly with crosstalk filtering, including hover text
+plotly_chart <- ggplotly(plot, tooltip = c("x", "y", "text")) %>%
+  layout(
+    title = list(text = "<b>Taylor Swift Song Frequency Over Time</b>"),
+    xaxis = list(title = "Month-Year"),
+    yaxis = list(title = "Frequency"),
+    hovermode = "closest"
+  )
+
+# Add a dropdown menu for song filtering
+filter_dropdown <- filter_select(
+  id = "song_filter",
+  label = "Select a Song Title:",
+  sharedData = shared_data,
+  group = ~Title
+)
+
+# Combine the dropdown menu and plot in a vertical layout
+bscols(
+  widths = c(12),  # Full width for both elements
+  div(style = "margin-bottom: 20px;", filter_dropdown),  # Dropdown with some margin
+  div(plotly_chart)  # Plot appears below the dropdown
+)
+
+
+```
+
