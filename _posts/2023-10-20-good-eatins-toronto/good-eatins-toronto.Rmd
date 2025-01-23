@@ -10,8 +10,7 @@ output:
 
 # Toronto Food Recommendations
 
-Updated August, 2024 to account for the mesmerizing Lake Inez. Enjoy!
-
+Updated in January 2025, after several weeks of new parental life. We've been lucky enough to eat out quite a bit, with a few new favorites joining the ranks on the list. 
 
 
 ```{r setup, include=FALSE}
@@ -53,55 +52,38 @@ eats_data <- read_excel("Eat_Data.xlsx")
 
 ```
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
-library(RColorBrewer)
-pal <- colorFactor(
-  palette = 'Dark2',
-  domain = eats_data$Genre
-)
-
-
-eats_map <- leaflet(data=eats_data) %>%
- # addTiles() %>%
- addProviderTiles("CartoDB.Positron") %>%
-  addCircles(lat = eats_data$Latitutde, lng=eats_data$Longitude,
-             popup=paste("Name: ", eats_data$Name, "<br>",
-                          "Genre: ", eats_data$Genre, "<br>",
-                          "Don't you dare miss: ", eats_data$`Don't Miss:`),
-             color = ~pal(Genre),
-             weight=10,
-             fillOpacity = 2) %>%
-  addLegend("bottomleft",
-            pal=pal,
-            values=~Genre)
-
-
-
-eats_map
-```
-
-
-
-
-
 
 
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height = 10, fig.width=10}
 
-
-# Assuming your eats_data has these columns: Genre, Latitutde, Longitude, Name, Don't Miss:
-
+# Define a color palette for genres
 pal <- colorFactor(
-palette = 'Dark2',
+  palette = "Dark2",
   domain = eats_data$Genre
 )
 
+# Create the map
 eats_map <- leaflet(data = eats_data) %>%
   addProviderTiles("CartoDB.Positron")
 
-# Add each genre as a separate layer
+# Add the "Show All" group (includes all categories)
+eats_map <- eats_map %>%
+  addCircles(
+    data = eats_data,
+    lat = ~Latitutde, 
+    lng = ~Longitude,
+    popup = ~paste("Name: ", Name, "<br>",
+                   "Genre: ", Genre, "<br>",
+                   "Don't you dare miss: ", `Don't Miss:`),
+    color = ~pal(Genre),
+    weight = 10,
+    fillOpacity = 0.8,
+    group = "Show All"
+  )
+
+# Add each genre as a separate base group
 unique_genres <- unique(eats_data$Genre)
 for (genre in unique_genres) {
   genre_data <- subset(eats_data, Genre == genre)
@@ -115,42 +97,22 @@ for (genre in unique_genres) {
                      "Don't you dare miss: ", `Don't Miss:`),
       color = ~pal(Genre),
       weight = 10,
-      fillOpacity = 2,
+      fillOpacity = 0.8,
       group = genre
     )
 }
 
-# Add a layer control
+# Add a dropdown menu for base groups
 eats_map <- eats_map %>%
   addLayersControl(
-    overlayGroups = unique_genres,
+    baseGroups = c("Show All", unique_genres),
     options = layersControlOptions(collapsed = FALSE)
-  )  
-  # ) %>%
-  # addLegend(
-  #   "bottomleft",
-  #   pal = pal,
-  #   values = ~Genre
-  # )
+  )
 
+# Display the map
 eats_map
 
-
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
