@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2025-02-03-keeping-your-soon-to-be-retired-parents-busy-with-funnyinteresting-links-using-python-cronjobs/",
+    "title": "Keeping your soon to be Retired parent(s) busy with funny/interesting links using Python + cronjobs",
+    "description": "A short how-to using Python to stay connected.",
+    "author": [
+      {
+        "name": "Jacob Ford",
+        "url": {}
+      }
+    ],
+    "date": "2025-02-03",
+    "categories": [],
+    "contents": "\nMy father, who is 68 and approaching 69, is an incredibly industrious person — someone for whom a retirement without hobbies or activity would be a complete disaster. A friend of mine, in a similar situation with her concerningly available, bordering on bored, father sends dozens of scheduled emails with interesting ‘Link of the Week’ hyperlinks. These are interesting news articles, errata from the deep web, video clips, etc.\nI loved this idea, but the thought of schedule sending a series of emails was a bit tedious. With a simple python script and a cronjob, I can just keep a csv updated with ‘send date’, the link, and a short description, and concatenate these into an email to send off to a parent!\nTechnical Requirements\nGoogle gmail account with Two-Factor Authentication (2FA) enabled\nGenerate an App Password, 16 character password for your app\nSave the password and your email address you wish to send to in your .env file; also, don’t commit your .env to github, in case you know, that happens, remove it!\nPython Script\nThe main function in the code is send_email; this uses MIME to format the email, think, constructing the to, from, subject, etc, parts of the email; and smtplib to send the email via SMTP, using your credentials in your .env file.\n\n\ndef send_email(receiver_email, subject, body, sender_email, sender_password):\n    \"\"\"Sends an email with the given subject and body.\"\"\"\n    try:\n        msg = MIMEMultipart()\n        msg['From'] = sender_email\n        msg['To'] = receiver_email\n        msg['Subject'] = subject\n        msg.attach(MIMEText(body, 'plain'))\n\n        with smtplib.SMTP('smtp.gmail.com', 587) as server:\n            server.starttls()\n            server.login(sender_email, sender_password)\n            server.send_message(msg)\n            log_message(f\"Email sent to {receiver_email}\")\n    except Exception as e:\n        log_message(f\"Error sending email to {receiver_email}: {e}\")\n        \n\nCron Job\nThis cron job setup includes two scheduled tasks that run daily at 9 AM, see the 0 9 * * * line below). The first job is a simple test, logging the time it runs into a debug file to confirm that the cron scheduler is working properly.\nCron ScheduleThe second job is the actual script execution, running the script daily at 9AM and saving the logfile to that logfile.log output, see below:\nLog with a test debug and thew final ‘no i really mean it’ final logfile :) :Check out the full github repo here, fork it, get your own links, and send away!\n\n\n\n",
+    "preview": {},
+    "last_modified": "2025-02-03T13:07:56-05:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2023-10-20-good-eatins-toronto/",
     "title": "Good Eatin's: Toronto ",
     "description": {},
@@ -31,7 +48,7 @@
     "contents": "\nSimple Table View\nI’ve always loved looking at band’s set lists. When a group plays the sleeper jams that only true blue acolytes would know the name of, that’s instantly revealed by looking at the set list data. I wanted to combine this interest by looking into the well-researched world of Taylor Swift analysis. The Era’s tour concluded a few months back, setting global records for revenue generated. I wouldn’t consider myself a Swiftie, but I do appreciate the shear volume of songs TayTay has at her disposal to fill her setlists for like 4 years straight of sold out concerts or however long the Era’s tour was.\nThe table view is just a simplified view of the Swiftipedia Surprise Song tracker data. What songs were only played in certain countries or cities, was the question I wanted to pursue with this quick analysis. Honestly, I can’t believe Picture to Burn was only played one time, in Denver! Today was a Fairytale, only twice, in Warsaw and Houston.\n\n\n\n\n\n\nFrequency Analysis\nThe below plotly graph goes into a bit more details, showing the frequency of songs played over time. The dropdown menu allows for filtering by song title. The data is aggregated by month and year, and the plot shows the frequency of each song played in different locations. This view allows for a more interactive exploration of the data, with the ability to focus on specific songs and their distribution over time. If a song was only played once in a specific location, it will show up as a single point on the graph. For example, London Boy was only played one time, in an unsurprising location!\n\n\n\n\n\n\nSelect a Song Title:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
     "preview": {},
     "last_modified": "2025-01-23T15:16:01-05:00",
-    "input_file": "geographic-concentration-of-eras-tour-setlist-data.knit.md"
+    "input_file": {}
   },
   {
     "path": "posts/2024-10-06-duh-density-matters-for-transit/",
