@@ -30,9 +30,9 @@ These are a cultivated list of resources I used to get started and stay updated 
 
 Ok lot coming here, do you need to to look at any of these besides maybe the first one? probably not; but you can keep these links saved in case in the future you want to dive deeperor you need a refresher. 
 
--[ISLR](https://www.statlearning.com/) - this is the bible of data science, if you're going to read one book, read this one. It's available for free, for either Python or R versions. Section 5.1 on CV is good review as well to refer to if needed. 
+- [ISLR](https://www.statlearning.com/) - this is the bible of data science, if you're going to read one book, read this one. It's available for free, for either Python or R versions. Section 5.1 on CV is good review as well to refer to if needed. 
 
--[CV done Wrong](https://github.com/mottalrd/cross-validation-done-wrong/blob/master/Cross%20Validation%20done%20wrong.ipynb) - good, quick read on CV, a good refresher if you're rusty.
+- [CV done Wrong](https://github.com/mottalrd/cross-validation-done-wrong/blob/master/Cross%20Validation%20done%20wrong.ipynb) - good, quick read on CV, a good refresher if you're rusty.
 
 - [Build a Career in Data Science](https://www.amazon.com/Build-Career-Science-Jacqueline-Nolis/dp/1617296244#:~:text=Build%20a%20Career%20in%20Data%20Science%20is%20your%20guide%20to,resume%20and%20ace%20your%20interviews.) I loved this book when i was searching for DS jobs - also does a great job explaining how a data analyst vs data engineer vs data scientist; sometimes differ and sometimes really don't, but a great resource all together. 
 
@@ -42,25 +42,28 @@ Ok lot coming here, do you need to to look at any of these besides maybe the fir
 
 - [Advanced R](http://adv-r.had.co.nz/Introduction.html) - note in the intro, authors put a 'recommended reading' list that can really be the starting point to the black hole of references. Black hole may be a bit strong, but a lot of the really good, widely available and free online pdfs reference each other, you'll start to notice after a bit in the field. 
 
-Lantz ML in R - one of my favorite ML references, super good review of the basic concepts and really straightforward code to replicate on your own, best way to learn is to do! 
+- [Lantz ML in R](https://www.amazon.ca/Machine-Learning-techniques-predictive-modeling/dp/1784393908) - one of my favorite ML references, super good review of the basic concepts and really straightforward code to replicate on your own, best way to learn is to do! 
 
-from R to Python - github page FULL of references for for Python newbies, with a focus on those who have some R foundation. You'll notice A LOT of people who don't have a BS in Computer Science prefer R over Python - it is often easier to 'muscle' through code, there is very few instances of object oriented work and i think it has a smaller learning curve. 
+- [from R to Python](https://www.resourcesdatabase.com/) - github page FULL of references for for Python newbies, with a focus on those who have some R foundation. You'll notice A LOT of people who don't have a BS in Computer Science prefer R over Python - it is often easier to 'muscle' through code, there are fewer instances of object oriented work and i think it has a smaller learning curve. 
 
-[VanderPlas's Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) - very solid starting point for using Python in DS work, with code repos to follow along with exercises. The basics (lists, data frames, pandas, numpy, loops/while/conditionals) are great starting point  
+- [VanderPlas's Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) - very solid starting point for using Python in DS work, with code repos to follow along with exercises. The basics (lists, data frames, pandas, numpy, loops/while/conditionals) are great starting point  
 
-[Ng's Machine Learning Yearning](https://nessie.ilab.sztaki.hu/~kornai/2020/AdvancedMachineLearning/Ng_MachineLearningYearning.pdf) - Andrew Ng is the 'father of AI/ML' out of Standford, he'll probably win a nobel one day
+- [Ng's Machine Learning Yearning](https://nessie.ilab.sztaki.hu/~kornai/2020/AdvancedMachineLearning/Ng_MachineLearningYearning.pdf) - Andrew Ng is the 'father of AI/ML' out of Standford, he'll probably win a nobel one day
 
 ## Job Boards
 
 - Internship specific: aijobs.net, datajobs, outerjoin - remote focused. 
 
-- Tech Jobs For Good - this is where i found my job about ~2 years ago. some are slightly  more advanced positions but they update this regularly, check out this position in particular - please disregard my advice if it's unwarranted, but when i found a job i really liked, i always tried to reach out to the HR team or maybe even the particular lead on the project i could sleuth on their website and shoot them an email (if you can sleuth it) and just try and talk through the position. Use the information you'll learn from the Emily Robinson book on data science careers - where is the data coming from, what is the role of this position, etc, etc. It'll be good practice for you to engage with them as an interested party, and it'll likely make you stand out. 
+- [Tech Jobs For Good](https://techjobsforgood.com/) - Awesome site for mission based tech jobs, varies from part time to full time exec level positions. 
 
-- Ben Green - fantastic job lists - check out his hyperlinks, focus on Data Science in social good sectors, but good starting point
+- [Ben Green's Job List](https://www.benzevgreen.com/jobs/)- fantastic job lists - check out his hyperlinks, focus on Data Science in social good sectors, but good starting point
 
 ## Blogs/Others
-Towards Data Science - this is likely my favorite source, they send daily emails of data science topics that are very digestible but also very tailored (VS Code vs Jupyter Lab pros/cons, Random Forest vs XGBoost, etc) - 
 
-Youyang Gu - blog did some absolutely amazing covid modeling during the pandemic, excellent writer as well
+- [Towards Data Science](https://towardsdatascience.com/) - this is likely my favorite source, they send daily emails of data science topics that are very digestible but also very tailored (VS Code vs Jupyter Lab pros/cons, Random Forest vs XGBoost, etc) - 
 
-Alexis Perrier -  bit too academic-y for my tastes, but posts good amount more than others so i keep an eye on it
+- [Youyang Gu](https://youyanggu.com/) - blog did some absolutely amazing covid modeling during the pandemic, excellent writer as well
+
+- [Alexis Perrier](https://alexisperrier.com/) -  bit too academic-y for my tastes, but posts good amount more than others so i keep an eye on it
+
+- [Marginal Revolution](https://marginalrevolution.com/) - not data science specific, but a great blog for economics and data science, Tyler Cowen is a great writer and has a podcast as well. I don't subscribe to their Libertarian 
