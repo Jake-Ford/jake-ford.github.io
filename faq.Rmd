@@ -1,0 +1,66 @@
+---
+title: "Data Science Resources"
+output: distill::distill_article
+date: '2022-06-25'
+---
+
+
+
+# Learning Resources
+
+These are a cultivated list of resources I used to get started and stay updated on Data Science topics, mainly for R and Python users, with a smattering of basic stats and comp sci. It worked for me, hopefully it works for others, but just remember everyone's background experience is different, so what worked for someone may not work for another :)  
+
+## Coursera 
+
+- [Intro to DS in Python](https://www.coursera.org/learn/python-data-analysis)
+
+- [Intro to DS in R](https://www.coursera.org/specializations/data-science-foundations-r)
+
+- [R Programming](https://www.coursera.org/learn/r-programming)
+
+- [Data Science Toolkit](https://www.coursera.org/learn/data-scientists-tools) (Theory, some application)
+
+## DevOps/MLOps
+
+- [Chicago DS MLOps](https://chicagodatascience.github.io/MLOps/lecture3/)
+
+- [Flask and Docker Deploy 101](https://www.youtube.com/live/KTd2a1QKlwo)
+
+## PDF/Books 
+
+Ok lot coming here, do you need to to look at any of these besides maybe the first one? probably not; but you can keep these links saved in case in the future you want to dive deeperor you need a refresher. 
+
+-[ISLR](https://www.statlearning.com/) - this is the bible of data science, if you're going to read one book, read this one. It's available for free, for either Python or R versions. Section 5.1 on CV is good review as well to refer to if needed. 
+
+-[CV done Wrong](https://github.com/mottalrd/cross-validation-done-wrong/blob/master/Cross%20Validation%20done%20wrong.ipynb) - good, quick read on CV, a good refresher if you're rusty.
+
+- [Build a Career in Data Science](https://www.amazon.com/Build-Career-Science-Jacqueline-Nolis/dp/1617296244#:~:text=Build%20a%20Career%20in%20Data%20Science%20is%20your%20guide%20to,resume%20and%20ace%20your%20interviews.) I loved this book when i was searching for DS jobs - also does a great job explaining how a data analyst vs data engineer vs data scientist; sometimes differ and sometimes really don't, but a great resource all together. 
+
+- [Python Machine Learning](https://www.amazon.com/Python-Machine-Learning-scikit-learn-TensorFlow/dp/1789955750/ref=asc_df_1789955750/?tag=hyprod-20&linkCode=df0&hvadid=393806041348&hvpos=&hvnetw=g&hvrand=14360468270233988963&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9006093&hvtargid=pla-849711952499&psc=1&tag=&ref=&adgrpid=81158899385&hvpone=&hvptwo=&hvadid=393806041348&hvpos=&hvnetw=g&hvrand=14360468270233988963&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9006093&hvtargid=pla-849711952499) - a brick of a book but an absolute gem, one i keep on hand at my desk and probably the one i still reference. easiest one to follow along with on the concepts - written by Sebasitan Raschka. 
+
+- [R Programming for DS](https://www.cs.upc.edu/~robert/teaching/estadistica/rprogramming.pdf) - self explanatory, if you wanna dive into R
+
+- [Advanced R](http://adv-r.had.co.nz/Introduction.html) - note in the intro, authors put a 'recommended reading' list that can really be the starting point to the black hole of references. Black hole may be a bit strong, but a lot of the really good, widely available and free online pdfs reference each other, you'll start to notice after a bit in the field. 
+
+Lantz ML in R - one of my favorite ML references, super good review of the basic concepts and really straightforward code to replicate on your own, best way to learn is to do! 
+
+from R to Python - github page FULL of references for for Python newbies, with a focus on those who have some R foundation. You'll notice A LOT of people who don't have a BS in Computer Science prefer R over Python - it is often easier to 'muscle' through code, there is very few instances of object oriented work and i think it has a smaller learning curve. 
+
+[VanderPlas's Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) - very solid starting point for using Python in DS work, with code repos to follow along with exercises. The basics (lists, data frames, pandas, numpy, loops/while/conditionals) are great starting point  
+
+[Ng's Machine Learning Yearning](https://nessie.ilab.sztaki.hu/~kornai/2020/AdvancedMachineLearning/Ng_MachineLearningYearning.pdf) - Andrew Ng is the 'father of AI/ML' out of Standford, he'll probably win a nobel one day
+
+## Job Boards
+
+- Internship specific: aijobs.net, datajobs, outerjoin - remote focused. 
+
+- Tech Jobs For Good - this is where i found my job about ~2 years ago. some are slightly  more advanced positions but they update this regularly, check out this position in particular - please disregard my advice if it's unwarranted, but when i found a job i really liked, i always tried to reach out to the HR team or maybe even the particular lead on the project i could sleuth on their website and shoot them an email (if you can sleuth it) and just try and talk through the position. Use the information you'll learn from the Emily Robinson book on data science careers - where is the data coming from, what is the role of this position, etc, etc. It'll be good practice for you to engage with them as an interested party, and it'll likely make you stand out. 
+
+- Ben Green - fantastic job lists - check out his hyperlinks, focus on Data Science in social good sectors, but good starting point
+
+## Blogs/Others
+Towards Data Science - this is likely my favorite source, they send daily emails of data science topics that are very digestible but also very tailored (VS Code vs Jupyter Lab pros/cons, Random Forest vs XGBoost, etc) - 
+
+Youyang Gu - blog did some absolutely amazing covid modeling during the pandemic, excellent writer as well
+
+Alexis Perrier -  bit too academic-y for my tastes, but posts good amount more than others so i keep an eye on it

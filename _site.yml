@@ -11,6 +11,8 @@ navbar:
       href: about.html
     - text: "Projects"
       href: projects.html
+    - text: "Data Science Resources"
+      href: faq.html
     - text: "Resume"
       href: Jacob_Ford_2024_Resume.pdf
     - icon: fa fa-linkedin
