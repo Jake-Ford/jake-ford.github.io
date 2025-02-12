@@ -28,13 +28,15 @@ These are a cultivated list of resources I used to get started and stay updated 
 
 ## PDF/Books 
 
-Ok lot coming here, do you need to to look at any of these besides maybe the first one? probably not; but you can keep these links saved in case in the future you want to dive deeperor you need a refresher. 
+Ok lot coming here, do you need to to look at any of these besides maybe the first one? probably not; but you can keep these links saved in case in the future you want to dive deeper or you need a refresher. 
+
+- The Saints of Data Science resources, [Jimmy Oty](https://github.com/JimmyTron) and [Lawrence Juma](https://github.com/jumalaw98) put up this [amazing repo](https://github.com/LTS-tech-community/data-science-resources) of pdfs of leading books and resources for Data Science and other topics. 
 
 - [ISLR](https://www.statlearning.com/) - this is the bible of data science, if you're going to read one book, read this one. It's available for free, for either Python or R versions. Section 5.1 on CV is good review as well to refer to if needed. 
 
 - [CV done Wrong](https://github.com/mottalrd/cross-validation-done-wrong/blob/master/Cross%20Validation%20done%20wrong.ipynb) - good, quick read on CV, a good refresher if you're rusty.
 
-- [Build a Career in Data Science](https://www.amazon.com/Build-Career-Science-Jacqueline-Nolis/dp/1617296244#:~:text=Build%20a%20Career%20in%20Data%20Science%20is%20your%20guide%20to,resume%20and%20ace%20your%20interviews.) I loved this book when i was searching for DS jobs - also does a great job explaining how a data analyst vs data engineer vs data scientist; sometimes differ and sometimes really don't, but a great resource all together. 
+- [Build a Career in Data Science](https://www.amazon.com/Build-Career-Science-Jacqueline-Nolis/dp/1617296244#:~:text=Build%20a%20Career%20in%20Data%20Science%20is%20your%20guide%20to,resume%20and%20ace%20your%20interviews.) I loved this book when i was searching for DS jobs - also does a great job explaining how a data analyst vs data engineer vs data scientist sometimes differ and sometimes really don't, but a great resource all together. Also available for free via Jimmy Oty. 
 
 - [Python Machine Learning](https://www.amazon.com/Python-Machine-Learning-scikit-learn-TensorFlow/dp/1789955750/ref=asc_df_1789955750/?tag=hyprod-20&linkCode=df0&hvadid=393806041348&hvpos=&hvnetw=g&hvrand=14360468270233988963&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9006093&hvtargid=pla-849711952499&psc=1&tag=&ref=&adgrpid=81158899385&hvpone=&hvptwo=&hvadid=393806041348&hvpos=&hvnetw=g&hvrand=14360468270233988963&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9006093&hvtargid=pla-849711952499) - a brick of a book but an absolute gem, one i keep on hand at my desk and probably the one i still reference. easiest one to follow along with on the concepts - written by Sebasitan Raschka. 
 
@@ -66,4 +68,4 @@ Ok lot coming here, do you need to to look at any of these besides maybe the fir
 
 - [Alexis Perrier](https://alexisperrier.com/) -  bit too academic-y for my tastes, but posts good amount more than others so i keep an eye on it
 
-- [Marginal Revolution](https://marginalrevolution.com/) - not data science specific, but a great blog for economics and data science, Tyler Cowen is a great writer and has a podcast as well. I'm not a Libertarian, but I appreciate TC's perspective and willingness to engage others across fields and ideologies. 
+- [Marginal Revolution](https://marginalrevolution.com/) - not data science specific, but a great blog for economics, non-US focused pieces you wouldn't see in leading news outlets, and a smattering of cultural pieces; Tyler Cowen is as idiosyncratic as they come, and has a fantastic podcast as well. I'm not a Libertarian, but I appreciate TC's perspective and willingness to engage others across fields and ideologies. 
