@@ -66,6 +66,8 @@ Ok lot coming here, do you need to to look at any of these besides maybe the fir
 
 - [Youyang Gu](https://youyanggu.com/) - blog did some absolutely amazing covid modeling during the pandemic, excellent writer as well
 
+- [Anna-Lena Popkes](https://alpopkes.com/#projects) - Fantastic python walkthrough of ML concepts, very easy to follow along
+
 - [Alexis Perrier](https://alexisperrier.com/) -  bit too academic-y for my tastes, but posts good amount more than others so i keep an eye on it
 
 - [Marginal Revolution](https://marginalrevolution.com/) - not data science specific, but a great blog for economics, non-US focused pieces you wouldn't see in leading news outlets, and a smattering of cultural pieces; Tyler Cowen is as idiosyncratic as they come, and has a fantastic podcast as well. I'm not a Libertarian, but I appreciate TC's perspective and willingness to engage others across fields and ideologies. 
