@@ -1,7 +1,7 @@
 ---
 title: "Observations on Canada vs US after 1.5 years (and counting)"
 description: |
-  A personnel perspective, but mainly just for Ontario.
+  A personal perspective, but mainly just for Ontario.
 author:
   - name: Jacob Ford
     url: {}
@@ -11,7 +11,7 @@ output:
     self_contained: false
 ---
 
-Here are a running list of observations I've made since moving to Canada from the US in the summer of 2024. I've been living in Toronto, so my observations are mainly focused on Ontario related topics. I'll update this list as I continue to live here.
+Here are a running list of observations I've made since moving to Canada from the US in the summer of 2023. I've been living in Toronto, so my observations are mainly focused on Ontario related topics. I'll update this list as I continue to live here.
 
 - **Healthcare**: The healthcare system in Canada is great. I've had to visit the doctor a few times since moving here and it's been a breeze. No insurance forms, no copays, just show your health card and you're good to go. Overall, 10/10; there are some issues with wait times that get a disproportionate weight of coverage in the media, but IMO it's been very easy to navigate. We also had a baby in this country, and that process relatively simple and we didn't pay a dime for anything, repeat, anything. 
 
@@ -28,9 +28,11 @@ Here are a running list of observations I've made since moving to Canada from th
 
   - as alluded, most Torontonians are very critical of the TTC: it does have its issues, namely that the subway line has very limited spread, and the streetcars are slow and often delayed. But, it's still a great system compared to any major US city. However, on the flip side, given it's larger than Chicago, Boston or DC, Toronto subway system in particular has plenty of room to grow. The aptly named [Ontario Line](https://www.metrolinx.com/en/projects-and-programs/ontario-line) is under construction to drastically improve upon this issue; but likely won't be running until the start of the 2030s. 
 
-- **Food**: The food scene in Toronto is amazing. There are so many great restaurants to choose from. I've also been impressed with the quality of the produce and meat available at the grocery stores; especially from the little mom-pop style speciality stores. 
+- **Food**: The food scene in Toronto is amazing. There are so many great restaurants to choose from. I've also been impressed with the quality of the produce and meat available at the grocery stores; especially from the little mom-pop style specialty stores. Read more on my favorite food spots and dishes not to miss here on the [Great Toronto Food Map](https://jake-ford.github.io/posts/2023-10-20-good-eatins-toronto/)
 
-- **People & Politics**: The people in Toronto are friendly and welcoming. I've made some great friends since moving here and have felt very much at home. I love the diversity of the city, there are people from all over the world living here.
+- **People & Politics**: Generally, the people in Toronto are friendly and welcoming. I've made some great friends since moving here and have felt very much at home. I love the diversity of the city, there are people from all over the world living here. 
+
+  - As a 30 something, making new friends in a new city with no connections can be a bit daunting, but one piece of advice: get involved in a weekly 'thing': a club, group, or class. We got involved in a weekly, not-so-intense run club that met a brewery, and it was a great way to meet people who shared a love of running + beer!
 
   - Canadians love to talk about US politics, perhaps in a shadenfreude manner. It's understandable given recent idiotic trade war discussions, but even before the 2024 election, Canadian news outlets largely covered US politics. As an effect, it was somewhat difficult to understand the political landscape of Canada, as it was largely overshadowed by US politics.
   
