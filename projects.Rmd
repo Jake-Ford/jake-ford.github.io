@@ -4,13 +4,25 @@ output: distill::distill_article
 date: '2022-06-25'
 ---
 
+# Current Projects
 
-# EnergyScore 
+Please hold for updates coming from my new role at FlexGen :) 
+
+# Previous Projects
+
+## Plastic Pollution Spectral Modeling
+
+Collaborated with researchers at University of Toronto to address the challenge of characterizing paint microplastics in the environment and differentiating them from non-paint microplastics. Paint is modeled to be the largest source of microplastic pollution in the environment. We have created a comprehensive Fourier transform infrared spectroscopy (FTIR) library named the Paint Library of Plastic Products (PLOPP), which includes 263 spectra from 90 different paints used in various sectors.
+
+To enhance the identification of paint microplastics, we utilized machine learning (ML) techniques to classify spectral data as either paint or non-paint microplastics. Read more in the [repo here](https://github.com/Jake-Ford/PLOPP-analysis). 
+
+## EnergyScore 
 
 ![](EnergyScore logo copy.jpg){ width=20% }
 
 
-[Solstice](https://solstice.us/) operates EnergyScore, a machine learning algorithm that delivers a more effective and more equitable qualification metric callibrated for renewable energy financing. Through generous support from the Tides Foundation and Google, I spent several months investigating the degree of bias existing in the algorithm, conducting a large literature review to identify leading quantitative measures of bias and fairness in ML. The pre-print version of the paper, **Fairness in Focus: Quantitative Insights into Bias within Machine Learning Risk Evaluations and Established Credit Models**  and accompanying repository can be viewed [here](https://github.com/Jake-Ford/Fairness-in-Focus). 
+[Solstice](https://solstice.us/) operates EnergyScore, a machine learning algorithm that delivers a more effective and more equitable qualification metric calibrated for renewable energy financing. Through generous support from the Tides Foundation and Google, I spent several months investigating the degree of bias existing in the algorithm, conducting a large literature review to identify leading quantitative measures of bias and fairness in ML. The [paper](https://link.springer.com/article/10.1007/s44176-025-00043-4) is available open-sourced, **Fairness in Focus: Quantitative Insights into Bias within Machine Learning Risk Evaluations and Established Credit Models** and accompanying repository can be viewed [here](https://github.com/Jake-Ford/Fairness-in-Focus). 
+
 
 
 ![](google_org_icon.png){ width=20% }
@@ -23,7 +35,7 @@ Google.org, the nonprofit philanthropic arm of the tech giant, doubled down on t
 
 
 
-# Churn Model
+## Churn Model
 
 At Solstice, we developed a churn model to predict the likelihood of a customer leaving the platform. I was responsible for the data cleaning, feature engineering, and model building. The model was built using a few different model combinations, including logistic regression, random forest, and gradient boosting. The model was able to predict churn with an AUC > 0.95. The model was deployed in production and is used to identify customers at risk of leaving the platform. You can read more about this model and other AI/ML projects at Solstice at the following press links:
 
@@ -32,7 +44,7 @@ At Solstice, we developed a churn model to predict the likelihood of a customer 
 - [Inside community solar's foray into machine learning, Latitude Media](https://www.latitudemedia.com/news/inside-community-solars-foray-into-machine-learning)
 
 
-# SETO 
+## SETO 
 
 Also at Solstice, we conducted a multi-tiered analysis of community solar prioritization and barriers to LMI access. Funding was provided by the U.S. Department of Energy's Solar Energy Technologies Office (SETO). This research looked at potential consumers, developers and financiers, and real performing solar farms. The data analysis and github page with more details and results are available [here](https://jake-ford.github.io/SETO_Data_Analysis/); read our paper [here](https://link.springer.com/chapter/10.1007/978-3-031-39147-7_21) where I was corresponding author. 
 
