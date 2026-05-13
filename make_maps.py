@@ -19,6 +19,9 @@ PALETTE = [
 ]
 
 
+MAP_HEIGHT = 600  # px — iframe CSS should be slightly taller
+
+
 def make_map(xlsx_path: Path, out_path: Path, center: tuple, zoom: int):
     df = pd.read_excel(xlsx_path)
     df = df.dropna(subset=["Latitutde", "Longitude"])
@@ -30,6 +33,8 @@ def make_map(xlsx_path: Path, out_path: Path, center: tuple, zoom: int):
         location=center,
         zoom_start=zoom,
         tiles="CartoDB positron",
+        width="100%",
+        height=MAP_HEIGHT,
     )
 
     # One FeatureGroup per genre so layer control works

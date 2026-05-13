@@ -3,29 +3,24 @@ title: "Are Court-Ordered Districts More Fair?"
 description: "A look at redistricting outcomes when judges, not legislatures, draw the maps."
 ---
 
-Every ten years, following the census, state legislatures redraw congressional and state legislative district boundaries. The process is nakedly political: whichever party controls the legislature typically draws maps designed to entrench their own advantage. Gerrymandering — drawing districts to dilute opposition voting power — is as old as the republic (literally: the term comes from a 1812 salamander-shaped Massachusetts district drawn under Governor Elbridge Gerry).
+Deja-vu! The North Carolina Supreme Court rejected the maps that I previously analyzed, instead opting to use [maps](https://www.ncleg.gov/Redistricting) drawn by outside experts. Wowza! Let's, hopefully one last time, see how these maps compare to the 2010–2019 maps, the initially suggested redistricting by the General Assembly, the February update post the initial legal challenge, and now the court-ordered drafted lines.
 
-The interesting empirical question: when courts intervene and order new maps drawn — either by a special master, a bipartisan commission, or the court itself — are the resulting districts measurably more competitive and/or more representative?
+The state house and state senate maps are final — only the congressional maps are being altered. I didn't know that until I added the new maps (February in click option) to the below. If you don't believe me, just find out for yourself.
 
-## Measuring "Fair"
+## Summary Stats
 
-This is the definitional crux of the problem. "Fair" in redistricting can mean:
+We'll make the same summary stats to start. Notice how the February updated lines seem to be a large improvement in racial parity — Blacks were nearly twice as likely to be represented by a Democrat with the 2010–2019 congressional lines; in the February update it's almost even. This process requires tagging each of the nearly quarter million census blocks in North Carolina to the congressional district represented.
 
-- **Partisan proportionality**: districts should produce a seat share roughly proportional to the vote share
-- **Competitiveness**: more districts should be genuinely competitive (margin < 5–10%)
-- **Minority representation**: districts should enable minority communities to elect representatives of their choice (per the Voting Rights Act)
-- **Geographic compactness**: districts shouldn't be weirdly shaped salamanders
+## Logistic Regression Curve
 
-These goals sometimes conflict. A map optimized for minority representation (which sometimes requires concentrating minority voters) may reduce partisan proportionality or competitiveness in the surrounding districts.
+Let's see if the new lines hold up with the logistic model, determining how likely a particular demographic is to be represented by a Democrat (note: 1 on the y-axis = probability Republican). Black and Asian populations are more likely to be represented by Republicans in large numbers in the February update. Note how at the very end of the logistic curve, in those census blocks with 90–95% racial homogeneity, the likelihood of being represented by a Democrat is far less likely compared to the 2010–2019 or 2021 proposed districts. This only holds for Black populations as you can see below.
 
-## What Court-Drawn Maps Actually Look Like
+## Model Fits
 
-Looking at redistricting cycles in states with significant court intervention (North Carolina, Pennsylvania, Michigan, Maryland — all of which saw court involvement post-2010 and/or post-2020):
+The logistic model fit in the 2010–19 districts was a paltry 71.1%, drastically improved upon by the 2021 struck-down lines — up to 88.3%. The February lines are in the middle, at 82.6%; meaning this simple logistic model, fed with nearly a quarter million census block values, developed into a machine learning algorithm that could predict with 82.6% accuracy the political representation of a district based solely on racial makeup.
 
-- Court-ordered maps tend to score better on **compactness** — judges aren't trying to pack a specific precinct and tend to follow municipal and county boundaries more closely.
-- **Competitiveness** results are mixed. Some court-ordered maps produce more competitive districts, others don't — it depends heavily on the geographic distribution of voters.
-- **Partisan proportionality** often improves relative to the extreme gerrymanders they replaced, though rarely reaches mathematical proportionality given residential sorting.
+## Random Forest
 
-## The Bigger Problem
+Finally, let's see the predictive fit for all four.
 
-Court intervention is a reactive fix, not a structural solution. As long as partisan legislatures draw districts, litigation will be the primary check — and litigation is slow, expensive, and inconsistent. The structural solution is removing the mapmaking power from partisan actors entirely: independent redistricting commissions, as adopted by California, Michigan, Colorado, and others, have shown more durable results on both fairness metrics and public legitimacy.
+## Conclusion
