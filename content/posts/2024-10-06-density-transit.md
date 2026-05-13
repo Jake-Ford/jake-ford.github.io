@@ -13,13 +13,13 @@ If you've read the Three Body Problem series (spoiler incoming) — at one point
 
 A side-by-side look at the Eastern US seaboard — the *most* dense part of the US — versus Western-Central Europe tells the story pretty clearly. Using [population density maps](https://luminocity3d.org/WorldPopDen/#5/47.532/-0.615) and [Open Railway Map](https://www.openrailwaymap.org/) for transit lines:
 
-![US Population Density](../static/images/us_pop_density.png)
+![US Population Density](../static/images/us_pop_density.jpg)
 
-![US Transit Lines](../static/images/us_transit.png)
+![US Transit Lines](../static/images/us_transit.jpg)
 
-![European Population Density](../static/images/europe_pop_density.png)
+![European Population Density](../static/images/europe_pop_density.jpg)
 
-![European Transit Lines](../static/images/europe_transit.png)
+![European Transit Lines](../static/images/europe_transit.jpg)
 
 **Eastern US**: scattered dense nodes (NYC, DC, Boston, Philadelphia) connected by... mostly nothing. The Northeast Corridor is the lone bright spot.
 
