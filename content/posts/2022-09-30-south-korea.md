@@ -20,3 +20,5 @@ Takeaways from this captivating country:
 7. **Drinking.** Every drink we had was based around a meal, which was such a slight but profound shift. Every night was a bit of a banger in our section of town, near Jonggak station in Seoul. Sipping soju or Korean beers over a spicy meal is quite lovely.
 
 Stay young y'all :)
+
+![Avenue of Youth, Seoul](../static/images/ave_of_youth.PNG)

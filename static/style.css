@@ -193,6 +193,14 @@ main {
 .back-link:hover { color: var(--text); }
 
 /* ── Footer ──────────────────────────────────── */
+.map-embed {
+  width:         100%;
+  height:        520px;
+  border:        1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
 footer {
   max-width:    var(--max-w);
   margin:       40px auto 20px;

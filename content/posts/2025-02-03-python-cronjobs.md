@@ -38,6 +38,10 @@ def send_email(receiver_email, subject, body, sender_email, sender_password):
 
 ## Cron Job
 
+![Cron job schedule](../static/images/cron_job_1.png)
+
 This cron job setup includes two scheduled tasks that run daily at 9 AM (see the `0 9 * * *` line). The first job is a simple test, logging the time it runs into a debug file to confirm that the cron scheduler is working properly. The second job is the actual script execution, running the script daily and saving the output to a log file.
+
+![Log file output](../static/images/log_file.png)
 
 Check out the full GitHub repo [here](https://github.com/Jake-Ford/LinkOfTheDay/tree/main), fork it, update with your own links, and send away!

@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_4376bc9805793e1933f8ce0017921626 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_4376bc9805793e1933f8ce0017921626" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_4376bc9805793e1933f8ce0017921626 = L.map(
+                "map_4376bc9805793e1933f8ce0017921626",
+                {
+                    center: [35.99, -78.91],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_819e095e63ee6029995fc9e8ecbffb50 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_819e095e63ee6029995fc9e8ecbffb50.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_18391fd83b376b01f6b1cbac176e508d = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_5e995593aa610f93e128e29a6e12b20b = L.circleMarker(
+                [36.075116, -79.8141466],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_18391fd83b376b01f6b1cbac176e508d);
+        
+    
+        var popup_2f72ff9eb8a07fefaaf065af64ddbd06 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_59c1032fa298f1fa99daaf0c8d602615 = $(`<div id="html_59c1032fa298f1fa99daaf0c8d602615" style="width: 100.0%; height: 100.0%;"><b>Bandito Bodega</b><br>Greensboro<br><i>Hispanic/Latin</i><br><b>Don't miss:</b> Katsu & Donburri - actually a Japanese fusion element too</div>`)[0];
+                popup_2f72ff9eb8a07fefaaf065af64ddbd06.setContent(html_59c1032fa298f1fa99daaf0c8d602615);
+            
+        
+
+        circle_marker_5e995593aa610f93e128e29a6e12b20b.bindPopup(popup_2f72ff9eb8a07fefaaf065af64ddbd06)
+        ;
+
+        
+    
+    
+            circle_marker_5e995593aa610f93e128e29a6e12b20b.bindTooltip(
+                `<div>
+                     Bandito Bodega
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0b0512c8420e2c780fa72b8bb948a45c = L.circleMarker(
+                [36.087108, -79.1031969],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_18391fd83b376b01f6b1cbac176e508d);
+        
+    
+        var popup_ef7ff6d3a8d6313c384d9877b39c78c7 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_46f3d50377e4a64c09ea4e7ee7374293 = $(`<div id="html_46f3d50377e4a64c09ea4e7ee7374293" style="width: 100.0%; height: 100.0%;"><b>Samantha's Papusas</b><br>Hillsborough<br><i>Hispanic/Latin</i><br><b>Don't miss:</b> Garlic Tacos</div>`)[0];
+                popup_ef7ff6d3a8d6313c384d9877b39c78c7.setContent(html_46f3d50377e4a64c09ea4e7ee7374293);
+            
+        
+
+        circle_marker_0b0512c8420e2c780fa72b8bb948a45c.bindPopup(popup_ef7ff6d3a8d6313c384d9877b39c78c7)
+        ;
+
+        
+    
+    
+            circle_marker_0b0512c8420e2c780fa72b8bb948a45c.bindTooltip(
+                `<div>
+                     Samantha's Papusas
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f7007fe8982a5c1fa37ec017ad812e40 = L.circleMarker(
+                [36.0178137, -78.8904049],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_18391fd83b376b01f6b1cbac176e508d);
+        
+    
+        var popup_62fca8faf2ea234ffc9b812f7ae15624 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_7c28bd5642ec88700afbbaac2c9bd30a = $(`<div id="html_7c28bd5642ec88700afbbaac2c9bd30a" style="width: 100.0%; height: 100.0%;"><b>Guanajuato's</b><br>Durham<br><i>Hispanic/Latin</i><br><b>Don't miss:</b> Birria, al Pastor, anything, everything</div>`)[0];
+                popup_62fca8faf2ea234ffc9b812f7ae15624.setContent(html_7c28bd5642ec88700afbbaac2c9bd30a);
+            
+        
+
+        circle_marker_f7007fe8982a5c1fa37ec017ad812e40.bindPopup(popup_62fca8faf2ea234ffc9b812f7ae15624)
+        ;
+
+        
+    
+    
+            circle_marker_f7007fe8982a5c1fa37ec017ad812e40.bindTooltip(
+                `<div>
+                     Guanajuato's
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8a6eeaee8a1d63c63bf2c4cbd4f9382f = L.circleMarker(
+                [36.0200367, -78.8902541],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_18391fd83b376b01f6b1cbac176e508d);
+        
+    
+        var popup_ca2c37f0d1841a49033607834c32688e = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_016768c4fe3449c50de119c2f813171e = $(`<div id="html_016768c4fe3449c50de119c2f813171e" style="width: 100.0%; height: 100.0%;"><b>Don Becerra Taqueria</b><br>Durham<br><i>Hispanic/Latin</i><br><b>Don't miss:</b> Mole</div>`)[0];
+                popup_ca2c37f0d1841a49033607834c32688e.setContent(html_016768c4fe3449c50de119c2f813171e);
+            
+        
+
+        circle_marker_8a6eeaee8a1d63c63bf2c4cbd4f9382f.bindPopup(popup_ca2c37f0d1841a49033607834c32688e)
+        ;
+
+        
+    
+    
+            circle_marker_8a6eeaee8a1d63c63bf2c4cbd4f9382f.bindTooltip(
+                `<div>
+                     Don Becerra Taqueria
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_18391fd83b376b01f6b1cbac176e508d.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_b13b6bbdd2dd3a33d092ce40dab3cbb4 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_d1df9cd45dc83a31ceabae72e7134fc7 = L.circleMarker(
+                [36.0004037, -78.9083437],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#377eb8", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_b13b6bbdd2dd3a33d092ce40dab3cbb4);
+        
+    
+        var popup_5a04c8277cfe62e0d3a3d54f59137d02 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_befba98bd09f23010f92d804378e3e7b = $(`<div id="html_befba98bd09f23010f92d804378e3e7b" style="width: 100.0%; height: 100.0%;"><b>St James</b><br>Durham<br><i>Seafood</i><br><b>Don't miss:</b> Seafood tower - duh</div>`)[0];
+                popup_5a04c8277cfe62e0d3a3d54f59137d02.setContent(html_befba98bd09f23010f92d804378e3e7b);
+            
+        
+
+        circle_marker_d1df9cd45dc83a31ceabae72e7134fc7.bindPopup(popup_5a04c8277cfe62e0d3a3d54f59137d02)
+        ;
+
+        
+    
+    
+            circle_marker_d1df9cd45dc83a31ceabae72e7134fc7.bindTooltip(
+                `<div>
+                     St James
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c2f3e1ecec2f7eeeb6e58765eaac3262 = L.circleMarker(
+                [35.7856142568174, -78.6476495107518],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#377eb8", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_b13b6bbdd2dd3a33d092ce40dab3cbb4);
+        
+    
+        var popup_e40cf4bad7fd17354ea7df76012822da = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_f2702b219384f40f952b0f4d37a71105 = $(`<div id="html_f2702b219384f40f952b0f4d37a71105" style="width: 100.0%; height: 100.0%;"><b>Cortez</b><br>Raleigh<br><i>Seafood</i><br><b>Don't miss:</b> BBQ New Orleans Style Shrimp + Ceviche</div>`)[0];
+                popup_e40cf4bad7fd17354ea7df76012822da.setContent(html_f2702b219384f40f952b0f4d37a71105);
+            
+        
+
+        circle_marker_c2f3e1ecec2f7eeeb6e58765eaac3262.bindPopup(popup_e40cf4bad7fd17354ea7df76012822da)
+        ;
+
+        
+    
+    
+            circle_marker_c2f3e1ecec2f7eeeb6e58765eaac3262.bindTooltip(
+                `<div>
+                     Cortez
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_b13b6bbdd2dd3a33d092ce40dab3cbb4.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_ecbb704c1aa25a318d8c5dd131b796e7 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_ed1f7d4c4dac6d93d0186d6fda79c053 = L.circleMarker(
+                [35.9968055, -78.904796],
+                {"bubblingMouseEvents": true, "color": "#4daf4a", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4daf4a", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_ecbb704c1aa25a318d8c5dd131b796e7);
+        
+    
+        var popup_392406a56a6c657555839c092dd8c954 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_e940e62aea0159d543e3a0a9602287cb = $(`<div id="html_e940e62aea0159d543e3a0a9602287cb" style="width: 100.0%; height: 100.0%;"><b>Mateo</b><br>Durham<br><i>Spanish</i><br><b>Don't miss:</b> Papas Bravas, wine selection = fire emoji</div>`)[0];
+                popup_392406a56a6c657555839c092dd8c954.setContent(html_e940e62aea0159d543e3a0a9602287cb);
+            
+        
+
+        circle_marker_ed1f7d4c4dac6d93d0186d6fda79c053.bindPopup(popup_392406a56a6c657555839c092dd8c954)
+        ;
+
+        
+    
+    
+            circle_marker_ed1f7d4c4dac6d93d0186d6fda79c053.bindTooltip(
+                `<div>
+                     Mateo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_ecbb704c1aa25a318d8c5dd131b796e7.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_cfbba326795f09cf5fcf58e2f4cfa0ba = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_adf9c58a0d5f2e48441b63c8849eb3c9 = L.circleMarker(
+                [35.9974213, -78.9012373],
+                {"bubblingMouseEvents": true, "color": "#984ea3", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#984ea3", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_cfbba326795f09cf5fcf58e2f4cfa0ba);
+        
+    
+        var popup_d2ff188c03bf3ef1fa4bde03511421bc = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_c99861f4bd6e9a92cd61cc3170d92bd6 = $(`<div id="html_c99861f4bd6e9a92cd61cc3170d92bd6" style="width: 100.0%; height: 100.0%;"><b>M Kokko</b><br>Durham<br><i>Korean</i><br><b>Don't miss:</b> Ramen</div>`)[0];
+                popup_d2ff188c03bf3ef1fa4bde03511421bc.setContent(html_c99861f4bd6e9a92cd61cc3170d92bd6);
+            
+        
+
+        circle_marker_adf9c58a0d5f2e48441b63c8849eb3c9.bindPopup(popup_d2ff188c03bf3ef1fa4bde03511421bc)
+        ;
+
+        
+    
+    
+            circle_marker_adf9c58a0d5f2e48441b63c8849eb3c9.bindTooltip(
+                `<div>
+                     M Kokko
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7eea06a41656ac2f1d2d8ded3316da40 = L.circleMarker(
+                [35.965981916591, -78.9459639656153],
+                {"bubblingMouseEvents": true, "color": "#984ea3", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#984ea3", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_cfbba326795f09cf5fcf58e2f4cfa0ba);
+        
+    
+        var popup_0567c5b7b3f702c41d38b35174d327d1 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_82162dd9d84ee4be908c27c96fd61e0d = $(`<div id="html_82162dd9d84ee4be908c27c96fd61e0d" style="width: 100.0%; height: 100.0%;"><b>Park's Food Street</b><br>Southern Durham<br><i>Korean</i><br><b>Don't miss:</b> Fried chicken in a cup</div>`)[0];
+                popup_0567c5b7b3f702c41d38b35174d327d1.setContent(html_82162dd9d84ee4be908c27c96fd61e0d);
+            
+        
+
+        circle_marker_7eea06a41656ac2f1d2d8ded3316da40.bindPopup(popup_0567c5b7b3f702c41d38b35174d327d1)
+        ;
+
+        
+    
+    
+            circle_marker_7eea06a41656ac2f1d2d8ded3316da40.bindTooltip(
+                `<div>
+                     Park's Food Street
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_cfbba326795f09cf5fcf58e2f4cfa0ba.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_ffeacb589a193130c2ff737dfdcd39d5 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_d67e1d02c7e5e6eb8f0f76b3699be0bf = L.circleMarker(
+                [35.9975309, -78.9009788],
+                {"bubblingMouseEvents": true, "color": "#ff7f00", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f00", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_ffeacb589a193130c2ff737dfdcd39d5);
+        
+    
+        var popup_f028ecd2957c1d153dee86b3af5db91a = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_99488f184d954373bb4d1b42671caef0 = $(`<div id="html_99488f184d954373bb4d1b42671caef0" style="width: 100.0%; height: 100.0%;"><b>M Sushi</b><br>Durham<br><i>Japanese </i><br><b>Don't miss:</b> Duh</div>`)[0];
+                popup_f028ecd2957c1d153dee86b3af5db91a.setContent(html_99488f184d954373bb4d1b42671caef0);
+            
+        
+
+        circle_marker_d67e1d02c7e5e6eb8f0f76b3699be0bf.bindPopup(popup_f028ecd2957c1d153dee86b3af5db91a)
+        ;
+
+        
+    
+    
+            circle_marker_d67e1d02c7e5e6eb8f0f76b3699be0bf.bindTooltip(
+                `<div>
+                     M Sushi
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_ffeacb589a193130c2ff737dfdcd39d5.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_45b30cbe300f9e1415a0764d43022515 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_e150c29916b6545a3ae9e7cb48e61e5d = L.circleMarker(
+                [35.8193781, -78.8288072],
+                {"bubblingMouseEvents": true, "color": "#a65628", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#a65628", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_45b30cbe300f9e1415a0764d43022515);
+        
+    
+        var popup_f1a2a1b2e5fcd55f1692b8aece85ded6 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_ea86628b517421b65e11acd2823fdf66 = $(`<div id="html_ea86628b517421b65e11acd2823fdf66" style="width: 100.0%; height: 100.0%;"><b>C & T Wok</b><br>Morrisville<br><i>Chinese</i><br><b>Don't miss:</b> Crispy Beef</div>`)[0];
+                popup_f1a2a1b2e5fcd55f1692b8aece85ded6.setContent(html_ea86628b517421b65e11acd2823fdf66);
+            
+        
+
+        circle_marker_e150c29916b6545a3ae9e7cb48e61e5d.bindPopup(popup_f1a2a1b2e5fcd55f1692b8aece85ded6)
+        ;
+
+        
+    
+    
+            circle_marker_e150c29916b6545a3ae9e7cb48e61e5d.bindTooltip(
+                `<div>
+                     C & T Wok
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3cefd0792d05133b1f7992f27965d667 = L.circleMarker(
+                [35.7895408, -78.7801873],
+                {"bubblingMouseEvents": true, "color": "#a65628", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#a65628", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_45b30cbe300f9e1415a0764d43022515);
+        
+    
+        var popup_dff698414a5c5182d64677abafc6c0b1 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_ade9c94945c28002efd3a471ba52a5f0 = $(`<div id="html_ade9c94945c28002efd3a471ba52a5f0" style="width: 100.0%; height: 100.0%;"><b>Taipei 101</b><br>Cary<br><i>Chinese</i><br><b>Don't miss:</b> dim sum, mapo tofu</div>`)[0];
+                popup_dff698414a5c5182d64677abafc6c0b1.setContent(html_ade9c94945c28002efd3a471ba52a5f0);
+            
+        
+
+        circle_marker_3cefd0792d05133b1f7992f27965d667.bindPopup(popup_dff698414a5c5182d64677abafc6c0b1)
+        ;
+
+        
+    
+    
+            circle_marker_3cefd0792d05133b1f7992f27965d667.bindTooltip(
+                `<div>
+                     Taipei 101
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0658dfe54fef6a0de5b4a04d9b0554a9 = L.circleMarker(
+                [36.0379528, -78.9303548],
+                {"bubblingMouseEvents": true, "color": "#a65628", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#a65628", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_45b30cbe300f9e1415a0764d43022515);
+        
+    
+        var popup_5d33a06c8e52c61ea7112af86fa9f7c2 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_15cf5d62c4a20c0831c64017a692d81f = $(`<div id="html_15cf5d62c4a20c0831c64017a692d81f" style="width: 100.0%; height: 100.0%;"><b>Hong Kong Chinese Restaurant</b><br>Durham<br><i>Chinese</i><br><b>Don't miss:</b> dim sum</div>`)[0];
+                popup_5d33a06c8e52c61ea7112af86fa9f7c2.setContent(html_15cf5d62c4a20c0831c64017a692d81f);
+            
+        
+
+        circle_marker_0658dfe54fef6a0de5b4a04d9b0554a9.bindPopup(popup_5d33a06c8e52c61ea7112af86fa9f7c2)
+        ;
+
+        
+    
+    
+            circle_marker_0658dfe54fef6a0de5b4a04d9b0554a9.bindTooltip(
+                `<div>
+                     Hong Kong Chinese Restaurant
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_45b30cbe300f9e1415a0764d43022515.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_939b6da4d66b4eee1bf60ecac2fab2f2 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_16fe5bf1c0bfaeec16fdfb631f79adc1 = L.circleMarker(
+                [36.0115079797317, -78.9221750870406],
+                {"bubblingMouseEvents": true, "color": "#f781bf", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f781bf", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_939b6da4d66b4eee1bf60ecac2fab2f2);
+        
+    
+        var popup_314e8957fef8f7c121b4c0977ab7ba38 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_08b45e61d6bd9d2a51e779208cddb2dc = $(`<div id="html_08b45e61d6bd9d2a51e779208cddb2dc" style="width: 100.0%; height: 100.0%;"><b>Lime and Lemon</b><br>Durham<br><i>Indian</i><br><b>Don't miss:</b> Gobi Manchurian - Holy hell banging</div>`)[0];
+                popup_314e8957fef8f7c121b4c0977ab7ba38.setContent(html_08b45e61d6bd9d2a51e779208cddb2dc);
+            
+        
+
+        circle_marker_16fe5bf1c0bfaeec16fdfb631f79adc1.bindPopup(popup_314e8957fef8f7c121b4c0977ab7ba38)
+        ;
+
+        
+    
+    
+            circle_marker_16fe5bf1c0bfaeec16fdfb631f79adc1.bindTooltip(
+                `<div>
+                     Lime and Lemon
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_939b6da4d66b4eee1bf60ecac2fab2f2.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_be2149480c82bfaf98792fdf47293153 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_4f5cff194722f5ebaf20fdb84f0018f1 = L.circleMarker(
+                [36.0415526442826, -78.9283577857325],
+                {"bubblingMouseEvents": true, "color": "#999999", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#999999", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_be2149480c82bfaf98792fdf47293153);
+        
+    
+        var popup_e196b36313cced824eb81f983c25a7eb = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_1eddfd68d8dd8c808b3bc10ca1192a43 = $(`<div id="html_1eddfd68d8dd8c808b3bc10ca1192a43" style="width: 100.0%; height: 100.0%;"><b>Gocciolina</b><br>Durham<br><i>Italian</i><br><b>Don't miss:</b> Chalk board menu c'mon now; Radicchio apetizer</div>`)[0];
+                popup_e196b36313cced824eb81f983c25a7eb.setContent(html_1eddfd68d8dd8c808b3bc10ca1192a43);
+            
+        
+
+        circle_marker_4f5cff194722f5ebaf20fdb84f0018f1.bindPopup(popup_e196b36313cced824eb81f983c25a7eb)
+        ;
+
+        
+    
+    
+            circle_marker_4f5cff194722f5ebaf20fdb84f0018f1.bindTooltip(
+                `<div>
+                     Gocciolina
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_be2149480c82bfaf98792fdf47293153.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_cbdcd3e2247b05b361f66b20077f6eee = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_43228fb0a7f88f991b3929996718102f = L.circleMarker(
+                [36.0106950945663, -78.9223134447121],
+                {"bubblingMouseEvents": true, "color": "#66c2a5", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#66c2a5", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_cbdcd3e2247b05b361f66b20077f6eee);
+        
+    
+        var popup_d2c31c1a7477d4e9c2bec69ab1f2eb4f = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_ee036fb9a21c7cf3c891274888764e01 = $(`<div id="html_ee036fb9a21c7cf3c891274888764e01" style="width: 100.0%; height: 100.0%;"><b>Vin Rouge</b><br>Durham<br><i>French</i><br><b>Don't miss:</b> Oysters and lil frites</div>`)[0];
+                popup_d2c31c1a7477d4e9c2bec69ab1f2eb4f.setContent(html_ee036fb9a21c7cf3c891274888764e01);
+            
+        
+
+        circle_marker_43228fb0a7f88f991b3929996718102f.bindPopup(popup_d2c31c1a7477d4e9c2bec69ab1f2eb4f)
+        ;
+
+        
+    
+    
+            circle_marker_43228fb0a7f88f991b3929996718102f.bindTooltip(
+                `<div>
+                     Vin Rouge
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_cbdcd3e2247b05b361f66b20077f6eee.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_bf0519d50f9d1c869af345986dac813b = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_999c371217a87874807cfa872cebc376 = L.circleMarker(
+                [36.0045421960781, -78.9001371745043],
+                {"bubblingMouseEvents": true, "color": "#fc8d62", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fc8d62", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0519d50f9d1c869af345986dac813b);
+        
+    
+        var popup_cd0bccb57e0d92902ccb86eb1fc102eb = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_7406795b54397a7aaca8a8af0045c152 = $(`<div id="html_7406795b54397a7aaca8a8af0045c152" style="width: 100.0%; height: 100.0%;"><b>Hutchin's Garage</b><br>Durham<br><i>Za</i><br><b>Don't miss:</b> Grandpa style pizza and ONLY this</div>`)[0];
+                popup_cd0bccb57e0d92902ccb86eb1fc102eb.setContent(html_7406795b54397a7aaca8a8af0045c152);
+            
+        
+
+        circle_marker_999c371217a87874807cfa872cebc376.bindPopup(popup_cd0bccb57e0d92902ccb86eb1fc102eb)
+        ;
+
+        
+    
+    
+            circle_marker_999c371217a87874807cfa872cebc376.bindTooltip(
+                `<div>
+                     Hutchin's Garage
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a5f39f394e4ea55a3427d55bd4509b1d = L.circleMarker(
+                [35.7887256542507, -78.6343729497273],
+                {"bubblingMouseEvents": true, "color": "#fc8d62", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fc8d62", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0519d50f9d1c869af345986dac813b);
+        
+    
+        var popup_1aa69f03b544902638aa61d0b1cb822a = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_ee61ccb495231cdc246d351e2274c313 = $(`<div id="html_ee61ccb495231cdc246d351e2274c313" style="width: 100.0%; height: 100.0%;"><b>Oakwood Pizza Box</b><br>Raleigh<br><i>Za</i><br><b>Don't miss:</b> Not that hard to choose here</div>`)[0];
+                popup_1aa69f03b544902638aa61d0b1cb822a.setContent(html_ee61ccb495231cdc246d351e2274c313);
+            
+        
+
+        circle_marker_a5f39f394e4ea55a3427d55bd4509b1d.bindPopup(popup_1aa69f03b544902638aa61d0b1cb822a)
+        ;
+
+        
+    
+    
+            circle_marker_a5f39f394e4ea55a3427d55bd4509b1d.bindTooltip(
+                `<div>
+                     Oakwood Pizza Box
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1376de4b04585db5079aa011cb5a872a = L.circleMarker(
+                [35.9119701560885, -79.0760007257554],
+                {"bubblingMouseEvents": true, "color": "#fc8d62", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fc8d62", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bf0519d50f9d1c869af345986dac813b);
+        
+    
+        var popup_654f72bc90ee47673cc3094643ae2ae8 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_1162ac99b136139fa247b2c72bac94cb = $(`<div id="html_1162ac99b136139fa247b2c72bac94cb" style="width: 100.0%; height: 100.0%;"><b>Pizzeria Mercato</b><br>Chapel Hill<br><i>Za</i><br><b>Don't miss:</b> Za</div>`)[0];
+                popup_654f72bc90ee47673cc3094643ae2ae8.setContent(html_1162ac99b136139fa247b2c72bac94cb);
+            
+        
+
+        circle_marker_1376de4b04585db5079aa011cb5a872a.bindPopup(popup_654f72bc90ee47673cc3094643ae2ae8)
+        ;
+
+        
+    
+    
+            circle_marker_1376de4b04585db5079aa011cb5a872a.bindTooltip(
+                `<div>
+                     Pizzeria Mercato
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_bf0519d50f9d1c869af345986dac813b.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_b5fbafdc4d403ae6b67f48d0c647aeaf = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_ff33b246b4654ad01f5c1b9f478c5355 = L.circleMarker(
+                [36.0119148261414, -78.929515726986],
+                {"bubblingMouseEvents": true, "color": "#8da0cb", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8da0cb", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_b5fbafdc4d403ae6b67f48d0c647aeaf);
+        
+    
+        var popup_7278ee2f75a698f70a4cfedb5fbdbfca = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_d0352e8d99072fc92d204ca66fa3cdae = $(`<div id="html_d0352e8d99072fc92d204ca66fa3cdae" style="width: 100.0%; height: 100.0%;"><b>LocoPops</b><br>Durham<br><i>Dessert</i><br><b>Don't miss:</b> Fudge popsicle</div>`)[0];
+                popup_7278ee2f75a698f70a4cfedb5fbdbfca.setContent(html_d0352e8d99072fc92d204ca66fa3cdae);
+            
+        
+
+        circle_marker_ff33b246b4654ad01f5c1b9f478c5355.bindPopup(popup_7278ee2f75a698f70a4cfedb5fbdbfca)
+        ;
+
+        
+    
+    
+            circle_marker_ff33b246b4654ad01f5c1b9f478c5355.bindTooltip(
+                `<div>
+                     LocoPops
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_b5fbafdc4d403ae6b67f48d0c647aeaf.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_ba21dd394963cc53648356b7e6c3ecd5 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_195214e2709c42f08620a23d163b086d = L.circleMarker(
+                [36.0405325856957, -78.9576964447244],
+                {"bubblingMouseEvents": true, "color": "#e78ac3", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e78ac3", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_ba21dd394963cc53648356b7e6c3ecd5);
+        
+    
+        var popup_8f1c7266b802d72a737365467025bae2 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_e53a609b910ab7dd84e262a883c74fd9 = $(`<div id="html_e53a609b910ab7dd84e262a883c74fd9" style="width: 100.0%; height: 100.0%;"><b>Picnic</b><br>Durham<br><i>BBQ</i><br><b>Don't miss:</b> Best damn chopped bbq and fried chicken sammy</div>`)[0];
+                popup_8f1c7266b802d72a737365467025bae2.setContent(html_e53a609b910ab7dd84e262a883c74fd9);
+            
+        
+
+        circle_marker_195214e2709c42f08620a23d163b086d.bindPopup(popup_8f1c7266b802d72a737365467025bae2)
+        ;
+
+        
+    
+    
+            circle_marker_195214e2709c42f08620a23d163b086d.bindTooltip(
+                `<div>
+                     Picnic
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_295f7529f4e89804e5b65e215e889ef1 = L.circleMarker(
+                [35.8974165430838, -78.87252611534],
+                {"bubblingMouseEvents": true, "color": "#e78ac3", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e78ac3", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_ba21dd394963cc53648356b7e6c3ecd5);
+        
+    
+        var popup_b7e12b0aa580220865123e32e5a9dff8 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_c5737ade45c3cde89928991c41f21adb = $(`<div id="html_c5737ade45c3cde89928991c41f21adb" style="width: 100.0%; height: 100.0%;"><b>Lawrence BBQ</b><br>RTP<br><i>BBQ</i><br><b>Don't miss:</b> Brisket, pulled pork, somehow the most amazing brussel sprouts you'll ever have!</div>`)[0];
+                popup_b7e12b0aa580220865123e32e5a9dff8.setContent(html_c5737ade45c3cde89928991c41f21adb);
+            
+        
+
+        circle_marker_295f7529f4e89804e5b65e215e889ef1.bindPopup(popup_b7e12b0aa580220865123e32e5a9dff8)
+        ;
+
+        
+    
+    
+            circle_marker_295f7529f4e89804e5b65e215e889ef1.bindTooltip(
+                `<div>
+                     Lawrence BBQ
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_ba21dd394963cc53648356b7e6c3ecd5.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_54544be56fc04c0933055c3188778186 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_8d174dfc9e8ff8a8c946b7fbba9850d4 = L.circleMarker(
+                [35.9532058345788, -79.1570727409583],
+                {"bubblingMouseEvents": true, "color": "#a6d854", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#a6d854", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_54544be56fc04c0933055c3188778186);
+        
+    
+        var popup_a2ac17e1a6cbca9f9f1d0ad7e9b5b218 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_0b3fd2c818bd76488a18913cfc28a230 = $(`<div id="html_0b3fd2c818bd76488a18913cfc28a230" style="width: 100.0%; height: 100.0%;"><b>Honeysuckle Tea House</b><br>Chapel Hill<br><i>Teahouse</i><br><b>Don't miss:</b> Coolest hostel you've ever been to (minus prevelance of Australians) tea house</div>`)[0];
+                popup_a2ac17e1a6cbca9f9f1d0ad7e9b5b218.setContent(html_0b3fd2c818bd76488a18913cfc28a230);
+            
+        
+
+        circle_marker_8d174dfc9e8ff8a8c946b7fbba9850d4.bindPopup(popup_a2ac17e1a6cbca9f9f1d0ad7e9b5b218)
+        ;
+
+        
+    
+    
+            circle_marker_8d174dfc9e8ff8a8c946b7fbba9850d4.bindTooltip(
+                `<div>
+                     Honeysuckle Tea House
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_54544be56fc04c0933055c3188778186.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_c6e4f7168745ff962b044d52057e2fa6 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_20845120823be9eb7a5e1734fc8b4ca1 = L.circleMarker(
+                [36.0145558900201, -78.921496526986],
+                {"bubblingMouseEvents": true, "color": "#ffd92f", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffd92f", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_c6e4f7168745ff962b044d52057e2fa6);
+        
+    
+        var popup_4a8d9160c7657df8fb6dc9611090776f = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_65bca956f52405eec477fa4117c97934 = $(`<div id="html_65bca956f52405eec477fa4117c97934" style="width: 100.0%; height: 100.0%;"><b>Monuts</b><br>Durham<br><i>Breakfast</i><br><b>Don't miss:</b> turkist Egg breakfast sammy - dear god is it good</div>`)[0];
+                popup_4a8d9160c7657df8fb6dc9611090776f.setContent(html_65bca956f52405eec477fa4117c97934);
+            
+        
+
+        circle_marker_20845120823be9eb7a5e1734fc8b4ca1.bindPopup(popup_4a8d9160c7657df8fb6dc9611090776f)
+        ;
+
+        
+    
+    
+            circle_marker_20845120823be9eb7a5e1734fc8b4ca1.bindTooltip(
+                `<div>
+                     Monuts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_c6e4f7168745ff962b044d52057e2fa6.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_26021fed00ddc185de5643849c608ab1 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_7b98b0266191d08eda51a63a1311a542 = L.circleMarker(
+                [35.966638835198, -78.9461265440381],
+                {"bubblingMouseEvents": true, "color": "#b3b3b3", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b3b3b3", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_26021fed00ddc185de5643849c608ab1);
+        
+    
+        var popup_a4fe8f4696457d2f7090cd40620ae52f = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_3da77cf288947f124bcb46d47b399310 = $(`<div id="html_3da77cf288947f124bcb46d47b399310" style="width: 100.0%; height: 100.0%;"><b>Eastcut Sammies</b><br>Southern Durham<br><i>Sandwich</i><br><b>Don't miss:</b> East Katsu/any of fried chicken or cutlet sammies</div>`)[0];
+                popup_a4fe8f4696457d2f7090cd40620ae52f.setContent(html_3da77cf288947f124bcb46d47b399310);
+            
+        
+
+        circle_marker_7b98b0266191d08eda51a63a1311a542.bindPopup(popup_a4fe8f4696457d2f7090cd40620ae52f)
+        ;
+
+        
+    
+    
+            circle_marker_7b98b0266191d08eda51a63a1311a542.bindTooltip(
+                `<div>
+                     Eastcut Sammies
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c78e3fc5bf574153d23b39c5bfbf7bd5 = L.circleMarker(
+                [35.98218312721, -78.8772391001803],
+                {"bubblingMouseEvents": true, "color": "#b3b3b3", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#b3b3b3", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_26021fed00ddc185de5643849c608ab1);
+        
+    
+        var popup_3d1ed50005b27dfa3da64bc617b139b8 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_7445715bc3631f5770e000a27ce8b2c9 = $(`<div id="html_7445715bc3631f5770e000a27ce8b2c9" style="width: 100.0%; height: 100.0%;"><b>Ideal's Sandwich and Grocery</b><br>East Durham<br><i>Sandwich</i><br><b>Don't miss:</b> ANY OF THE SAMMIES!!</div>`)[0];
+                popup_3d1ed50005b27dfa3da64bc617b139b8.setContent(html_7445715bc3631f5770e000a27ce8b2c9);
+            
+        
+
+        circle_marker_c78e3fc5bf574153d23b39c5bfbf7bd5.bindPopup(popup_3d1ed50005b27dfa3da64bc617b139b8)
+        ;
+
+        
+    
+    
+            circle_marker_c78e3fc5bf574153d23b39c5bfbf7bd5.bindTooltip(
+                `<div>
+                     Ideal's Sandwich and Grocery
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_26021fed00ddc185de5643849c608ab1.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_349d55db133ae54e7f0eb6ba84141592 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_67924f1453d6e5a2689ca8a9273113b0 = L.circleMarker(
+                [35.7779197725539, -78.9053364448315],
+                {"bubblingMouseEvents": true, "color": "#e41a1c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1c", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_349d55db133ae54e7f0eb6ba84141592);
+        
+    
+        var popup_9cacea5857136687db9172d550f685fc = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_9436e01fda56306bd8c9efb0ed197244 = $(`<div id="html_9436e01fda56306bd8c9efb0ed197244" style="width: 100.0%; height: 100.0%;"><b>Bottle Theory</b><br>Apex<br><i>Bottle shop</i><br><b>Don't miss:</b> Amazing beer selection, super solid food truck lineup, friendly owners :)</div>`)[0];
+                popup_9cacea5857136687db9172d550f685fc.setContent(html_9436e01fda56306bd8c9efb0ed197244);
+            
+        
+
+        circle_marker_67924f1453d6e5a2689ca8a9273113b0.bindPopup(popup_9cacea5857136687db9172d550f685fc)
+        ;
+
+        
+    
+    
+            circle_marker_67924f1453d6e5a2689ca8a9273113b0.bindTooltip(
+                `<div>
+                     Bottle Theory
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_349d55db133ae54e7f0eb6ba84141592.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_fbbb089982b6f9005b8633567e39c2aa = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_e8e2a68f9abcd6cb417e006467474f29 = L.circleMarker(
+                [35.80457, -78.6325],
+                {"bubblingMouseEvents": true, "color": "#377eb8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#377eb8", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_fbbb089982b6f9005b8633567e39c2aa);
+        
+    
+        var popup_82833bccabb6318b197a9df5fd2397f9 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_01f9fb73ccd7af765a620ca76a3c2406 = $(`<div id="html_01f9fb73ccd7af765a620ca76a3c2406" style="width: 100.0%; height: 100.0%;"><b>Neuse River Brewing</b><br>Raleigh<br><i>Brassiere/Burgers</i><br><b>Don't miss:</b> Neuse River Burger</div>`)[0];
+                popup_82833bccabb6318b197a9df5fd2397f9.setContent(html_01f9fb73ccd7af765a620ca76a3c2406);
+            
+        
+
+        circle_marker_e8e2a68f9abcd6cb417e006467474f29.bindPopup(popup_82833bccabb6318b197a9df5fd2397f9)
+        ;
+
+        
+    
+    
+            circle_marker_e8e2a68f9abcd6cb417e006467474f29.bindTooltip(
+                `<div>
+                     Neuse River Brewing
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_fbbb089982b6f9005b8633567e39c2aa.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_1c8f33e087daf9223e29fcae206e854f = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_a366198484208cd5731311de0e6c1c73 = L.circleMarker(
+                [35.990535051549, -78.896205357373],
+                {"bubblingMouseEvents": true, "color": "#4daf4a", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4daf4a", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_1c8f33e087daf9223e29fcae206e854f);
+        
+    
+        var popup_bfd1e7b4574d5238433d946dc7e3b638 = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_9aa33538b0db2640a8fa5afc46a8c2c2 = $(`<div id="html_9aa33538b0db2640a8fa5afc46a8c2c2" style="width: 100.0%; height: 100.0%;"><b>Krill</b><br>Durham<br><i>East Asian</i><br><b>Don't miss:</b> Crab Khao Soi, Crispy whole fried fish</div>`)[0];
+                popup_bfd1e7b4574d5238433d946dc7e3b638.setContent(html_9aa33538b0db2640a8fa5afc46a8c2c2);
+            
+        
+
+        circle_marker_a366198484208cd5731311de0e6c1c73.bindPopup(popup_bfd1e7b4574d5238433d946dc7e3b638)
+        ;
+
+        
+    
+    
+            circle_marker_a366198484208cd5731311de0e6c1c73.bindTooltip(
+                `<div>
+                     Krill
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_1c8f33e087daf9223e29fcae206e854f.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var feature_group_28e64c391f78182c93ff5365d6445971 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_dcf4de5ea64ee2aef7b50589111ece17 = L.circleMarker(
+                [35.96331, -78.9786],
+                {"bubblingMouseEvents": true, "color": "#984ea3", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#984ea3", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(feature_group_28e64c391f78182c93ff5365d6445971);
+        
+    
+        var popup_b24d4988c9dc0cf825543b46b183fa4d = L.popup({
+  "maxWidth": 280,
+});
+
+        
+            
+                var html_6d7dd5cce58a281ac7bab70db6f7980f = $(`<div id="html_6d7dd5cce58a281ac7bab70db6f7980f" style="width: 100.0%; height: 100.0%;"><b>Zweli's</b><br>Durham<br><i>Zimbabwean</i><br><b>Don't miss:</b> Dovi Chicken, Lemonade</div>`)[0];
+                popup_b24d4988c9dc0cf825543b46b183fa4d.setContent(html_6d7dd5cce58a281ac7bab70db6f7980f);
+            
+        
+
+        circle_marker_dcf4de5ea64ee2aef7b50589111ece17.bindPopup(popup_b24d4988c9dc0cf825543b46b183fa4d)
+        ;
+
+        
+    
+    
+            circle_marker_dcf4de5ea64ee2aef7b50589111ece17.bindTooltip(
+                `<div>
+                     Zweli's
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_28e64c391f78182c93ff5365d6445971.addTo(map_4376bc9805793e1933f8ce0017921626);
+        
+    
+            var layer_control_84ae8640eaf1bd8a9ba5bebdb13eb022_layers = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_819e095e63ee6029995fc9e8ecbffb50,
+                },
+                overlays :  {
+                    "Hispanic/Latin" : feature_group_18391fd83b376b01f6b1cbac176e508d,
+                    "Seafood" : feature_group_b13b6bbdd2dd3a33d092ce40dab3cbb4,
+                    "Spanish" : feature_group_ecbb704c1aa25a318d8c5dd131b796e7,
+                    "Korean" : feature_group_cfbba326795f09cf5fcf58e2f4cfa0ba,
+                    "Japanese " : feature_group_ffeacb589a193130c2ff737dfdcd39d5,
+                    "Chinese" : feature_group_45b30cbe300f9e1415a0764d43022515,
+                    "Indian" : feature_group_939b6da4d66b4eee1bf60ecac2fab2f2,
+                    "Italian" : feature_group_be2149480c82bfaf98792fdf47293153,
+                    "French" : feature_group_cbdcd3e2247b05b361f66b20077f6eee,
+                    "Za" : feature_group_bf0519d50f9d1c869af345986dac813b,
+                    "Dessert" : feature_group_b5fbafdc4d403ae6b67f48d0c647aeaf,
+                    "BBQ" : feature_group_ba21dd394963cc53648356b7e6c3ecd5,
+                    "Teahouse" : feature_group_54544be56fc04c0933055c3188778186,
+                    "Breakfast" : feature_group_c6e4f7168745ff962b044d52057e2fa6,
+                    "Sandwich" : feature_group_26021fed00ddc185de5643849c608ab1,
+                    "Bottle shop" : feature_group_349d55db133ae54e7f0eb6ba84141592,
+                    "Brassiere/Burgers" : feature_group_fbbb089982b6f9005b8633567e39c2aa,
+                    "East Asian" : feature_group_1c8f33e087daf9223e29fcae206e854f,
+                    "Zimbabwean" : feature_group_28e64c391f78182c93ff5365d6445971,
+                },
+            };
+            let layer_control_84ae8640eaf1bd8a9ba5bebdb13eb022 = L.control.layers(
+                layer_control_84ae8640eaf1bd8a9ba5bebdb13eb022_layers.base_layers,
+                layer_control_84ae8640eaf1bd8a9ba5bebdb13eb022_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_4376bc9805793e1933f8ce0017921626);
+
+        
+</script>
+</html>

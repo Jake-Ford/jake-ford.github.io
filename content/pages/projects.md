@@ -16,6 +16,8 @@ Collaborated with researchers at the University of Toronto to address the challe
 
 ### EnergyScore
 
+![EnergyScore logo](static/images/EnergyScore logo copy.jpg)
+
 [Solstice](https://solstice.us/) operates EnergyScore, a machine learning algorithm that delivers a more effective and more equitable qualification metric calibrated for renewable energy financing. Through support from the Tides Foundation and Google, I investigated the degree of bias existing in the algorithm, conducting a large literature review to identify leading quantitative measures of bias and fairness in ML.
 
 **Paper**: [Fairness in Focus: Quantitative Insights into Bias within Machine Learning Risk Evaluations and Established Credit Models](https://link.springer.com/article/10.1007/s44176-025-00043-4)
