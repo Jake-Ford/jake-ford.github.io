@@ -70,13 +70,13 @@ def make_map(xlsx_path: Path, out_path: Path, center: tuple, zoom: int):
 
 if __name__ == "__main__":
     make_map(
-        ROOT / "_posts" / "2022-05-03-good-eatins" / "Eat_Data.xlsx",
+        ROOT / "content" / "data" / "eats-durham.xlsx",
         MAPS_OUT / "good-eatins-durham.html",
         center=(35.99, -78.91),
         zoom=12,
     )
     make_map(
-        ROOT / "_posts" / "2023-10-20-good-eatins-toronto" / "Eat_Data.xlsx",
+        ROOT / "content" / "data" / "eats-toronto.xlsx",
         MAPS_OUT / "good-eatins-toronto.html",
         center=(43.665, -79.365),
         zoom=12,
