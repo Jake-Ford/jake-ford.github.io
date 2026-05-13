@@ -1,0 +1,31 @@
+---
+title: "Observations on Canada vs US after 1.5 years (and counting)"
+description: "A personal perspective, but mainly just for Ontario."
+---
+
+Here are a running list of observations I've made since moving to Canada from the US in the summer of 2023. I've been living in Toronto, so my observations are mainly focused on Ontario related topics. I'll update this list as I continue to live here.
+
+- **Healthcare**: The healthcare system in Canada is great. I've had to visit the doctor a few times since moving here and it's been a breeze. No insurance forms, no copays, just show your health card and you're good to go. Overall, 10/10; there are some issues with wait times that get a disproportionate weight of coverage in the media, but IMO it's been very easy to navigate. We also had a baby in this country, and that process was relatively simple and we didn't pay a dime for anything, repeat, *anything*.
+
+  - In fact, most Canadians we talk to re: childbirth were aghast at the notion of 'paying' for childbirth; it's a foreign concept to them.
+  - Customer service in general in Toronto is of a different nature here compared to the US. In the US, you can call your doctor's office, sometimes speak directly to the doctor, and get an appointment within a few hours. In Toronto, there is a process for everything, you get in queue and wait your turn. It'll be free, but you wait your turn. This can often be frustrating, but it's a trade-off.
+
+- **Weather**: The weather isn't ideal, let's be real. The winters are long and cold, but the summers are beautiful and the city seizes hold of each long day of sunshine; restaurants and bars expand their seating almost daringly into the street, parks are filled with people who are allowed like trusting adults to drink in public by the government, and there are weekly festivals and events to bop in and out of.
+
+- **Cost of Living**: The cost of living in Toronto is high, especially when it comes to housing. Rent prices are expensive and buying a house is out of reach for many people.
+
+- **Safety**: Yeah it's a lot safer than the US, this can't be avoided. I've never felt unsafe walking around the city, even at night. There are big city issues like any place in the world, but with a modicum of awareness, you're fine.
+
+- **Public Transportation**: The public transportation system in Toronto, from a US perspective, is great. We have a car, but it largely sits static in the parking garage. We rely on the TTC to get around the city. The subway and streetcars are reliable and run frequently. I've also been impressed with the cleanliness of the system.
+
+  - Most Torontonians are very critical of the TTC: it does have its issues, namely that the subway line has very limited spread, and the streetcars are slow and often delayed. But it's still a great system compared to any major US city. Given Toronto is larger than Chicago, Boston, or DC, the subway system has plenty of room to grow. The aptly named [Ontario Line](https://www.metrolinx.com/en/projects-and-programs/ontario-line) is under construction to drastically improve upon this; but likely won't be running until the start of the 2030s.
+
+- **Food**: The food scene in Toronto is amazing. There are so many great restaurants to choose from. I've also been impressed with the quality of the produce and meat available at the grocery stores; especially from the little mom-pop style specialty stores. Read more on my favorite food spots and dishes not to miss at the [Great Toronto Food Map](https://jake-ford.github.io/posts/2023-10-20-good-eatins-toronto.html).
+
+- **People & Politics**: Generally, the people in Toronto are friendly and welcoming. I've made some great friends since moving here and have felt very much at home. The diversity of the city is something I genuinely love.
+
+  - As a thirty-something, making new friends in a new city with no connections can be daunting. One piece of advice: get involved in a weekly *thing* — a club, group, or class. We got involved in a weekly not-so-intense run club that met at a brewery, and it was a great way to meet people who shared a love of running and beer.
+
+  - Canadians love to talk about US politics, perhaps in a schadenfreude manner. It's understandable given recent idiotic trade war discussions, but even before the 2024 election, Canadian news outlets largely covered US politics. As an effect, it was somewhat difficult to understand the political landscape of Canada, as it was largely overshadowed by US politics.
+
+  - Canadian MPs, in what I imagine is a British legacy, make themselves available to constituents via their public offices almost daily. This is very different from the US system, where members of Congress or local legislatures often don't bother with the effort. When I mentioned this fact to a few Canadians — that many Americans likely wouldn't recognize or be able to access their elected official if they wanted to — pearls were clutched and gasps were gasped.

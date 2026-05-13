@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantifying NIMBYism · Jake Ford</title>
+  <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="site-name">Jake Ford</a>
+      <nav>
+        <a href="../index.html">posts</a>
+        <span class="sep"> | </span>
+        <a href="../about.html">about</a>
+        <span class="sep"> | </span>
+        <a href="../projects.html">projects</a>
+        <span class="sep"> | </span>
+        <a href="../resources.html">resources</a>
+        <span class="sep"> | </span>
+        <a href="../Jacob_Ford_2025_Resume.pdf">resume</a>
+        <span class="sep"> | </span>
+        <a href="https://github.com/Jake-Ford">github</a>
+        <span class="sep"> | </span>
+        <a href="https://www.linkedin.com/in/jacob-ford-80775662/">linkedin</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    
+<a href="../index.html" class="back-link">← all posts</a>
+<div class="post-header">
+  <h1>Quantifying NIMBYism</h1>
+  <div class="post-meta">2021-12-08 · Using zoning data to measure housing obstruction.</div>
+</div>
+<div class="content">
+  <p>NIMBY — Not In My Back Yard — is a well-understood cultural phenomenon: the person who supports affordable housing in the abstract and opposes every specific affordable housing development proposed near them. What's less well-understood is the aggregate policy impact of NIMBYism as an institutional force, and whether it's quantifiable.</p>
+<p>The short answer: yes, with zoning data and building permit records, you can get pretty close.</p>
+<h2 id="the-data-sources">The Data Sources</h2>
+<p><strong>Zoning data</strong>: Most major US cities now publish their zoning shapefiles. These show, at the parcel level, what can legally be built where. Single-family-only zones (typically classified as R-1 or R-2) are the primary tool of exclusionary zoning.</p>
+<p><strong>Building permits</strong>: Cities publish permit data, which shows where new housing is actually being built — the gap between what's <em>permitted by zoning</em> and what's actually <em>being built</em> is interesting.</p>
+<p><strong>American Community Survey</strong>: For outcomes data — housing cost burden, density, affordability indices by neighborhood.</p>
+<h2 id="the-measurement-problem">The Measurement Problem</h2>
+<p>The tricky part of quantifying NIMBYism is distinguishing between:<br />
+1. Areas where zoning genuinely prevents denser development (that would otherwise happen)<br />
+2. Areas where the market doesn't want to build denser even if it could<br />
+3. Areas where historical project-by-project obstruction has chilled development beyond what zoning alone explains</p>
+<p>The best proxies I've found: looking at <em>upzoned</em> areas and whether construction activity increased post-upzoning (controlling for market conditions), and examining permit denial rates in areas with active neighborhood associations versus those without.</p>
+<h2 id="what-the-data-shows">What the Data Shows</h2>
+<p>In most cities I've looked at:<br />
+- The majority of residential land is zoned exclusively for single-family housing, often in areas that are geographically central and well-served by transit<br />
+- Areas with strong neighborhood associations show higher permit denial rates for multifamily projects, even when the projects are code-compliant<br />
+- The supply effect of exclusionary zoning concentrates development pressure in areas that are already dense or have weaker political opposition, often lower-income neighborhoods</p>
+<h2 id="the-policy-upshot">The Policy Upshot</h2>
+<p>NIMBYism isn't just a cultural annoyance — it has a measurable effect on housing supply, and through housing supply on affordability, neighborhood diversity, and urban form. The recent wave of state-level zoning preemption laws (California's SB 9, Oregon's statewide missing middle reform, Montana's 2023 package) represents one approach to getting around local obstruction. Early evidence on supply effects is promising.</p>
+</div>
+
+  </main>
+  <footer>
+    Jake Ford · Senior Data Scientist · <a href="https://github.com/Jake-Ford">github.com/Jake-Ford</a>
+  </footer>
+</body>
+</html>

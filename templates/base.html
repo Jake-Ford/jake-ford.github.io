@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Jake Ford{% endblock %}</title>
+  <link rel="stylesheet" href="{{ root }}static/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="{{ root }}index.html" class="site-name">Jake Ford</a>
+      <nav>
+        <a href="{{ root }}index.html">posts</a>
+        <span class="sep"> | </span>
+        <a href="{{ root }}about.html">about</a>
+        <span class="sep"> | </span>
+        <a href="{{ root }}projects.html">projects</a>
+        <span class="sep"> | </span>
+        <a href="{{ root }}resources.html">resources</a>
+        <span class="sep"> | </span>
+        <a href="{{ root }}Jacob_Ford_2025_Resume.pdf">resume</a>
+        <span class="sep"> | </span>
+        <a href="https://github.com/Jake-Ford">github</a>
+        <span class="sep"> | </span>
+        <a href="https://www.linkedin.com/in/jacob-ford-80775662/">linkedin</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  <footer>
+    Jake Ford · Senior Data Scientist · <a href="https://github.com/Jake-Ford">github.com/Jake-Ford</a>
+  </footer>
+</body>
+</html>

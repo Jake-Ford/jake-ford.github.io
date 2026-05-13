@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }} · Jake Ford{% endblock %}
+{% block content %}
+<div class="post-header">
+  <h1>{{ page.title }}</h1>
+</div>
+<div class="content">
+  {{ page.content }}
+</div>
+{% endblock %}

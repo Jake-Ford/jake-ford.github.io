@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Jake Ford{% endblock %}
+{% block content %}
+<ul class="post-list">
+  {% for post in posts %}
+  <li class="post-item">
+    <span class="post-date">{{ post.date }}</span>
+    <a href="posts/{{ post.filename }}" class="post-link">{{ post.title }}</a>
+    {% if post.description %}<span class="post-desc">{{ post.description }}</span>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

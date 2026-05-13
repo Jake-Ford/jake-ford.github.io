@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keeping your soon-to-be-retired parent(s) busy with funny/interesting links using Python + cronjobs · Jake Ford</title>
+  <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="site-name">Jake Ford</a>
+      <nav>
+        <a href="../index.html">posts</a>
+        <span class="sep"> | </span>
+        <a href="../about.html">about</a>
+        <span class="sep"> | </span>
+        <a href="../projects.html">projects</a>
+        <span class="sep"> | </span>
+        <a href="../resources.html">resources</a>
+        <span class="sep"> | </span>
+        <a href="../Jacob_Ford_2025_Resume.pdf">resume</a>
+        <span class="sep"> | </span>
+        <a href="https://github.com/Jake-Ford">github</a>
+        <span class="sep"> | </span>
+        <a href="https://www.linkedin.com/in/jacob-ford-80775662/">linkedin</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    
+<a href="../index.html" class="back-link">← all posts</a>
+<div class="post-header">
+  <h1>Keeping your soon-to-be-retired parent(s) busy with funny/interesting links using Python + cronjobs</h1>
+  <div class="post-meta">2025-02-03 · A short how-to using Python to stay connected.</div>
+</div>
+<div class="content">
+  <p>My father, who is 68 and approaching 69, is an incredibly industrious person — someone for whom a retirement without hobbies or activity would be a complete disaster. A friend of mine, in a similar situation with her concerningly available, bordering on bored, father sends dozens of scheduled emails with interesting "Link of the Week" hyperlinks. These are interesting news articles, errata from the deep web, video clips, etc.</p>
+<p>I loved this idea, but the thought of manually scheduling a series of emails was a bit tedious. With a simple Python script and a cron job, I can just keep a CSV updated with <code>send_date</code>, the link, and a short description, and concatenate these into an email to send off to a parent!</p>
+<h2 id="technical-requirements">Technical Requirements</h2>
+<ul>
+<li>Google Gmail account with Two-Factor Authentication (2FA) enabled</li>
+<li>Generate an App Password (16 character password for your app)</li>
+<li>Save the password and your email address in a <code>.env</code> file — and don't commit your <code>.env</code> to GitHub!</li>
+</ul>
+<h2 id="python-script">Python Script</h2>
+<p>The main function is <code>send_email</code>; it uses MIME to format the email (constructing the to, from, subject, etc.) and <code>smtplib</code> to send via SMTP using your credentials from <code>.env</code>.</p>
+<pre class="codehilite"><code class="language-python">def send_email(receiver_email, subject, body, sender_email, sender_password):
+    &quot;&quot;&quot;Sends an email with the given subject and body.&quot;&quot;&quot;
+    try:
+        msg = MIMEMultipart()
+        msg['From'] = sender_email
+        msg['To'] = receiver_email
+        msg['Subject'] = subject
+        msg.attach(MIMEText(body, 'plain'))
+
+        with smtplib.SMTP('smtp.gmail.com', 587) as server:
+            server.starttls()
+            server.login(sender_email, sender_password)
+            server.send_message(msg)
+            log_message(f&quot;Email sent to {receiver_email}&quot;)
+    except Exception as e:
+        log_message(f&quot;Error sending email to {receiver_email}: {e}&quot;)
+</code></pre>
+
+<h2 id="cron-job">Cron Job</h2>
+<p>This cron job setup includes two scheduled tasks that run daily at 9 AM (see the <code>0 9 * * *</code> line). The first job is a simple test, logging the time it runs into a debug file to confirm that the cron scheduler is working properly. The second job is the actual script execution, running the script daily and saving the output to a log file.</p>
+<p>Check out the full GitHub repo <a href="https://github.com/Jake-Ford/LinkOfTheDay/tree/main">here</a>, fork it, update with your own links, and send away!</p>
+</div>
+
+  </main>
+  <footer>
+    Jake Ford · Senior Data Scientist · <a href="https://github.com/Jake-Ford">github.com/Jake-Ford</a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,203 @@
+:root {
+  --bg:          #f8f7f2;
+  --text:        #1a1a1a;
+  --meta:        #666;
+  --border:      #d8d8d0;
+  --link:        #0066cc;
+  --link-v:      #551a8b;
+  --accent:      #d35400;
+  --code-bg:     #f0efe8;
+  --max-w:       780px;
+  --mono:        ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo,
+                 Consolas, 'Courier New', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family:  var(--mono);
+  font-size:    13.5px;
+  line-height:  1.75;
+  background:   var(--bg);
+  color:        var(--text);
+}
+
+/* ── Header ─────────────────────────────────── */
+header {
+  background: var(--accent);
+  padding: 5px 12px;
+}
+
+.header-inner {
+  max-width:   var(--max-w);
+  margin:      0 auto;
+  display:     flex;
+  align-items: center;
+  gap:         14px;
+  flex-wrap:   wrap;
+}
+
+.site-name {
+  color:           white;
+  font-weight:     bold;
+  font-size:       14px;
+  text-decoration: none;
+  white-space:     nowrap;
+}
+
+nav a {
+  color:           rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size:       12.5px;
+}
+nav a:hover { color: white; text-decoration: underline; }
+
+.sep { color: rgba(255,255,255,0.35); }
+
+/* ── Main container ──────────────────────────── */
+main {
+  max-width: var(--max-w);
+  margin:    28px auto;
+  padding:   0 16px;
+}
+
+/* ── Post list (index) ───────────────────────── */
+.post-list { list-style: none; }
+
+.post-item {
+  display:               grid;
+  grid-template-columns: 92px 1fr;
+  gap:                   0 14px;
+  padding:               7px 0;
+  border-bottom:         1px solid var(--border);
+  align-items:           baseline;
+}
+
+.post-date {
+  color:       var(--meta);
+  font-size:   12px;
+  white-space: nowrap;
+}
+
+.post-link {
+  color:           var(--link);
+  text-decoration: none;
+}
+.post-link:hover { text-decoration: underline; }
+.post-link:visited { color: var(--link-v); }
+
+.post-desc {
+  color:       var(--meta);
+  font-size:   12px;
+  grid-column: 2;
+  margin-top:  2px;
+}
+
+/* ── Post / Page ─────────────────────────────── */
+.post-header {
+  margin-bottom:  22px;
+  padding-bottom: 12px;
+  border-bottom:  2px solid var(--border);
+}
+
+.post-header h1 {
+  font-size:   18px;
+  font-weight: bold;
+  line-height: 1.35;
+  margin-bottom: 4px;
+}
+
+.post-meta {
+  color:     var(--meta);
+  font-size: 12px;
+}
+
+/* ── Content typography ──────────────────────── */
+.content h1, .content h2, .content h3 {
+  font-size:   14.5px;
+  font-weight: bold;
+  margin:      22px 0 7px;
+}
+
+.content h1 { font-size: 16px; }
+
+.content p { margin-bottom: 13px; }
+
+.content ul,
+.content ol {
+  margin:      6px 0 13px 22px;
+}
+.content li { margin-bottom: 4px; }
+
+.content a           { color: var(--link); }
+.content a:visited   { color: var(--link-v); }
+.content a:hover     { text-decoration: underline; }
+
+.content strong { font-weight: bold; }
+.content em     { font-style: italic; }
+
+.content code {
+  background:    var(--code-bg);
+  padding:       1px 5px;
+  border-radius: 3px;
+  font-size:     12.5px;
+  border:        1px solid var(--border);
+}
+
+.content pre {
+  background:    var(--code-bg);
+  padding:       12px 14px;
+  border-radius: 4px;
+  overflow-x:    auto;
+  margin-bottom: 13px;
+  border:        1px solid var(--border);
+  font-size:     12.5px;
+  line-height:   1.55;
+}
+.content pre code { background: none; border: none; padding: 0; }
+
+.content blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 12px;
+  color:        var(--meta);
+  margin:       12px 0;
+}
+
+.content hr {
+  border:        none;
+  border-top:    1px solid var(--border);
+  margin:        20px 0;
+}
+
+.content table {
+  border-collapse: collapse;
+  width:           100%;
+  margin-bottom:   13px;
+  font-size:       12.5px;
+}
+.content th, .content td {
+  border:  1px solid var(--border);
+  padding: 5px 8px;
+  text-align: left;
+}
+.content th { background: var(--code-bg); font-weight: bold; }
+
+/* ── Back link ───────────────────────────────── */
+.back-link {
+  color:           var(--meta);
+  text-decoration: none;
+  font-size:       12.5px;
+  display:         inline-block;
+  margin-bottom:   18px;
+}
+.back-link:hover { color: var(--text); }
+
+/* ── Footer ──────────────────────────────────── */
+footer {
+  max-width:    var(--max-w);
+  margin:       40px auto 20px;
+  padding:      12px 16px 0;
+  border-top:   1px solid var(--border);
+  color:        var(--meta);
+  font-size:    12px;
+}

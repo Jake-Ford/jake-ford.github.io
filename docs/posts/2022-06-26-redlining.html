@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HOLC Redlining and Our Old Census Friend · Jake Ford</title>
+  <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="site-name">Jake Ford</a>
+      <nav>
+        <a href="../index.html">posts</a>
+        <span class="sep"> | </span>
+        <a href="../about.html">about</a>
+        <span class="sep"> | </span>
+        <a href="../projects.html">projects</a>
+        <span class="sep"> | </span>
+        <a href="../resources.html">resources</a>
+        <span class="sep"> | </span>
+        <a href="../Jacob_Ford_2025_Resume.pdf">resume</a>
+        <span class="sep"> | </span>
+        <a href="https://github.com/Jake-Ford">github</a>
+        <span class="sep"> | </span>
+        <a href="https://www.linkedin.com/in/jacob-ford-80775662/">linkedin</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    
+<a href="../index.html" class="back-link">← all posts</a>
+<div class="post-header">
+  <h1>HOLC Redlining and Our Old Census Friend</h1>
+  <div class="post-meta">2022-06-26 · Mapping historical mortgage discrimination onto present-day outcomes.</div>
+</div>
+<div class="content">
+  <p>The Home Owners' Loan Corporation (HOLC) maps from the 1930s are one of the most well-documented examples of institutionalized racial discrimination in American history. These maps — grading neighborhoods from A ("Best") to D ("Hazardous") — systematically assigned lower grades to neighborhoods with Black, immigrant, or otherwise "undesirable" populations, regardless of the actual economic conditions of those neighborhoods.</p>
+<p>The downstream effects are well-documented in academic literature. What I wanted to do here was a direct empirical overlay: take the digitized HOLC maps (now freely available via the <a href="https://dsl.richmond.edu/panorama/redlining/">Mapping Inequality project</a>) and match them to contemporary census data to see how strongly the grades predict current neighborhood outcomes.</p>
+<h2 id="the-variables">The Variables</h2>
+<p>On the HOLC side: the 1930s letter grades (A–D) for each neighborhood polygon.</p>
+<p>On the census side (American Community Survey 2019 5-year estimates):<br />
+- Median household income<br />
+- Homeownership rates<br />
+- Poverty rates<br />
+- Educational attainment<br />
+- Racial composition</p>
+<h2 id="what-you-find">What You Find</h2>
+<p>The correlations are stark. Neighborhoods graded "A" in the 1930s have, on average:<br />
+- Significantly higher median incomes<br />
+- Higher homeownership rates<br />
+- Lower poverty rates<br />
+- Much lower shares of Black and Hispanic residents</p>
+<p>Neighborhoods graded "D" — the redlined areas — show the inverse pattern on essentially every metric.</p>
+<p>The crucial caveat: this is correlation, not causation in isolation. Neighborhoods that were redlined were also targeted by other discriminatory policies simultaneously (restrictive covenants, steering by real estate agents, discriminatory lending by private banks that adopted HOLC grades, urban renewal demolitions). Isolating the independent causal effect of the HOLC grades specifically is an active area of academic research. What's not in dispute is that the geographic pattern of disadvantage today maps remarkably closely onto the geographic pattern of official discrimination 80+ years ago.</p>
+<h2 id="why-it-matters-for-policy">Why It Matters for Policy</h2>
+<p>The persistence of these spatial inequalities is an argument for place-based interventions — policies that target geographic areas rather than just individual characteristics. Community Reinvestment Act reforms, targeted infrastructure investment, affordable housing mandates in formerly redlined areas — the HOLC maps give these interventions a specific, historically grounded target.</p>
+</div>
+
+  </main>
+  <footer>
+    Jake Ford · Senior Data Scientist · <a href="https://github.com/Jake-Ford">github.com/Jake-Ford</a>
+  </footer>
+</body>
+</html>
