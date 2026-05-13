@@ -3,20 +3,26 @@ title: "Crazy NBA Contracts in Context"
 description: "Super-Duper-Maxed."
 ---
 
-Jaylen Brown, the All-NBA forward for the Boston Celtics, joined the vaunted halls of Mike Conley during the waning days of the grit-and-grind Grizzlies as the possessor of the single richest NBA contract in history — for a moment. A five-year, $303.7 million dollar extension. That's $60 million a year. For context: the entire Charlotte Bobcats franchise sold for $175 million in 2010.
+Jaylen Brown, the monodextrous (just kidding) All-NBA forward for the Boston Celtics, joins the vaunted halls of Mike Conley during waning days of the grit-and-grind Grizzlies mid-late 2010s era as the possessor of the single richest NBA contract in history. He won't have this for long, as he will soon be surpassed by other superstars including another Celtic player. Nonetheless, the numbers involved have been staggering to say the least. A five-year, $303.7 million dollar [extension](https://www.espn.com/nba/story/_/id/38067889/jaylen-brown-celtics-agree-record-5-year-304m-supermax-extension). That's an average of $60 million dollars per year.
 
-## Salary Cap Trajectory
+# Salary Cap Increase
 
-The NBA salary cap has grown at a remarkable rate over the past three decades, with two notable spikes: the mid-1990s, and most famously 2016, when the new TV deal caused a single-year cap jump that allowed multiple teams to simultaneously hand out max contracts and contributed to some widely criticized roster decisions (looking at you, various franchises).
+For the upcoming 2024 Fiscal Year NBA season, the salary cap is $136 million dollars. The new TV deals and whatever other shenanigans they're doing (including a lot of [amazing](https://bleacherreport.com/articles/10059000-adam-silver-says-nba-adding-expansion-team-in-mexico-is-definitely-possible) and [not-so amazing](https://www.msnbc.com/opinion/nba-silence-china-proves-it-s-less-interested-human-rights-n1287663) work to globalize the NBA) results in the salary cap skyrocketing in the next ten years.
 
-The cap trajectory through the late 2020s is projected to continue climbing sharply, driven by new TV rights deals that made even the 2016 spike look modest. This means contracts that look absurd today will look more reasonable in hindsight — it's happened every decade.
+<iframe src="../static/nba/cap_trajectory.html" class="map-embed" style="height:500px"></iframe>
 
-## Brown in Context
+# Big Jumps
 
-Looking at Brown's contract as a percentage of the salary cap across its duration tells a more interesting story than the raw dollars. In the 2024 season, Brown is actually in the *bottom* of the top 25 paid players by cap percentage. But as other supermax deals roll off the books and the cap climbs, his percentage share increases. By the mid-2020s, he and a few other players will represent 35–40% of their team's cap space.
+The below graph shows the annual percent change in the cap. Much has been written about the 2016 spike allowing some over [powered dynasties](https://www.forbes.com/sites/bryantoporek/2022/11/07/how-the-2016-nba-cap-spike-helped-prolong-the-golden-state-warriors-dynasty/?sh=56f52dcd3a10) to carry on their domination a bit longer. But that's not even the highest spike in the last three decades; what the hell happened in 1995-96? That's for another day...
 
-The obligatory "Laughing Out Loud" moment: Ben Simmons, who at time of writing was collecting $177 million over three years without notably contributing to wins, appears on any honest list of this era's contract decisions. Compare that to Brown, who helped Boston win a championship, and the market starts to look at least somewhat rational.
+<iframe src="../static/nba/cap_pct_change.html" class="map-embed" style="height:500px"></iframe>
 
-## The Boston Question
+# The Brown Case
 
-Should Celtics fans panic about their cap situation? Maybe. But compare being stuck with Jaylen Brown at 40% of cap to, say, whoever traded for Damian Lillard and Phoenix being stuck with Bradley Beal at a similar rate. Given the age difference, the defensive value difference, and the championship production difference — I'll take Brown every time.
+Let's look at the top salaries in the NBA over the next couple years as a percentage of cap. Obligatory laughing-out-loud moment for Ben Simmons being on this list.
+
+<iframe src="../static/nba/player_pct.html" class="map-embed" style="height:740px"></iframe>
+
+The chart shows that Brown will be in the bottom of the top 25 paid players as a percentage of cap in the 2025-26 season. But after that, and critically before any mega-blooper deals are paid to Giannis, Luka, and Embiid, he'll be in the top 5 or 3.
+
+Should Boston fans temporarily pause in their self-flagellation over their whittling salary cap? Maybe. Or maybe it helps to just remember that while they will be attributing ~40% of their cap to Jaylen Brown for the rest of the 2020s, whoever trades for Damian Lillard and the Phoenix Suns are doing the same with Bradley Beal. Given the age difference I'd much rather be Boston.
