@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.venv/bin/python build.py)",
+      "Bash(.venv/bin/pip install *)",
+      "Bash(.venv/bin/python make_nba.py)",
+      "Bash(.venv/bin/python -c ' *)",
+      "Bash(python -m http.server 8080 --directory docs)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:8080/static/nba/cap_trajectory.html\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:8080/posts/2023-08-12-nba-contracts.html\")",
+      "Bash(kill %1)",
+      "Bash(.venv/bin/python -m http.server 8081 --directory docs)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:8081/static/nba/cap_trajectory.html\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:8081/posts/2023-08-12-nba-contracts.html\")",
+      "Bash(git -C /Users/jacobford/Projects/jake-ford.github.io status --short)",
+      "Bash(git -C /Users/jacobford/Projects/jake-ford.github.io diff --stat HEAD)",
+      "Bash(git add *)",
+      "Bash(git -C /Users/jacobford/Projects/jake-ford.github.io diff --cached --stat)",
+      "Bash(git -C /Users/jacobford/Projects/jake-ford.github.io status)",
+      "Bash(git -C /Users/jacobford/Projects/jake-ford.github.io diff HEAD -- docs/posts/2023-08-12-nba-contracts.html)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git pull *)"
+    ]
+  }
+}
