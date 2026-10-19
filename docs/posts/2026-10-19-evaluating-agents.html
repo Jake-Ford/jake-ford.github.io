@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agentic Evaluation is more manual than I thought · Jake Ford</title>
+  <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="site-name">Jake Ford</a>
+      <nav>
+        <a href="../index.html">posts</a>
+        <span class="sep"> | </span>
+        <a href="../about.html">about</a>
+        <span class="sep"> | </span>
+        <a href="../projects.html">projects</a>
+        <span class="sep"> | </span>
+        <a href="../resources.html">resources</a>
+        <span class="sep"> | </span>
+        <a href="../Jacob_Ford_2025_Resume.pdf">resume</a>
+        <span class="sep"> | </span>
+        <a href="https://github.com/Jake-Ford">github</a>
+        <span class="sep"> | </span>
+        <a href="https://www.linkedin.com/in/jacob-ford-80775662/">linkedin</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    
+<a href="../index.html" class="back-link">← all posts</a>
+<div class="post-header">
+  <h1>Agentic Evaluation is more manual than I thought</h1>
+  <div class="post-meta">2026-10-19 · Golden datasets, oracles, and the unglamorous work of deciding what a right answer looks like.</div>
+</div>
+<div class="content">
+  <p>For most of this year I've been helping build a team of LLM agents: a supervisor that routes questions to a handful of specialist sub-agents, each with its own tools for querying databases, searching documents, and so on. Going in, I assumed evaluation would be the part we could mostly automate. There's no shortage of eval frameworks, and the LLM-as-judge pattern makes it sound like you can just point one model at another and get a score.</p>
+<p>That's half true. The scoring is automated. Deciding what <em>correct</em> means, case by case, is not, and that turned out to be most of the work.</p>
+<h2 id="the-golden-dataset">The golden dataset</h2>
+<p>The backbone of our setup is a <strong>golden dataset</strong> per agent: a JSON file of realistic questions, each one pinned to what a good response looks like. A single case carries:</p>
+<ul>
+<li><strong>The prompt</strong>, plus any context the agent would normally have (who's asking, what they're allowed to see, prior conversation turns).</li>
+<li><strong>The expected tool</strong> the agent should reach for, and sometimes the parameters it should pass.</li>
+<li><strong>A few must-have strings</strong> the answer has to contain: a name, a value, an identifier.</li>
+<li><strong>A reference answer</strong> to compare against.</li>
+<li><strong>Which judge criteria apply</strong>: correctness, faithfulness to the tool output, instruction following, conciseness, or whether it should refuse the request entirely.</li>
+</ul>
+<p>Every one of those fields is a judgment call somebody has to make by hand. Which questions are worth asking? What's the minimum set of facts that makes an answer right, versus things that are just nice to include? Should an ambiguous question get a clarifying question back, or a best guess? Is this a question the agent should refuse? None of that comes out of a framework; it comes out of someone who knows the domain sitting down and writing it.</p>
+<p>We ended up with two flavors of cases. <strong>Production-derived</strong> ones come from real questions people asked, cleaned up and turned into test cases; these keep us honest about what users actually do. <strong>Synthetic</strong> ones are edge cases we invented on purpose (malformed inputs, out-of-scope asks, users without permission to see something) because real traffic rarely hits them until it does.</p>
+<h2 id="the-oracle-problem">The oracle problem</h2>
+<p>In software testing, the <em>oracle</em> is whatever tells you the right answer. For a calculator, it's arithmetic. For an agent, it's... a person, mostly.</p>
+<p>The first thing I learned here is that you can't shortcut the oracle. Early on, some of our reference answers were generated from a template: "Based on a search for X, here is the relevant information, key items: A, B, C." It looks like a reference answer, it fills the field, and it's close to useless. The embedding similarity check happily compares the agent's response to a paragraph that doesn't actually say anything, and you get a score that measures phrasing, not correctness. A real reference answer means someone actually ran the query or read the document and wrote down what the answer <em>is</em>. In practice, a lot of our cases still skip the similarity check entirely because nobody has written that answer yet. It's the most tedious field to fill in, so it's the one that lags.</p>
+<p>The second thing: for agents that query live data, the oracle goes stale. "How many X happened last week" has a different correct answer every week. You either pin the test to a fixed historical window, lean on the must-have strings for things that don't change (the right table, the right units, the right entity), or accept that the reference answer needs maintenance like any other code. We do some of each, and I'm not convinced we've found the right balance yet.</p>
+<p>The third thing is that the LLM judge is only as good as what you show it. We originally told the judge which tool the agent was <em>supposed</em> to use, even on cases where we only asked it to grade helpfulness. The judge would then try to infer from the prose whether the agent had used the tool, guess wrong, and fail perfectly good answers. Detailed, well-grounded answers ended up scoring <em>worse</em> than hedgy ones. The fix was to only mention tools when a tool criterion is actually being scored, and to pass the judge the real list of tools the agent called instead of letting it guess. The judge needs its own oracle, basically.</p>
+<h2 id="four-checks-cheapest-first">Four checks, cheapest first</h2>
+<p>With a golden dataset in hand, each case gets scored four ways:</p>
+<ol>
+<li><strong>Tool selection</strong>: did the agent call the expected tool? Deterministic and free, and it catches the most common regression, which is a prompt tweak that quietly breaks routing.</li>
+<li><strong>Must-have strings</strong>: are the non-negotiable facts in the answer? Dumb and brittle (it doesn't know "five" and "5" are the same thing), but a great tripwire for a beautifully formatted answer that never actually looked anything up.</li>
+<li><strong>Embedding similarity</strong>: is the response semantically close to the reference answer? Handles rewording, but only as good as the reference.</li>
+<li><strong>LLM-as-judge</strong>: would a careful reviewer sign off on it, against the criteria chosen for that case?</li>
+</ol>
+<p>Each one covers a blind spot in the others, and when something fails, the combination usually points at <em>what</em> broke: routing, retrieval, or reasoning. These run on a git pre-push hook for whichever agents you touched, and again after each deploy to our dev environment.</p>
+<h2 id="so-whats-actually-manual">So what's actually manual?</h2>
+<p>Almost everything upstream of the score. Writing the questions, deciding the expected tool, picking the must-have facts, writing (and re-writing) the reference answers, choosing which criteria apply, and then, when a case fails, figuring out whether the agent got worse or the test was wrong. That last one happens more than I expected; a fair share of "failures" have been the golden dataset being too strict or out of date.</p>
+<p>I don't think that's a flaw in the approach. The golden dataset is where your team's definition of "good" actually lives, and it's worth the time precisely because nobody else can write it for you. If I were starting over I'd build it on day one, and budget for it like a feature instead of a chore.</p>
+<p>If you've found a better way to build or maintain oracles for agents, especially ones sitting on top of live data, I'd love to hear about it.</p>
+</div>
+
+  </main>
+  <footer>
+    Jake Ford · Senior Data Scientist · <a href="https://github.com/Jake-Ford">github.com/Jake-Ford</a>
+  </footer>
+</body>
+</html>
