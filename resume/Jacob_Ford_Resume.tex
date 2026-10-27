@@ -1,0 +1,108 @@
+% Jacob Ford — Resume
+% Compile with pdflatex (works on Overleaf out of the box):
+%   pdflatex Jacob_Ford_Resume.tex
+% Then rename the resulting PDF to Jacob_Ford_2026_Resume.pdf, copy it into ../docs/,
+% and (already done) link it from templates/base.html.
+\documentclass[11pt]{article}
+
+\usepackage[margin=0.6in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{tabularx}
+
+\hypersetup{colorlinks=true, urlcolor=black, linkcolor=black}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+% Section headers: small caps with a horizontal rule underneath
+\titleformat{\section}{\large\scshape}{}{0pt}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{6pt}
+
+% Tighter bullet lists
+\setlist[itemize]{leftmargin=1.4em, topsep=1pt, partopsep=0pt, itemsep=1pt, parsep=0pt}
+
+% \entry{Title}{Dates}{Org}{Location}
+\newcommand{\entry}[4]{%
+  \textbf{#1}, \textit{#3}\hfill #2 \,|\, #4\par%
+}
+
+\begin{document}
+
+%==================== HEADER ====================
+\begin{center}
+  {\LARGE\bfseries Jacob Ford}\\[2pt]
+  {\large Senior Data Scientist and Tech Lead}\\[4pt]
+  (724) 681-3467 \;|\; \href{mailto:jake.ford927@gmail.com}{jake.ford927@gmail.com} \;|\;
+  \href{https://jake-ford.github.io}{jake-ford.github.io}\\
+  \href{https://github.com/Jake-Ford}{github.com/Jake-Ford} \;|\;
+  \href{https://www.linkedin.com/in/jacob-ford-80775662/}{linkedin.com/in/jacob-ford-80775662}
+\end{center}
+
+%==================== SUMMARY ====================
+\section{Summary}
+Senior data scientist and technical lead with 6+ years spanning energy, machine learning, and public policy. Currently leads a team of 10 building ML and AI systems for battery-storage operations at FlexGen. Proven record of shipping production ML---RAG systems, churn and document-classification models, and MLOps pipelines---and securing major funding, including \$1M from Google.
+
+%==================== SKILLS ====================
+\section{Technical Skills}
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+  \textbf{Tools \& Languages} & Python, R, SQL, Git, Docker, AWS (SageMaker, ECR, Lambda), Snowflake Cortex, DataRobot \\
+  \textbf{Machine Learning}   & Model Design \& Development, MLOps, LLMs \& RAG, PyTorch, Geospatial Analysis \\
+  \textbf{Leadership}         & Technical Project Leadership, ML Product Management, Agile, Quantitative Research \\
+\end{tabularx}
+
+%==================== EXPERIENCE ====================
+\section{Experience}
+
+\entry{Senior Data Scientist and Tech Lead}{May 2025 -- Present}{FlexGen}{New York, NY}
+\begin{itemize}
+  \item Lead a team of 10 data scientists and engineers building ML and AI systems for battery-storage operations.
+  \item % TODO: headline technical win — quantify (e.g., model X improved Y by Z\%).
+  \item % TODO: second accomplishment with a metric.
+\end{itemize}
+
+\entry{Senior Data Scientist}{January 2023 -- May 2025}{Solstice}{Cambridge, MA}
+\begin{itemize}
+  \item Secured \$1M from Google to develop EnergyScore, an ML-based green-financing qualification tool, leading technical project management across data collection, model design, and MLOps strategy.
+  \item Led development of a Retrieval-Augmented Generation (RAG) chatbot for solar policy using Snowflake Cortex and custom embeddings, improving internal search across regulatory texts.
+  \item Built a custom churn-prediction model that segmented customers into risk clusters, driving a 39\% decrease in churn among high-risk customers.
+  \item Built and deployed a PyTorch document-classification model via AWS SageMaker, ECR, and Lambda (Docker-based serving), cutting manual review of LMI documents by 70\%.
+\end{itemize}
+
+\entry{Data Scientist}{March 2022 -- January 2023}{EnergyAllies (formerly Solstice Initiative)}{Cambridge, MA}
+\begin{itemize}
+  \item Conducted and published machine-learning bias research in partnership with Google engineers and bias experts, extending fairness metrics to additional protected classes such as homeowners and education levels.
+  \item Lead author on research analyzing priorities in community solar, funded by the DOE Solar Energy Technologies Office.
+  \item Designed a survey-weighting methodology from primary data and a multinomial logistic regression model to test the strength of relationships.
+\end{itemize}
+
+\entry{Transportation Modeler}{February 2020 -- March 2022}{Triangle West TPO}{Durham, NC}
+\begin{itemize}
+  \item Maintained a transportation model predicting multimodal travel volume across highway, transit, and pedestrian networks.
+  \item Applied iterative proportional fitting, neural networks, and decision trees to estimate trip counts and purposes.
+\end{itemize}
+
+\entry{Program Evaluator}{July 2018 -- February 2020}{North Carolina General Assembly}{Raleigh, NC}
+\begin{itemize}
+  \item Conducted state policy evaluations and recommended programmatic solutions within the legislature's in-house watchdog agency.
+  \item Identified \$3.7M in unnecessary state spending stemming from an errant matching mechanism for hurricane-relief funding.
+\end{itemize}
+
+%==================== EDUCATION ====================
+\section{Education}
+\textbf{Master of Public Policy}, Georgetown University \hfill May 2018\\
+\textit{Editor-in-chief, Georgetown Public Policy Review; Baker Innovation Scholar; Research Fellow, CROCUS}\\[3pt]
+\textbf{Bachelor of Science in Mathematics}, Allegheny College \hfill May 2014
+
+%==================== PUBLICATIONS ====================
+\section{Publications}
+\begin{itemize}
+  \item Zoie T. Diana, Madeleine Milne, \textbf{Jacob Ford}, Ron Rubinovitz, Andrew Turner, Chelsea M. Rochman, ``A Paint Library Of Plastic Particles (PLOPP): Fourier transform infrared spectral analysis of paint microplastics.'' \textit{In preparation for Analytical Chemistry.}
+  \item \textbf{Jacob Ford}, ``Fairness in Focus: Insights into Bias Within Machine Learning Risk Evaluations and Established Credit Models.'' \textit{Management System Engineering}, 2025.
+  \item Zahra Thani, Winslow Lewis, Liz Neyens, \textbf{Jacob Ford}, ``Priorities' Role in Community Solar: Survey-Based Study and Payment Performance Analysis.'' \textit{Proceedings of the 52nd ASES National Solar Conference 2023}, Springer Proceedings in Energy, Springer, Cham, August 2023.
+  \item Allison LaFave, Emily Kelly, \textbf{Jacob Ford}, ``Reasons High School Students Change Their Educational Setting.'' \textit{National Center for Education Statistics (NCES)}, NCES 2019-119, November 2018.
+  \item Allison LaFave, Emily Kelly, \textbf{Jacob Ford}, ``Factors that Influence Student College Choice.'' \textit{National Center for Education Statistics (NCES)}, NCES 2018-119, June 2018.
+\end{itemize}
+
+\end{document}
