@@ -32,7 +32,7 @@ def make_map(xlsx_path: Path, out_path: Path, center: tuple, zoom: int):
     m = folium.Map(
         location=center,
         zoom_start=zoom,
-        tiles="CartoDB positron",
+        tiles="OpenStreetMap",
         width="100%",
         height=MAP_HEIGHT,
     )
